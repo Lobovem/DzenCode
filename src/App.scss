@@ -4,3 +4,12 @@
   padding: 2rem;
   text-align: center;
 }
+
+.container {
+
+  &__title {
+    color: green;
+    font-size: 50px;
+  }
+
+}
