@@ -1,0 +1,27 @@
+.user {
+  position: relative;
+
+  &__photo {
+    width: 54px;
+  }
+
+
+  &__settingIconWrap {
+    background-color: white;
+    position: absolute;
+    bottom: -2px;
+    left: 34px;
+    width: 24px;
+    height: 24px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  }
+
+  &__settingIcon {
+    width: 8px;
+  }
+
+}
