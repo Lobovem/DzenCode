@@ -1,0 +1,26 @@
+.time {
+
+
+  &__day {}
+
+  &__wrapDate {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+  }
+
+  &__date {}
+
+  &__wrapIcon {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  &__icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  &__clock {}
+}
