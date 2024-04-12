@@ -1,0 +1,33 @@
+.navigationMenu {
+  //TODO make color underline to green
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 40px;
+}
+
+.navBar {
+  gap: 10px;
+  font-size: 14px;
+  align-items: center;
+
+  &__link {
+    color: black;
+    font-weight: 500;
+    padding: 2px;
+
+    &:hover {
+      color: black;
+    }
+  }
+}
+
+// .nav-link.active,
+// .nav-underline .nav-link {
+
+// .nav-underline {
+//   font-weight: 700;
+//   color: green;
+//   border-bottom-color: green;
+// }
