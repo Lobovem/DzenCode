@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import { Time } from '../Time/Time';
+import { TopMenu } from '../TopMenu/TopMenu';
 import { Logo } from '../Logo/Logo';
 import { Search } from '../Search/Search';
 import './Header.scss';
@@ -19,7 +19,7 @@ export const Header: FC = () => {
           </Col>
 
           <Col xl={2} className="header__time">
-            <Time />
+            <TopMenu />
           </Col>
         </Row>
       </Container>

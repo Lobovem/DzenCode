@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import './Time.scss';
+import './TopMenu.scss';
 
-export const Time: React.FC = () => {
+export const TopMenu: React.FC = () => {
   const [currentDateTime, setCurrentDateTime] = useState<Date>(new Date());
 
   useEffect(() => {
