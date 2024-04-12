@@ -5,7 +5,7 @@ import { NavigationMenu } from '../NavigationMenu/NavigationMenu';
 
 export const MainSection: FC = () => {
   return (
-    <Container fluid>
+    <Container className="layoutMain">
       <Row>
         <Col lg={1} className="leftSide">
           <NavigationMenu />
