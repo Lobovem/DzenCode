@@ -8,7 +8,7 @@ export const Logo: FC = () => {
       <div className="logo__imgWrap">
         <img className="logo__img" src={logo} />
       </div>
-      <p className="logo__title">INVENTORY</p>
+      <h1 className="logo__title">INVENTORY</h1>
     </div>
   );
 };

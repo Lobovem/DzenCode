@@ -14,21 +14,25 @@ export const NavigationMenu: FC = () => {
             ORDERS
           </Nav.Link>
         </Nav.Item>
+
         <Nav.Item className="navBar__item">
           <Nav.Link className="navBar__link" eventKey="link-1">
             PRODUCTS
           </Nav.Link>
         </Nav.Item>
+
         <Nav.Item className="navBar__item">
           <Nav.Link className="navBar__link" eventKey="link-2">
             GROUPS
           </Nav.Link>
         </Nav.Item>
+
         <Nav.Item className="navBar__item">
           <Nav.Link className="navBar__link" eventKey="link-3">
             USERS
           </Nav.Link>
         </Nav.Item>
+
         <Nav.Item className="navBar__item">
           <Nav.Link className="navBar__link" eventKey="link-4">
             SETTING

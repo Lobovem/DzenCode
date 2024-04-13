@@ -7,7 +7,7 @@ import './Header.scss';
 
 export const Header: FC = () => {
   return (
-    <div className="layout">
+    <header className="layout">
       <Container>
         <Row className="header">
           <Col xl={2} className="header__logo">
@@ -23,6 +23,6 @@ export const Header: FC = () => {
           </Col>
         </Row>
       </Container>
-    </div>
+    </header>
   );
 };

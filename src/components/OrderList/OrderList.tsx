@@ -1,126 +1,20 @@
 import { BtnClose } from '../BtnClose/BtnClose';
-import { Button, Image } from 'react-bootstrap';
-import { FC } from 'react';
-import iconList from '../../assets/iconList.png';
-import iconTrush from '../../assets/iconTrush.png';
 import imgMonitor from '../../assets/monitor.png';
-import './Orders.scss';
+import { Button } from 'react-bootstrap';
+import { FC } from 'react';
+import './OrderList.scss';
+import { Order } from '../Order/Order';
 
-export const Orders: FC = () => {
+export const OrderList: FC = () => {
   return (
     <div className="orders">
       <div className="orders__header">
-        <Button className="rounded-circle orders__button button">+</Button>
+        <Button className="rounded-circle orders__button btnAdd">+</Button>
         <p className="orders__headerTitle">Orders / 25</p>
       </div>
 
-      <div className="orders__listItem listItem">
-        <div className="listItem__itemWrap">
-          <div className="align-items-center listItem__item">
-            <div className="listItem__titleWrap">
-              <p className="listItem__title">
-                Long long title name very long order long title name very long order{' '}
-              </p>
-            </div>
-
-            <div className="listItem__countWrap">
-              <Button variant="white" className="listItem__iconListWrap">
-                <Image src={iconList} className="listItem__iconList" />
-              </Button>
-
-              <div>
-                <p className="listItem__countProducts">23</p>
-                <p className="listItem__countProductsDesc">Products</p>
-              </div>
-            </div>
-
-            <div className="listItem__dateWrap">
-              <p className="listItem__dateShort">04 / 12</p>
-              <p className="listItem__dateLarge">06/ Apr / 2024</p>
-            </div>
-
-            <div className="listItem__priceWrap">
-              <p className="listItem__priceShort">2500 $</p>
-              <p className="listItem__priceLarge">250 000 UAH</p>
-            </div>
-
-            <div className="listItem__iconTrush iconTrush">
-              <Button variant="white">
-                <Image src={iconTrush} className="iconTrush__icon" />
-              </Button>
-            </div>
-          </div>
-
-          <div className="align-items-center listItem__item">
-            <div className="listItem__titleWrap">
-              <p className="listItem__title">
-                Long long title name very long order long title name very long order{' '}
-              </p>
-            </div>
-
-            <div className="listItem__countWrap">
-              <Button variant="white" className="listItem__iconListWrap">
-                <Image src={iconList} className="listItem__iconList" />
-              </Button>
-
-              <div>
-                <p className="listItem__countProducts">23</p>
-                <p className="listItem__countProductsDesc">Products</p>
-              </div>
-            </div>
-
-            <div className="listItem__dateWrap">
-              <p className="listItem__dateShort">04 / 12</p>
-              <p className="listItem__dateLarge">06/ Apr / 2024</p>
-            </div>
-
-            <div className="listItem__priceWrap">
-              <p className="listItem__priceShort">2500 $</p>
-              <p className="listItem__priceLarge">250 000 UAH</p>
-            </div>
-
-            <div className="listItem__iconTrush iconTrush">
-              <Button variant="white">
-                <Image src={iconTrush} className="iconTrush__icon" />
-              </Button>
-            </div>
-          </div>
-
-          <div className="align-items-center listItem__item">
-            <div className="listItem__titleWrap">
-              <p className="listItem__title">
-                Long long title name very long order long title name very long order{' '}
-              </p>
-            </div>
-
-            <div className="listItem__countWrap">
-              <Button variant="white" className="listItem__iconListWrap">
-                <Image src={iconList} className="listItem__iconList" />
-              </Button>
-
-              <div>
-                <p className="listItem__countProducts">23</p>
-                <p className="listItem__countProductsDesc">Products</p>
-              </div>
-            </div>
-
-            <div className="listItem__dateWrap">
-              <p className="listItem__dateShort">04 / 12</p>
-              <p className="listItem__dateLarge">06/ Apr / 2024</p>
-            </div>
-
-            <div className="listItem__priceWrap">
-              <p className="listItem__priceShort">2500 $</p>
-              <p className="listItem__priceLarge">250 000 UAH</p>
-            </div>
-
-            <div className="listItem__iconTrush iconTrush">
-              <Button variant="white">
-                <Image src={iconTrush} className="iconTrush__icon" />
-              </Button>
-            </div>
-          </div>
-        </div>
+      <div className="orders__listItem">
+        <Order />
 
         {/* <div className="orders__detailWrap detailOrder">
           <BtnClose>
