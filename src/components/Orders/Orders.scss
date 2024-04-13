@@ -3,13 +3,13 @@
   justify-content: center;
   align-items: center;
   width: 20px;
-  padding: 0;
   height: 20px;
+  padding: 0;
   border: none;
   font-size: 16px;
   background-color: rgba(80, 190, 36, 0.669);
   border: 2px solid rgba(69, 111, 5, 0.712);
-  padding-bottom: 1px;
+  padding-bottom: 2px;
 
   &:hover {
     background-color: lightgray;
@@ -34,11 +34,19 @@
   }
 
 
+
 }
 
 .listItem {
   margin-left: 0;
   padding-left: 0;
+  display: flex;
+  flex: 1;
+
+  &__itemWrap {
+    flex: 1;
+
+  }
 
   &__item {
     border: 1px solid lightgrey;
@@ -46,21 +54,37 @@
     margin-bottom: 10px;
     padding-top: 4px;
     padding-bottom: 4px;
+    display: flex;
+    flex: 1;
+    gap: 10px;
+    padding: 4px 10px 4px 30px;
 
     &:hover {
       box-shadow: 0 0 20px rgba(133, 125, 125, 0.2);
     }
   }
 
+  &__titleWrap {
+    flex: 1;
+    flex-basis: 50%;
+
+  }
+
   &__title {
     text-decoration: underline;
     text-underline-offset: 4px;
+    flex: 1;
+
   }
 
-  &__count {
+  &__countWrap {
     display: flex;
     align-items: center;
     gap: 10px;
+    flex: 1;
+    flex-basis: 10%;
+
+
   }
 
   &__iconListWrap {
@@ -71,7 +95,8 @@
     padding: 0;
     display: flex;
     justify-content: center;
-    align-items: center
+    align-items: center;
+
   }
 
   &__iconList {
@@ -87,6 +112,12 @@
     color: gray;
   }
 
+  &__dateWrap {
+    flex: 1;
+    flex-basis: 10%;
+
+  }
+
   &__date {
     display: flex;
     flex-direction: column;
@@ -98,14 +129,120 @@
     color: gray;
   }
 
+  &__priceWrap {
+    flex: 1;
+    flex-basis: 20%;
+
+  }
+
   &__priceShort {
     font-size: 12px;
     color: gray;
   }
 
   &__iconTrush {
+    flex: 1;
+    flex-basis: 10%;
+  }
+
+}
+
+.iconTrush {
+  &__icon {
     width: 12px;
     height: 12px;
     opacity: 0.7;
+  }
+}
+
+.detailOrder {
+  flex: 1;
+  flex-basis: 30%; //TODO check out it style
+  margin-left: 20px;
+  border: 1px solid lightgray;
+  border-radius: 6px;
+  position: relative;
+  // padding: 20px 10px 4px 20px;
+  padding-top: 20px;
+
+
+  &__btnCloseWrap {
+    width: 30px;
+    height: 30px;
+    border: 1px solid lightgray;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 8px;
+    background-color: white;
+    position: absolute;
+    right: -14px;
+    top: -10px;
+    box-shadow: 0 0 10px rgba(27, 25, 25, 0.2);
+  }
+
+  &__btnClose {
+    padding: 10px;
+  }
+
+  &__title {
+    font-weight: 600;
+    margin-bottom: 20px;
+    margin-left: 20px;
+  }
+
+  &__buttonWrap {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+    margin-left: 20px;
+  }
+}
+
+.item {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 25px;
+  padding-right: 20px;
+  border-top: 1px solid lightgray;
+
+  &:hover {
+    box-shadow: 0 0 20px rgba(133, 125, 125, 0.2);
+  }
+
+  &__status {
+
+    color: green;
+
+    &_sm {
+      width: 10px;
+      height: 10px;
+      background-color: green;
+      border-radius: 6px;
+    }
+  }
+
+  &__img {
+    width: 40px;
+    height: 30px;
+  }
+
+  &__title {
+    text-decoration: underline;
+    margin-right: 40px;
+  }
+
+  &__titleDesc {
+    font-size: 12px;
+    color: gray;
+  }
+
+  &__iconTrush {
+    margin-left: auto;
   }
 }
