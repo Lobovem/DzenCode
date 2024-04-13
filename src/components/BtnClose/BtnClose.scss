@@ -1,0 +1,19 @@
+.btnClose {
+  width: 30px;
+  height: 30px;
+  border: 1px solid lightgray;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 8px;
+  background-color: white;
+  position: absolute;
+  right: -14px;
+  top: -10px;
+  box-shadow: 0 0 10px rgba(27, 25, 25, 0.2);
+
+  &__close {
+    padding: 10px;
+  }
+}

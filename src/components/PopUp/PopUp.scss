@@ -1,0 +1,105 @@
+.modal-content {
+  border-radius: 0;
+  min-width: 600px;
+}
+
+.item {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  // padding-top: 4px;
+  // padding-bottom: 4px;
+  // padding-left: 25px;
+  // padding-right: 20px;
+
+  &:hover {
+    // box-shadow: 0 0 20px rgba(133, 125, 125, 0.2);
+  }
+
+  &__status {
+
+    color: green;
+
+    &_sm {
+      width: 8px; //TODO check out
+      height: 8px;
+      background-color: green;
+      border-radius: 6px;
+    }
+  }
+
+  &__img {
+    width: 40px;
+    height: 30px;
+  }
+
+  &__title {
+    text-decoration: underline;
+    margin-right: 40px;
+    // font-size: 14px;
+
+    &_lg {
+      font-size: 16px;
+    }
+  }
+
+  &__titleDesc {
+    font-size: 12px;
+    color: gray;
+  }
+
+
+}
+
+.popUp {
+  border-radius: 0;
+
+  &__header {
+    // border-radius: 0;
+
+  }
+
+  &__title {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  &__footer {
+    border-radius: 0;
+    background-color: green;
+  }
+
+  &__btnClose {
+    background-color: green;
+    border-color: green;
+    color: white;
+    border-radius: 20px;
+    min-width: 130px;
+    font-weight: 600;
+
+    &:hover {
+      background-color: green;
+      //   color: black;
+      // border: green;
+    }
+  }
+
+  &__btnDelete {
+    background-color: white;
+    color: red;
+    border-radius: 20px;
+    min-width: 130px;
+    font-size: 14px;
+    font-weight: 600;
+    border-color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  &__btnDeleteIcon {
+    width: 10px;
+    height: 12px;
+  }
+}

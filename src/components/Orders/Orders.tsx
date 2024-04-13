@@ -1,4 +1,5 @@
-import { Button, CloseButton, Image } from 'react-bootstrap';
+import { BtnClose } from '../BtnClose/BtnClose';
+import { Button, Image } from 'react-bootstrap';
 import { FC } from 'react';
 import iconList from '../../assets/iconList.png';
 import iconTrush from '../../assets/iconTrush.png';
@@ -122,9 +123,7 @@ export const Orders: FC = () => {
         </div>
 
         {/* <div className="orders__detailWrap detailOrder">
-          <div className="detailOrder__btnCloseWrap">
-            <CloseButton className="detailOrder__btnClose" />
-          </div>
+          <BtnClose>
 
           <p className="detailOrder__title">
             Long long title name very long order long title name very long order
