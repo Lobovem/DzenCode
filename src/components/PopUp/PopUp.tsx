@@ -18,15 +18,15 @@ export const PopUp: FC = () => {
         </Modal.Header>
 
         <Modal.Body className="popUp__body">
-          <div className="popUp__item item">
-            <div className="item__status item__status_sm"></div>
-            <Image className="item__img" src={imgMonitor} />
+          <div className="popUp__product product">
+            <div className="product__status product__status_sm"></div>
+            <Image className="product__img" src={imgMonitor} />
 
-            <div className="item__titleWrap">
-              <p className="item__title">
+            <div className="product__titleWrap">
+              <p className="product__title">
                 Samsung 49-inch Odyssey G9 Curved Gaming Monitor with QLED
               </p>
-              <p className="item__titleDesc">SN- 9876543210</p>
+              <p className="product__titleDesc">SN- 9876543210</p>
             </div>
           </div>
         </Modal.Body>

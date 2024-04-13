@@ -4,15 +4,15 @@ import { Header } from './components/Header/Header';
 import { MainSection } from './components/MainSection/MainSection';
 import { OrderList } from './components/OrderList/OrderList';
 import { PopUp } from './components/PopUp/PopUp';
-import { ProductsPage } from './pages/ProductsPage/ProductsPage';
+import { ProductList } from './components/ProductList/ProductList';
 
 function App() {
   return (
     <>
       <Header />
       <MainSection>
-        {/* <ProductsPage /> */}
-        <OrderList />
+        <ProductList />
+        {/* <OrderList /> */}
       </MainSection>
       {/* <PopUp /> */}
     </>

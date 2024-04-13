@@ -1,23 +1,15 @@
 .modal-content {
   border-radius: 0;
-  min-width: 600px;
+  min-width: 700px;
 }
 
-.item {
+.product {
   display: flex;
   gap: 30px;
   align-items: center;
-  // padding-top: 4px;
-  // padding-bottom: 4px;
-  // padding-left: 25px;
-  // padding-right: 20px;
 
-  &:hover {
-    // box-shadow: 0 0 20px rgba(133, 125, 125, 0.2);
-  }
 
   &__status {
-
     color: green;
 
     &_sm {
@@ -54,10 +46,7 @@
 .popUp {
   border-radius: 0;
 
-  &__header {
-    // border-radius: 0;
-
-  }
+  &__header {}
 
   &__title {
     font-size: 16px;
@@ -79,8 +68,6 @@
 
     &:hover {
       background-color: green;
-      //   color: black;
-      // border: green;
     }
   }
 

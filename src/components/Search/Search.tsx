@@ -1,7 +1,8 @@
 import { Form } from 'react-bootstrap';
 import './Search.scss';
+import { FC } from 'react';
 
-export const Search = () => {
+export const Search: FC = () => {
   return (
     <div className="search">
       <Form.Control

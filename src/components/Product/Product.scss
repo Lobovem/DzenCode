@@ -1,48 +1,8 @@
-.products {
-
-
-  &__header {
-    margin-bottom: 30px;
-    display: flex;
-    align-items: center;
-    // gap: 10px;
-  }
-
-  &__headerTitle {
-    font-weight: 600;
-    margin-right: 40px;
-  }
-
-  &__titleSelect {
-    font-size: 12px;
-    color: gray;
-    margin-right: 10px; //TODO check out tag to
-  }
-
-  &__select {
-    max-width: 300px;
-    margin-right: 40px;
-    background-color: white;
-  }
-
-  &__item {
-    background-color: white;
-    margin-bottom: 10px;
-    border: 1px solid lightgray;
-    border-radius: 6px;
-    min-width: 1480px;
-
-  }
-
-  &__itemList {
-    // margin-bottom: 20px;
-    // border-color: red;
-    overflow: auto;
-  }
-}
-
-.item {
-
+.product {
+  background-color: white;
+  margin-bottom: 10px;
+  border: 1px solid lightgray;
+  border-radius: 6px;
   display: flex;
   gap: 30px;
   align-items: center;
@@ -50,16 +10,12 @@
   padding-bottom: 4px;
   padding-left: 25px;
   padding-right: 20px;
-  border-top: 1px solid lightgray;
-  // background-color: white;
-  // margin-bottom: 10px;
 
   &:hover {
     box-shadow: 0 0 20px rgba(133, 125, 125, 0.2);
   }
 
   &__status {
-
     color: green;
 
     &_sm {
@@ -94,23 +50,28 @@
     margin-left: auto;
   }
 
-  &__date {
-    display: flex;
+  &__dateWrap {
+    display: inline-flex;
     flex-direction: column;
+    flex-wrap: nowrap;
   }
 
   &__dateTitle {
+    font-size: 14px;
+
     span {
       font-size: 14px;
       color: gray;
     }
 
-    font-size: 14px;
-
+    &_center {
+      text-align: center;
+    }
   }
+
 }
 
-.iconTrush {
+.btnTrush {
   &__icon {
     width: 12px;
     height: 12px;
