@@ -30,16 +30,19 @@
     margin-bottom: 10px;
     border: 1px solid lightgray;
     border-radius: 6px;
+    min-width: 1480px;
 
   }
 
-  &__listItem {
+  &__itemList {
     // margin-bottom: 20px;
     // border-color: red;
+    overflow: auto;
   }
 }
 
 .item {
+
   display: flex;
   gap: 30px;
   align-items: center;

@@ -1,0 +1,16 @@
+.select {
+  display: flex;
+  align-items: center;
+
+  &__title {
+    font-size: 12px;
+    color: gray;
+    margin-right: 10px; //TODO check out tag to
+  }
+
+  &__body {
+    max-width: 300px;
+    margin-right: 40px;
+    background-color: white;
+  }
+}
