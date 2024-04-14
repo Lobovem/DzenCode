@@ -16,9 +16,11 @@
     color: black;
     font-weight: 500;
     padding: 2px;
+    text-decoration: none;
 
     &:hover {
-      color: black;
+      color: gray;
+      text-decoration: underline;
     }
   }
 }
@@ -31,3 +33,10 @@
 //   color: green;
 //   border-bottom-color: green;
 // }
+.active {
+  color: green;
+
+  &:hover {
+    color: green;
+  }
+}

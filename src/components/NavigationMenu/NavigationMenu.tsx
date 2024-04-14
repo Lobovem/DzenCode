@@ -11,37 +11,39 @@ export const NavigationMenu: FC = () => {
 
       <Nav variant="underline" defaultActiveKey="#" className="flex-column navBar">
         <Nav.Item className="navBar__item">
-          <Nav.Link className="navBar__link ">HOME</Nav.Link>
+          <NavLink to="/" className="navBar__link" activeClassName="active">
+            HOME
+          </NavLink>
         </Nav.Item>
 
         <Nav.Item className="navBar__item">
-          <Nav.Link className="navBar__link " href="/productList" eventKey="link-1">
+          <NavLink to="/orderList" className="navBar__link" activeClassName="active">
             ORDERS
-          </Nav.Link>
+          </NavLink>
         </Nav.Item>
 
         <Nav.Item className="navBar__item">
-          <Nav.Link className="navBar__link" href="/orderList" eventKey="link-2">
+          <NavLink to="/productList" className="navBar__link" activeClassName="active">
             PRODUCTS
-          </Nav.Link>
+          </NavLink>
         </Nav.Item>
 
         <Nav.Item className="navBar__item">
-          <Nav.Link className="navBar__link" eventKey="link-3">
+          <NavLink to="/groups" className="navBar__link" activeClassName="active">
             GROUPS
-          </Nav.Link>
+          </NavLink>
         </Nav.Item>
 
         <Nav.Item className="navBar__item">
-          <Nav.Link className="navBar__link" eventKey="link-4">
+          <NavLink to="/users" className="navBar__link" activeClassName="active">
             USERS
-          </Nav.Link>
+          </NavLink>
         </Nav.Item>
 
         <Nav.Item className="navBar__item">
-          <Nav.Link className="navBar__link" eventKey="link-5">
-            SETTING
-          </Nav.Link>
+          <NavLink to="/settings" className="navBar__link" activeClassName="active">
+            SETTINGS
+          </NavLink>
         </Nav.Item>
       </Nav>
     </div>
