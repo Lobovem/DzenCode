@@ -1,6 +1,6 @@
 import { Form } from 'react-bootstrap';
-import './Search.scss';
 import { FC } from 'react';
+import './Search.scss';
 
 export const Search: FC = () => {
   return (

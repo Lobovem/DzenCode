@@ -1,18 +1,38 @@
 // import reactLogo from './assets/react.svg';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './App.scss';
 import { Header } from './components/Header/Header';
 import { MainSection } from './components/MainSection/MainSection';
-import { OrderList } from './components/OrderList/OrderList';
 import { PopUp } from './components/PopUp/PopUp';
-import { ProductList } from './components/ProductList/ProductList';
+import { ErrorPage } from './pages/ErrorPage';
+import { HomePage } from './pages/HomePage';
+import { ProductsPage } from './pages/ProductsPage';
+import { OrdersPage } from './pages/OrdersPage';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <HomePage />,
+    errorElement: <ErrorPage />,
+  },
+
+  {
+    path: '/productList',
+    element: <ProductsPage />,
+  },
+
+  {
+    path: '/orderList',
+    element: <OrdersPage />,
+  },
+]);
 
 function App() {
   return (
     <>
       <Header />
       <MainSection>
-        {/* <ProductList /> */}
-        <OrderList />
+        <RouterProvider router={router} />
       </MainSection>
       {/* <PopUp /> */}
     </>
