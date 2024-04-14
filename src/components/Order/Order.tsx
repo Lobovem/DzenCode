@@ -2,7 +2,7 @@ import { FC } from 'react';
 import './Order.scss';
 import { Button, Image } from 'react-bootstrap';
 import iconList from '../../assets/iconList.png';
-import iconTrush from '../../assets/iconTrush.png';
+import { BtnTrush } from '../BtnTrush/BtnTrush';
 
 export const Order: FC = () => {
   return (
@@ -36,9 +36,7 @@ export const Order: FC = () => {
         </div>
 
         <div className="order__btnTrushWrap">
-          <Button variant="white" className="btnTrush">
-            <Image src={iconTrush} className="btnTrush__icon" />
-          </Button>
+          <BtnTrush />
         </div>
       </div>
     </div>

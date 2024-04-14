@@ -11,8 +11,8 @@ function App() {
     <>
       <Header />
       <MainSection>
-        <ProductList />
-        {/* <OrderList /> */}
+        {/* <ProductList /> */}
+        <OrderList />
       </MainSection>
       {/* <PopUp /> */}
     </>
