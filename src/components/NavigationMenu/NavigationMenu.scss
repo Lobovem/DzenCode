@@ -22,7 +22,17 @@
       color: gray;
       text-decoration: underline;
     }
+
+    &_active {
+      color: green;
+
+      &:hover {
+        color: green;
+      }
+    }
   }
+
+
 }
 
 // .nav-link.active,
@@ -33,10 +43,3 @@
 //   color: green;
 //   border-bottom-color: green;
 // }
-.active {
-  color: green;
-
-  &:hover {
-    color: green;
-  }
-}

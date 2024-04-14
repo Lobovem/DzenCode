@@ -1,4 +1,4 @@
-import { useRouteError } from 'react-router-dom';
+import { Link, useRouteError } from 'react-router-dom';
 import { FC } from 'react';
 
 interface IRouteError {
@@ -12,12 +12,20 @@ export const ErrorPage: FC = () => {
   console.error(error);
 
   return (
-    <div id="error-page">
+    <div
+      id="error-page"
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
       <h1>Oops!</h1>
       <p>Sorry, an unexpected error has occurred.</p>
       <p>
         <i>{error.statusText || error.message}</i>
       </p>
+      <Link to="/">Home</Link>
     </div>
   );
 };

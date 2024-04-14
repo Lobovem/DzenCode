@@ -1,49 +1,42 @@
 // import reactLogo from './assets/react.svg';
-// import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './App.scss';
-import { Header } from './components/Header/Header';
-import { MainSection } from './components/MainSection/MainSection';
 import { PopUp } from './components/PopUp/PopUp';
 import { ErrorPage } from './pages/ErrorPage';
-import { HomePage } from './pages/HomePage';
 import { ProductsPage } from './pages/ProductsPage';
 import { OrdersPage } from './pages/OrdersPage';
+import { FC } from 'react';
+import { Layout } from './components/Layout/Layout';
+import { HomePage } from './pages/HomePage';
 
-// const router = createBrowserRouter([
-//   {
-//     path: '/',
-//     element: <HomePage />,
-//     errorElement: <ErrorPage />,
-//   },
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Layout />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        index: true,
+        element: <HomePage />,
+      },
 
-//   {
-//     path: '/productList',
-//     element: <ProductsPage />,
-//   },
+      {
+        path: '/productList',
+        element: <ProductsPage />,
+      },
 
-//   {
-//     path: '/orderList',
-//     element: <OrdersPage />,
-//   },
-// ]);
+      {
+        path: '/orderList',
+        element: <OrdersPage />,
+      },
+    ],
+  },
+]);
 
-function App() {
+export const App: FC = () => {
   return (
     <>
-      <Header />
-      <MainSection>
-        {/* <RouterProvider router={router} /> */}
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/productList" element={<ProductsPage />} />
-          <Route path="/orderList" element={<OrdersPage />} />
-          <Route path="*" element={<ErrorPage />} />
-        </Routes>
-      </MainSection>
-      {/* <PopUp /> */}
+      <RouterProvider router={router} />
     </>
   );
-}
-
-export default App;
+};

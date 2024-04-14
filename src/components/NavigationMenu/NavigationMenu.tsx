@@ -11,37 +11,67 @@ export const NavigationMenu: FC = () => {
 
       <Nav variant="underline" defaultActiveKey="#" className="flex-column navBar">
         <Nav.Item className="navBar__item">
-          <NavLink to="/" className="navBar__link" activeClassName="active">
+          <NavLink
+            to="/"
+            className={({ isActive }) =>
+              isActive ? 'navBar__link navBar__link_active' : 'navBar__link'
+            }
+          >
             HOME
           </NavLink>
         </Nav.Item>
 
         <Nav.Item className="navBar__item">
-          <NavLink to="/orderList" className="navBar__link" activeClassName="active">
+          <NavLink
+            to="/orderList"
+            className={({ isActive }) =>
+              isActive ? 'navBar__link navBar__link_active' : 'navBar__link'
+            }
+          >
             ORDERS
           </NavLink>
         </Nav.Item>
 
         <Nav.Item className="navBar__item">
-          <NavLink to="/productList" className="navBar__link" activeClassName="active">
+          <NavLink
+            to="/productList"
+            className={({ isActive }) =>
+              isActive ? 'navBar__link navBar__link_active' : 'navBar__link'
+            }
+          >
             PRODUCTS
           </NavLink>
         </Nav.Item>
 
         <Nav.Item className="navBar__item">
-          <NavLink to="/groups" className="navBar__link" activeClassName="active">
+          <NavLink
+            to="/groups"
+            className={({ isActive }) =>
+              isActive ? 'navBar__link navBar__link_active' : 'navBar__link'
+            }
+          >
             GROUPS
           </NavLink>
         </Nav.Item>
 
         <Nav.Item className="navBar__item">
-          <NavLink to="/users" className="navBar__link" activeClassName="active">
+          <NavLink
+            to="/users"
+            className={({ isActive }) =>
+              isActive ? 'navBar__link navBar__link_active' : 'navBar__link'
+            }
+          >
             USERS
           </NavLink>
         </Nav.Item>
 
         <Nav.Item className="navBar__item">
-          <NavLink to="/settings" className="navBar__link" activeClassName="active">
+          <NavLink
+            to="/settings"
+            className={({ isActive }) =>
+              isActive ? 'navBar__link navBar__link_active' : 'navBar__link'
+            }
+          >
             SETTINGS
           </NavLink>
         </Nav.Item>
