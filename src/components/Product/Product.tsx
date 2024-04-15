@@ -4,18 +4,53 @@ import { Button, Image } from 'react-bootstrap';
 import imgMonitor from '../../assets/monitor.png';
 import iconTrush from '../../assets/iconTrush.png';
 
-export const Product: FC = () => {
+export interface IProduct {
+  id: number;
+  serialNumber: number;
+  isNew: boolean;
+  photo: string;
+  title: string;
+  type: string;
+  specification: string;
+  guarantee: {
+    start: string;
+    end: string;
+  };
+  price: {
+    value: number;
+    symbol: string;
+    isDefault: boolean;
+  }[];
+  order: number;
+  date: string;
+}
+
+interface IProductProps {
+  product: IProduct;
+}
+
+export const Product: FC<IProductProps> = ({ product }) => {
   return (
     <div className="product">
-      <div className="product__status product__status_sm"></div>
+      <div
+        className={
+          product.isNew
+            ? 'product__status product__status_smActive '
+            : 'product__status product__status_sm'
+        }
+      ></div>
       <Image className="product__img" src={imgMonitor} />
 
       <div className="product__titleWrap">
-        <p className="product__title">Samsung 49-inch Odyssey G9 Curved Gaming Monitor</p>
-        <p className="product__titleDesc">SN- 9876543210</p>
+        <p className="product__title">{product.title}</p>
+        <p className="product__titleDesc">{product.serialNumber}</p>
       </div>
 
-      <p className="product__status">Free</p>
+      {product.isNew ? (
+        <p className="product__status product__status_active">Free</p>
+      ) : (
+        <p className="product__status">Work</p>
+      )}
 
       <div className="product__dateWrap">
         <div>
@@ -26,14 +61,25 @@ export const Product: FC = () => {
         </div>
       </div>
 
-      <p>new</p>
-      {/* <p>boo</p> */}
+      {product.isNew ? (
+        <p className="product__status">New</p>
+      ) : (
+        <p className="product__status">Used</p>
+      )}
 
       <div className="product__dateWrap">
-        <p className="product__dateTitle">
-          <span>2500 $</span>
-        </p>
-        <p className="product__dateTitle">250 000 UAH</p>
+        {product?.price.map((price, index) => (
+          <p
+            key={index}
+            className={
+              price.isDefault
+                ? 'product__dateTitle'
+                : 'product__dateTitle product__dateTitle_sm'
+            }
+          >
+            {`${price.value} ${price.symbol}`}
+          </p>
+        ))}
       </div>
 
       <p className="product__title product__title_lg">
@@ -46,10 +92,12 @@ export const Product: FC = () => {
       </p>
 
       <div className="product__dateWrap">
-        <p className="product__dateTitle product__dateTitle_center">
+        {/* <p className="product__dateTitle product__dateTitle_center">
           <span>06 / 12</span>
         </p>
-        <p className="product__dateTitle">07 / Apr / 2019</p>
+        <p className="product__dateTitle">07 / Apr / 2019</p> */}
+        <p className="product__dateTitle product__dateTitle_sm">{product.date}</p>
+        <p className="product__dateTitle">{product.date}</p>
       </div>
 
       <div className="product__btnTrushWrap">

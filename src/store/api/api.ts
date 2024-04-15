@@ -17,4 +17,19 @@ export const fetchOrderList = createAsyncThunk(
     }
   })
 
+export const fetchProductList = createAsyncThunk(
+  'products', async () => {
+
+    try {
+      const response = await fetch(`${API_URL}products`)
+      if (!response.ok) {
+        throw new Error('Error fetching news list');
+      }
+      return response.json()
+    }
+    catch (error: any) {
+      throw new Error(error.message);
+    }
+  })
+
 

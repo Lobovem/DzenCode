@@ -1,26 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { IOrder } from '../components/Order/Order';
-import { fetchOrderList } from './api/api';
+import { fetchOrderList, fetchProductList } from './api/api';
+import { IProduct } from '../components/Product/Product';
 
 export interface IDzenCodeState {
   orderList: IOrder[];
+  productList: IProduct[]
   value: number
 }
-const initialOrderListState: IOrder[] = [{
-  "id": 0,
-  "title": "",
-  "date": "",
-  "description": "",
-  "products": [
-    { "id": 0 }
-  ]
-}]
 
 const initialState: IDzenCodeState = {
-  orderList: initialOrderListState,
+  orderList: [],
+  productList: [],
   value: 0
-
 }
 
 export const dzenCodeSlice = createSlice({
@@ -43,10 +36,12 @@ export const dzenCodeSlice = createSlice({
   },
 
   extraReducers: (builder) => {
-    // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(fetchOrderList.fulfilled, (state, action) => {
-      // Add user to the state array
       state.orderList = action.payload
+    })
+
+    builder.addCase(fetchProductList.fulfilled, (state, action) => {
+      state.productList = action.payload
     })
   },
 })

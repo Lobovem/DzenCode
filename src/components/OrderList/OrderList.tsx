@@ -21,12 +21,12 @@ export const OrderList: FC = () => {
     <div className="orderList">
       <div className="orderList__header">
         <Button className="rounded-circle orderList__button btnAdd">+</Button>
-        <p className="orderList__headerTitle">OrderList / 25</p>
+        <p className="orderList__headerTitle">OrderList / {orderList.length}</p>
       </div>
 
       <div className="orderList__wrap">
         <div className="orderList__list">
-          {orderList.map((order) => (
+          {orderList?.map((order) => (
             <Order key={order.id} order={order} />
           ))}
         </div>

@@ -51,7 +51,7 @@
       "serialNumber": 1234,
       "isNew": false,
       "photo": "pathToFile.jpg",
-      "title": "Product 1",
+      "title": "Product 2",
       "type": "Monitors",
       "specification": "Specification 1",
       "guarantee": {
@@ -70,7 +70,7 @@
       "serialNumber": 1234,
       "isNew": true,
       "photo": "pathToFile.jpg",
-      "title": "Product 1",
+      "title": "Product 3",
       "type": "Monitors",
       "specification": "Specification 1",
       "guarantee": {
@@ -89,7 +89,7 @@
       "serialNumber": 1234,
       "isNew": false,
       "photo": "pathToFile.jpg",
-      "title": "Product 1",
+      "title": "Product 4",
       "type": "Monitors",
       "specification": "Specification 1",
       "guarantee": {
@@ -108,7 +108,7 @@
       "serialNumber": 1234,
       "isNew": true,
       "photo": "pathToFile.jpg",
-      "title": "Product 1",
+      "title": "Product 5",
       "type": "Monitors",
       "specification": "Specification 1",
       "guarantee": {
@@ -125,10 +125,10 @@
 
     {
       "id": 6,
-      "serialNumber": 123456,
+      "serialNumber": 1234,
       "isNew": false,
       "photo": "pathToFile.jpg",
-      "title": "Product 12",
+      "title": "Product 6",
       "type": "Monitors",
       "specification": "Specification 1",
       "guarantee": {
