@@ -1,16 +1,29 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
+import { IOrder } from '../components/Order/Order';
 
-export interface CounterState {
+export interface IDzenCodeState {
+  orderList: IOrder[];
   value: number
 }
+const initialOrderListState: IOrder[] = [{
+  "id": 0,
+  "title": "",
+  "date": "",
+  "description": "",
+  "products": [
+    { "id": 0 }
+  ]
+}]
 
-const initialState: CounterState = {
-  value: 0,
+const initialState: IDzenCodeState = {
+  orderList: initialOrderListState,
+  value: 0
+
 }
 
-export const counterSlice = createSlice({
-  name: 'counter',
+export const dzenCodeSlice = createSlice({
+  name: 'dzenCode',
   initialState,
   reducers: {
     increment: (state) => {
@@ -30,6 +43,6 @@ export const counterSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = counterSlice.actions
+export const { increment, decrement, incrementByAmount } = dzenCodeSlice.actions
 
-export default counterSlice.reducer
+export default dzenCodeSlice.reducer

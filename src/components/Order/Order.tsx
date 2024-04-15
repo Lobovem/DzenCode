@@ -4,6 +4,14 @@ import { Button, Image } from 'react-bootstrap';
 import iconList from '../../assets/iconList.png';
 import { BtnTrush } from '../BtnTrush/BtnTrush';
 
+export interface IOrder {
+  id: number;
+  title: string;
+  date: string;
+  description: string;
+  products: { id: number }[];
+}
+
 export const Order: FC = () => {
   return (
     <div className="order">

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { decrement, increment } from '../store/slices';
 
 export const HomePage: FC = () => {
-  const count = useSelector((state: RootState) => state.counter.value);
+  const count = useSelector((state: RootState) => state.dzenCode.value);
   const dispatch = useDispatch();
 
   return (
