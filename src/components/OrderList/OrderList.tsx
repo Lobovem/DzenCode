@@ -2,10 +2,10 @@ import { Button } from 'react-bootstrap';
 import { FC, useEffect } from 'react';
 import './OrderList.scss';
 import { IOrder, Order } from '../Order/Order';
-import { OrderDetail } from '../OrderDetail/OrderDetail';
 import { AppDispatch, RootState } from '../../store/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProductListAndOrderList } from '../../store/api/api';
+import { Outlet } from 'react-router-dom';
 
 export const OrderList: FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -16,8 +16,6 @@ export const OrderList: FC = () => {
   useEffect(() => {
     dispatch(fetchProductListAndOrderList());
   }, []);
-
-  console.log('orderList', orderList);
 
   return (
     <div className="orderList">
@@ -32,7 +30,7 @@ export const OrderList: FC = () => {
             <Order key={order.id} order={order} />
           ))}
         </div>
-        {/* <OrderDetail /> */}
+        <Outlet />
       </div>
     </div>
   );

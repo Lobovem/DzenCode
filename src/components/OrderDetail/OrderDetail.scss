@@ -14,12 +14,16 @@
   }
 
   &__status {
-    color: rgba(80, 190, 36, 0.669);
+    color: black;
+
+    &_active {
+      color: green;
+    }
 
     &_sm {
       width: 10px;
       height: 10px;
-      background-color: rgba(80, 190, 36, 0.669);
+      background-color: black;
       border-radius: 6px;
     }
   }

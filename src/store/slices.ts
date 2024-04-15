@@ -9,6 +9,7 @@ export interface IDzenCodeState {
   productList: IProduct[]
   orderListWithProduct: IOrder[],
   detailOrder: IProduct[]
+  isDetailOrder: boolean
   value: number
 }
 
@@ -17,6 +18,7 @@ const initialState: IDzenCodeState = {
   productList: [],
   orderListWithProduct: [],
   detailOrder: [],
+  isDetailOrder: false,
   value: 0
 }
 
@@ -33,6 +35,10 @@ export const dzenCodeSlice = createSlice({
     incrementByAmount: (state, action: PayloadAction<number>) => {
       state.value += action.payload
     },
+
+    isDetailOrder: (state) => {
+      state.isDetailOrder = false
+    }
   },
 
   extraReducers: (builder) => {
@@ -50,10 +56,11 @@ export const dzenCodeSlice = createSlice({
 
     builder.addCase(fetchDetailOrder.fulfilled, (state, action) => {
       state.detailOrder = action.payload
+      state.isDetailOrder = true
     })
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount } = dzenCodeSlice.actions
+export const { increment, decrement, incrementByAmount, isDetailOrder } = dzenCodeSlice.actions
 export default dzenCodeSlice.reducer

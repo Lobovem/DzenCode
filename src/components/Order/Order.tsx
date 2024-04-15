@@ -1,10 +1,12 @@
 import { FC, useEffect, useState } from 'react';
 import './Order.scss';
-import { Button, Image } from 'react-bootstrap';
+import { Image } from 'react-bootstrap';
 import iconList from '../../assets/iconList.png';
 import { BtnTrush } from '../BtnTrush/BtnTrush';
 import { IProduct } from '../Product/Product';
 import { NavLink } from 'react-router-dom';
+import { RootState } from '../../store/store';
+import { useSelector } from 'react-redux';
 
 export interface IOrder {
   id: string;
@@ -19,9 +21,12 @@ interface IOrderProps {
 }
 
 export const Order: FC<IOrderProps> = ({ order }) => {
-  console.log('order=====>', order);
   const [priceUsd, setpriceUsd] = useState(0);
   const [priceUah, setPriceUah] = useState(0);
+
+  const isDetailOrder: boolean = useSelector(
+    (state: RootState) => state.dzenCode.isDetailOrder
+  );
 
   const reducePrice = (): void => {
     const priceFirst: number = order.products.reduce(
@@ -43,9 +48,11 @@ export const Order: FC<IOrderProps> = ({ order }) => {
   return (
     <div className="order">
       <div className="order__wrap">
-        <div className="order__titleWrap">
-          <p className="order__title">{order.title}</p>
-        </div>
+        {!isDetailOrder && (
+          <div className="order__titleWrap">
+            <p className="order__title">{order.title}</p>
+          </div>
+        )}
 
         <div className="order__countWrap">
           <NavLink to={`/orders/${order.id}`} className="order__btn">
@@ -65,14 +72,18 @@ export const Order: FC<IOrderProps> = ({ order }) => {
           <p className="order__dateLarge">{order.date}</p>
         </div>
 
-        <div className="order__priceWrap">
-          <p className="order__priceShort">{priceUsd} $</p>
-          <p className="order__priceLarge">{priceUah} UAH</p>
-        </div>
+        {!isDetailOrder && (
+          <div className="order__priceWrap">
+            <p className="order__priceShort">{priceUsd} $</p>
+            <p className="order__priceLarge">{priceUah} UAH</p>
+          </div>
+        )}
 
-        <div className="order__btnTrushWrap">
-          <BtnTrush />
-        </div>
+        {!isDetailOrder && (
+          <div className="order__btnTrushWrap">
+            <BtnTrush />
+          </div>
+        )}
       </div>
     </div>
   );
