@@ -1,11 +1,11 @@
 import { FC } from 'react';
-import { RootState } from '../store/store';
+import { AppDispatch, RootState } from '../store/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { decrement, increment } from '../store/slices';
 
 export const HomePage: FC = () => {
   const count = useSelector((state: RootState) => state.dzenCode.value);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   return (
     <div>

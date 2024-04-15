@@ -1,40 +1,20 @@
-// import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-// import { userAPI } from './userAPI'
+import { createAsyncThunk } from '@reduxjs/toolkit'
 
-// // First, create the thunk
-// const fetchUserById = createAsyncThunk(
-//   'users/fetchByIdStatus',
-//   async (userId: number, thunkAPI) => {
-//     const response = await userAPI.fetchById(userId)
-//     return response.data
-//   },
-// )
+const API_URL: string = "http://localhost:3000/"
 
-// interface UsersState {
-//   entities: User[]
-//   loading: 'idle' | 'pending' | 'succeeded' | 'failed'
-// }
+export const fetchOrderList = createAsyncThunk(
+  'orders', async () => {
 
-// const initialState = {
-//   entities: [],
-//   loading: 'idle',
-// } satisfies UserState as UsersState
+    try {
+      const response = await fetch(`${API_URL}orders`)
+      if (!response.ok) {
+        throw new Error('Error fetching news list');
+      }
+      return response.json()
+    }
+    catch (error: any) {
+      throw new Error(error.message);
+    }
+  })
 
-// // Then, handle actions in your reducers:
-// const usersSlice = createSlice({
-//   name: 'users',
-//   initialState,
-//   reducers: {
-//     // standard reducer logic, with auto-generated action types per reducer
-//   },
-//   extraReducers: (builder) => {
-//     // Add reducers for additional action types here, and handle loading state as needed
-//     builder.addCase(fetchUserById.fulfilled, (state, action) => {
-//       // Add user to the state array
-//       state.entities.push(action.payload)
-//     })
-//   },
-// })
 
-// // Later, dispatch the thunk as needed in the app
-// dispatch(fetchUserById(123))

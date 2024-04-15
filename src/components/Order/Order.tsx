@@ -12,14 +12,18 @@ export interface IOrder {
   products: { id: number }[];
 }
 
-export const Order: FC = () => {
+interface IOrderProps {
+  order: IOrder;
+}
+
+export const Order: FC<IOrderProps> = ({ order }) => {
+  console.log('order=====>', order);
+
   return (
     <div className="order">
       <div className="order__wrap">
         <div className="order__titleWrap">
-          <p className="order__title">
-            Long long title name very long order long title name very long order
-          </p>
+          <p className="order__title">{order.title}</p>
         </div>
 
         <div className="order__countWrap">
@@ -28,14 +32,16 @@ export const Order: FC = () => {
           </Button>
 
           <div className="order__countProductsWrap">
-            <p className="order__countProducts">23</p>
+            <p className="order__countProducts">{order.products.length}</p>
             <p className="order__countProductsDesc">Products</p>
           </div>
         </div>
 
         <div className="order__dateWrap">
-          <p className="order__dateShort">04 / 12</p>
-          <p className="order__dateLarge">06/ Apr / 2024</p>
+          {/* <p className="order__dateShort">04 / 12</p>
+          <p className="order__dateLarge">06/ Apr / 2024</p> */}
+          <p className="order__dateShort">{order.date}</p>
+          <p className="order__dateLarge">{order.date}</p>
         </div>
 
         <div className="order__priceWrap">

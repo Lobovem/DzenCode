@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { IOrder } from '../components/Order/Order';
+import { fetchOrderList } from './api/api';
 
 export interface IDzenCodeState {
   orderList: IOrder[];
@@ -39,6 +40,14 @@ export const dzenCodeSlice = createSlice({
     incrementByAmount: (state, action: PayloadAction<number>) => {
       state.value += action.payload
     },
+  },
+
+  extraReducers: (builder) => {
+    // Add reducers for additional action types here, and handle loading state as needed
+    builder.addCase(fetchOrderList.fulfilled, (state, action) => {
+      // Add user to the state array
+      state.orderList = action.payload
+    })
   },
 })
 
