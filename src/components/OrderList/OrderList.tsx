@@ -1,18 +1,20 @@
 import { Button } from 'react-bootstrap';
 import { FC, useEffect } from 'react';
 import './OrderList.scss';
-import { Order } from '../Order/Order';
+import { IOrder, Order } from '../Order/Order';
 import { OrderDetail } from '../OrderDetail/OrderDetail';
 import { AppDispatch, RootState } from '../../store/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchOrderList } from '../../store/api/api';
+import { fetchProductListAndOrderList } from '../../store/api/api';
 
 export const OrderList: FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const orderList = useSelector((state: RootState) => state.dzenCode.orderList);
+  const orderList: IOrder[] = useSelector(
+    (state: RootState) => state.dzenCode.orderListWithProduct
+  );
 
   useEffect(() => {
-    dispatch(fetchOrderList());
+    dispatch(fetchProductListAndOrderList());
   }, []);
 
   console.log('orderList', orderList);

@@ -8,6 +8,7 @@ import { OrdersPage } from './pages/OrdersPage';
 import { FC } from 'react';
 import { Layout } from './components/Layout/Layout';
 import { HomePage } from './pages/HomePage';
+import { OrderDetail } from './components/OrderDetail/OrderDetail';
 
 const router = createBrowserRouter([
   {
@@ -21,13 +22,18 @@ const router = createBrowserRouter([
       },
 
       {
-        path: '/productList',
+        path: '/products',
         element: <ProductsPage />,
       },
 
       {
-        path: '/orderList',
+        path: '/orders',
         element: <OrdersPage />,
+      },
+
+      {
+        path: '/orders/:id',
+        element: <OrderDetail />,
       },
     ],
   },

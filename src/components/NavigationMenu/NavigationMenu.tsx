@@ -23,7 +23,7 @@ export const NavigationMenu: FC = () => {
 
         <Nav.Item className="navBar__item">
           <NavLink
-            to="/orderList"
+            to="/orders"
             className={({ isActive }) =>
               isActive ? 'navBar__link navBar__link_active' : 'navBar__link'
             }
@@ -34,7 +34,7 @@ export const NavigationMenu: FC = () => {
 
         <Nav.Item className="navBar__item">
           <NavLink
-            to="/productList"
+            to="/products"
             className={({ isActive }) =>
               isActive ? 'navBar__link navBar__link_active' : 'navBar__link'
             }

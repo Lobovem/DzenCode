@@ -9,7 +9,9 @@ import { fetchProductList } from '../../store/api/api';
 
 export const ProductList: FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const productList = useSelector((state: RootState) => state.dzenCode.productList);
+  const productList: IProduct[] = useSelector(
+    (state: RootState) => state.dzenCode.productList
+  );
 
   useEffect(() => {
     dispatch(fetchProductList());

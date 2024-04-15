@@ -5,7 +5,7 @@ import imgMonitor from '../../assets/monitor.png';
 import iconTrush from '../../assets/iconTrush.png';
 
 export interface IProduct {
-  id: number;
+  id: string;
   serialNumber: number;
   isNew: boolean;
   photo: string;

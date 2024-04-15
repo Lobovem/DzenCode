@@ -1,15 +1,17 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import './Order.scss';
 import { Button, Image } from 'react-bootstrap';
 import iconList from '../../assets/iconList.png';
 import { BtnTrush } from '../BtnTrush/BtnTrush';
+import { IProduct } from '../Product/Product';
+import { NavLink } from 'react-router-dom';
 
 export interface IOrder {
-  id: number;
+  id: string;
   title: string;
   date: string;
   description: string;
-  products: { id: number }[];
+  products: IProduct[];
 }
 
 interface IOrderProps {
@@ -18,6 +20,25 @@ interface IOrderProps {
 
 export const Order: FC<IOrderProps> = ({ order }) => {
   console.log('order=====>', order);
+  const [priceUsd, setpriceUsd] = useState(0);
+  const [priceUah, setPriceUah] = useState(0);
+
+  const reducePrice = (): void => {
+    const priceFirst: number = order.products.reduce(
+      (acc, item) => acc + item.price[0].value,
+      0
+    ); //TODO review method reduce
+    const priceSec: number = order.products.reduce(
+      (acc, item) => acc + item.price[1].value,
+      0
+    );
+    setpriceUsd(priceFirst);
+    setPriceUah(priceSec);
+  };
+
+  useEffect(() => {
+    reducePrice();
+  }, []);
 
   return (
     <div className="order">
@@ -27,9 +48,9 @@ export const Order: FC<IOrderProps> = ({ order }) => {
         </div>
 
         <div className="order__countWrap">
-          <Button variant="white" className="order__btn">
+          <NavLink to={`/orders/${order.id}`} className="order__btn">
             <Image src={iconList} className="order__btnIcon" />
-          </Button>
+          </NavLink>
 
           <div className="order__countProductsWrap">
             <p className="order__countProducts">{order.products.length}</p>
@@ -45,8 +66,8 @@ export const Order: FC<IOrderProps> = ({ order }) => {
         </div>
 
         <div className="order__priceWrap">
-          <p className="order__priceShort">2500 $</p>
-          <p className="order__priceLarge">250 000 UAH</p>
+          <p className="order__priceShort">{priceUsd} $</p>
+          <p className="order__priceLarge">{priceUah} UAH</p>
         </div>
 
         <div className="order__btnTrushWrap">
