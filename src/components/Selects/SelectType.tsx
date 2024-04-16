@@ -23,7 +23,7 @@ export const SelectType: FC<{ title: string }> = ({ title }) => {
         aria-label="Default select example"
         className="select__body"
       >
-        <option>Open this select menu</option>
+        <option value="">Open this select menu</option>
         <option value="Monitors">Monitors</option>
         <option value="Plazma">Plazma</option>
       </Form.Select>
