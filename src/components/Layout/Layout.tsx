@@ -4,8 +4,11 @@ import { FC } from 'react';
 import { NavigationMenu } from '../NavigationMenu/NavigationMenu';
 import { Header } from '../Header/Header';
 import { Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 
 export const Layout: FC = () => {
+  const isDelete: boolean = useSelector((state: RootState) => state.dzenCode.isDelete);
   return (
     <>
       <Header />
@@ -15,7 +18,7 @@ export const Layout: FC = () => {
             <NavigationMenu />
           </Col>
 
-          <Col lg={10} className="rightSide">
+          <Col lg={10} className={isDelete ? 'rightSide isDelete' : 'rightSide'}>
             <Outlet />
           </Col>
         </Row>

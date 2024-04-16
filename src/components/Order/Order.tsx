@@ -7,6 +7,7 @@ import { IProduct } from '../Product/Product';
 import { Link } from 'react-router-dom';
 import { AppDispatch, RootState } from '../../store/store';
 import { useDispatch, useSelector } from 'react-redux';
+import { addDeleteItem, handleDelete } from '../../store/slices';
 import { deleteOrder } from '../../store/api';
 
 export interface IOrder {
@@ -28,12 +29,16 @@ export const Order: FC<IOrderProps> = ({ order }) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const handleDeleteOrder = (): void => {
+    // dispatch(addDeleteItem(order));
+    // dispatch(handleDelete());
     dispatch(deleteOrder(order.id));
   };
 
   const isDetailOrder: boolean = useSelector(
     (state: RootState) => state.dzenCode.isDetailOrder
   );
+
+  // const deleteId = useSelector((state: RootState) => state.dzenCode.deleteItem);
 
   const reducePrice = (): void => {
     const priceFirst: number = order.products.reduce(
@@ -48,6 +53,7 @@ export const Order: FC<IOrderProps> = ({ order }) => {
     setPriceUah(priceSec);
   };
 
+  //TODO check out reduce
   useEffect(() => {
     reducePrice();
   }, []);

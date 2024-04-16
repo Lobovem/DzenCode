@@ -4,8 +4,8 @@ import { Image } from 'react-bootstrap';
 import imgMonitor from '../../assets/monitor.png';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../store/store';
-import { deleteProduct } from '../../store/api';
 import { BtnTrush } from '../BtnTrush/BtnTrush';
+import { addDeleteItem, handleDelete } from '../../store/slices';
 
 export interface IProduct {
   id: string;
@@ -36,7 +36,8 @@ export const Product: FC<IProductProps> = ({ product }) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const handleDeleteProduct = (): void => {
-    dispatch(deleteProduct(product.id));
+    dispatch(addDeleteItem(product));
+    dispatch(handleDelete());
   };
 
   return (

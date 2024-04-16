@@ -11,7 +11,9 @@ export interface IDzenCodeState {
   detailOrder: IProduct[]
   isDetailOrder: boolean
   value: number
-  dataSelect: { type?: string, specefication?: string }
+  dataSelect: { type?: string, specefication?: string },
+  isDelete: boolean,
+  deleteItem: any
 }
 
 const initialState: IDzenCodeState = {
@@ -21,7 +23,9 @@ const initialState: IDzenCodeState = {
   detailOrder: [],
   isDetailOrder: false,
   value: 0,
-  dataSelect: {}
+  dataSelect: {},
+  isDelete: false,
+  deleteItem: ''//TODO add TS
 }
 
 export const dzenCodeSlice = createSlice({
@@ -39,11 +43,19 @@ export const dzenCodeSlice = createSlice({
     },
 
     isDetailOrder: (state) => {
-      state.isDetailOrder = false
+      state.isDetailOrder = !state.isDetailOrder
     },
 
     dataSelectChange: (state, action) => {
       state.dataSelect = { ...state.dataSelect, ...action.payload }
+    },
+
+    handleDelete: (state) => {
+      state.isDelete = !state.isDelete
+    },
+
+    addDeleteItem: (state, action) => {
+      state.deleteItem = action.payload
     }
   },
 
@@ -73,15 +85,17 @@ export const dzenCodeSlice = createSlice({
       state.productList = state.productList.filter(product => product.id !== action.payload.id)//TODO Will be better use filter or new fetch
       state.productList = state.productList.filter(product => product.id !== action.payload.id)//TODO Will be better use filter or new fetch
       state.detailOrder = state.detailOrder.filter(product => product.id !== action.payload.id)//TODO Will be better use filter or new fetch
+      state.deleteItem = ''
     })
 
     builder.addCase(deleteOrder.fulfilled, (state, action) => {
       state.orderListWithProduct = state.orderListWithProduct.filter(order => order.id !== action.payload.id)//TODO Will be better use filter or new fetch
+      state.deleteItem = ''
 
     })
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount, isDetailOrder, dataSelectChange } = dzenCodeSlice.actions
+export const { increment, decrement, incrementByAmount, isDetailOrder, dataSelectChange, handleDelete, addDeleteItem } = dzenCodeSlice.actions
 export default dzenCodeSlice.reducer

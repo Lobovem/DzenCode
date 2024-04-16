@@ -18,20 +18,22 @@ export const OrderList: FC = () => {
   }, [dispatch]);
 
   return (
-    <div className="orderList">
-      <div className="orderList__header">
-        <Button className="rounded-circle orderList__button btnAdd">+</Button>
-        <p className="orderList__headerTitle">OrderList / {orderList.length}</p>
-      </div>
-
-      <div className="orderList__wrap">
-        <div className="orderList__list">
-          {orderList?.map((order) => (
-            <Order key={order.id} order={order} />
-          ))}
+    <>
+      <div className="orderList">
+        <div className="orderList__header">
+          <Button className="rounded-circle orderList__button btnAdd">+</Button>
+          <p className="orderList__headerTitle">OrderList / {orderList.length}</p>
         </div>
-        <Outlet />
+
+        <div className="orderList__wrap">
+          <div className="orderList__list">
+            {orderList?.map((order) => (
+              <Order key={order.id} order={order} />
+            ))}
+          </div>
+          <Outlet />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
