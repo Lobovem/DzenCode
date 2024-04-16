@@ -69,6 +69,7 @@ export const dzenCodeSlice = createSlice({
     })
 
     builder.addCase(fetchProductListAndOrderList.fulfilled, (state, action) => {
+      state.isDetailOrder = false
       state.orderListWithProduct = action.payload
     })
 
