@@ -1,10 +1,10 @@
 import { FC, useEffect, useState } from 'react';
 import './Order.scss';
-import { Image } from 'react-bootstrap';
+import { Button, Image } from 'react-bootstrap';
 import iconList from '../../assets/iconList.png';
 import { BtnTrush } from '../BtnTrush/BtnTrush';
 import { IProduct } from '../Product/Product';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { RootState } from '../../store/store';
 import { useSelector } from 'react-redux';
 
@@ -50,14 +50,16 @@ export const Order: FC<IOrderProps> = ({ order }) => {
       <div className="order__wrap">
         {!isDetailOrder && (
           <div className="order__titleWrap">
-            <p className="order__title">{order.title}</p>
+            <Link to={`/orders/${order.id}`} className="order__title">
+              {order.title}
+            </Link>
           </div>
         )}
 
         <div className="order__countWrap">
-          <NavLink to={`/orders/${order.id}`} className="order__btn">
+          <Link to={`/orders/${order.id}`} className="order__btn">
             <Image src={iconList} className="order__btnIcon" />
-          </NavLink>
+          </Link>
 
           <div className="order__countProductsWrap">
             <p className="order__countProducts">{order.products.length}</p>
@@ -78,7 +80,6 @@ export const Order: FC<IOrderProps> = ({ order }) => {
             <p className="order__priceLarge">{priceUah} UAH</p>
           </div>
         )}
-
         {!isDetailOrder && (
           <div className="order__btnTrushWrap">
             <BtnTrush />
