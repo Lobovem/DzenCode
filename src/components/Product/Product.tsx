@@ -3,6 +3,9 @@ import './Product.scss';
 import { Button, Image } from 'react-bootstrap';
 import imgMonitor from '../../assets/monitor.png';
 import iconTrush from '../../assets/iconTrush.png';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../store/store';
+import { deleteProduct } from '../../store/api';
 
 export interface IProduct {
   id: string;
@@ -30,6 +33,13 @@ interface IProductProps {
 }
 
 export const Product: FC<IProductProps> = ({ product }) => {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handleDeleteProduct = (): void => {
+    dispatch(deleteProduct(product.id));
+    // dispatch(fetchProductList());
+  };
+
   return (
     <div className="product">
       <div
@@ -101,7 +111,7 @@ export const Product: FC<IProductProps> = ({ product }) => {
       </div>
 
       <div className="product__btnTrushWrap">
-        <Button variant="white" className="btnTrush">
+        <Button variant="white" className="btnTrush" onClick={handleDeleteProduct}>
           <Image src={iconTrush} className="btnTrush__icon" />
         </Button>
       </div>

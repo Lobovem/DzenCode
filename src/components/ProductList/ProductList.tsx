@@ -15,7 +15,8 @@ export const ProductList: FC = () => {
 
   useEffect(() => {
     dispatch(fetchProductList());
-  }, []);
+    // dispatch(deleteProduct('1'));
+  }, [dispatch]);
 
   console.log('productList', productList);
 

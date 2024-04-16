@@ -103,8 +103,30 @@ export const fetchproductListBySelect = createAsyncThunk(
       if (!response.ok) {
         throw new Error('Error fetching news list');
       }
-      const productList: IProduct[] = await response.json();
-      return productList;
+
+      return response.json();
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
+  }
+);
+
+export const deleteProduct = createAsyncThunk(
+  'deleteProduct', async (id: string) => {
+
+    try {
+      const response = await fetch(`${API_URL}products/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          // Добавьте любые другие необходимые заголовки, такие как авторизация
+        },
+      });
+      if (!response.ok) {
+        throw new Error('Error fetching news list');
+      }
+
+      return response.json();
     } catch (error: any) {
       throw new Error(error.message);
     }
