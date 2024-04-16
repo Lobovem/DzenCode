@@ -84,22 +84,31 @@ export const fetchDetailOrder = createAsyncThunk(
     }
   })
 
-export const fetchproductListByType = createAsyncThunk(
-  'productListByType', async (type: string | undefined) => {
+export const fetchproductListBySelect = createAsyncThunk(
+  'productListBySelect',
+  async ({ type, specification }: { type?: string | undefined, specification?: string | undefined }) => {
 
     try {
-      const response = await fetch(`${API_URL}products?type=${type}`)
+      let url = `${API_URL}products`;
+
+      if (type && specification) {
+        url += `?type=${type}&specification=${specification}`;
+      } else if (type) {
+        url += `?type=${type}`;
+      } else if (specification) {
+        url += `?specification=${specification}`;
+      }
+
+      const response = await fetch(url);
       if (!response.ok) {
         throw new Error('Error fetching news list');
       }
-
-      const productList: IProduct[] = await response.json()
-      // const result = productList.filter((product) => product.order.toString() === id)
-      return productList
-    }
-    catch (error: any) {
+      const productList: IProduct[] = await response.json();
+      return productList;
+    } catch (error: any) {
       throw new Error(error.message);
     }
-  })
+  }
+);
 
 

@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { IOrder } from '../components/Order/Order';
-import { fetchDetailOrder, fetchOrderList, fetchProductList, fetchProductListAndOrderList, fetchproductListByType } from './api';
+import { fetchDetailOrder, fetchOrderList, fetchProductList, fetchProductListAndOrderList, fetchproductListBySelect } from './api';
 import { IProduct } from '../components/Product/Product';
 
 export interface IDzenCodeState {
@@ -11,6 +11,7 @@ export interface IDzenCodeState {
   detailOrder: IProduct[]
   isDetailOrder: boolean
   value: number
+  dataSelect: { type?: string, specefication?: string }
 }
 
 const initialState: IDzenCodeState = {
@@ -19,7 +20,8 @@ const initialState: IDzenCodeState = {
   orderListWithProduct: [],
   detailOrder: [],
   isDetailOrder: false,
-  value: 0
+  value: 0,
+  dataSelect: {}
 }
 
 export const dzenCodeSlice = createSlice({
@@ -38,6 +40,10 @@ export const dzenCodeSlice = createSlice({
 
     isDetailOrder: (state) => {
       state.isDetailOrder = false
+    },
+
+    dataSelectChange: (state, action) => {
+      state.dataSelect = { ...state.dataSelect, ...action.payload }
     }
   },
 
@@ -59,12 +65,12 @@ export const dzenCodeSlice = createSlice({
       state.isDetailOrder = true
     })
 
-    builder.addCase(fetchproductListByType.fulfilled, (state, action) => {
+    builder.addCase(fetchproductListBySelect.fulfilled, (state, action) => {
       state.productList = action.payload
     })
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement, incrementByAmount, isDetailOrder } = dzenCodeSlice.actions
+export const { increment, decrement, incrementByAmount, isDetailOrder, dataSelectChange } = dzenCodeSlice.actions
 export default dzenCodeSlice.reducer

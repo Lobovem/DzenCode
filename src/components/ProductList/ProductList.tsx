@@ -19,7 +19,6 @@ export const ProductList: FC = () => {
 
   console.log('productList', productList);
 
-  
   return (
     <div className="productList">
       <div className="productList__header">

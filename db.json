@@ -34,7 +34,7 @@
       "photo": "pathToFile.jpg",
       "title": "Product 1",
       "type": "Monitors",
-      "specification": "Specification 1",
+      "specification": "Specification-1",
       "guarantee": {
         "start": "2017-06-29 12:09:33",
         "end": "2017-06-29 12:09:33"
@@ -53,7 +53,7 @@
       "photo": "pathToFile.jpg",
       "title": "Product 2",
       "type": "Monitors",
-      "specification": "Specification 1",
+      "specification": "Specification-1",
       "guarantee": {
         "start": "2017-06-29 12:09:33",
         "end": "2017-06-29 12:09:33"
@@ -72,7 +72,7 @@
       "photo": "pathToFile.jpg",
       "title": "Product 3",
       "type": "Plazma",
-      "specification": "Specification 2",
+      "specification": "Specification-2",
       "guarantee": {
         "start": "2017-06-29 12:09:33",
         "end": "2017-06-29 12:09:33"
@@ -91,7 +91,7 @@
       "photo": "pathToFile.jpg",
       "title": "Product 4",
       "type": "Plazma",
-      "specification": "Specification 2",
+      "specification": "Specification-1",
       "guarantee": {
         "start": "2017-06-29 12:09:33",
         "end": "2017-06-29 12:09:33"
@@ -110,7 +110,7 @@
       "photo": "pathToFile.jpg",
       "title": "Product 5",
       "type": "Monitors",
-      "specification": "Specification 1",
+      "specification": "Specification-1",
       "guarantee": {
         "start": "2017-06-29 12:09:33",
         "end": "2017-06-29 12:09:33"
@@ -130,7 +130,7 @@
       "photo": "pathToFile.jpg",
       "title": "Product 6",
       "type": "Monitors",
-      "specification": "Specification 2",
+      "specification": "Specification-2",
       "guarantee": {
         "start": "2017-06-29 12:09:33",
         "end": "2017-06-29 12:09:33"
