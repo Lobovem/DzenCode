@@ -1,12 +1,13 @@
 import { FC, useEffect, useState } from 'react';
 import './Order.scss';
-import { Button, Image } from 'react-bootstrap';
+import { Image } from 'react-bootstrap';
 import iconList from '../../assets/iconList.png';
 import { BtnTrush } from '../BtnTrush/BtnTrush';
 import { IProduct } from '../Product/Product';
 import { Link } from 'react-router-dom';
-import { RootState } from '../../store/store';
-import { useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../store/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteOrder } from '../../store/api';
 
 export interface IOrder {
   id: string;
@@ -23,6 +24,12 @@ interface IOrderProps {
 export const Order: FC<IOrderProps> = ({ order }) => {
   const [priceUsd, setpriceUsd] = useState(0);
   const [priceUah, setPriceUah] = useState(0);
+
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handleDeleteOrder = (): void => {
+    dispatch(deleteOrder(order.id));
+  };
 
   const isDetailOrder: boolean = useSelector(
     (state: RootState) => state.dzenCode.isDetailOrder
@@ -82,7 +89,7 @@ export const Order: FC<IOrderProps> = ({ order }) => {
         )}
         {!isDetailOrder && (
           <div className="order__btnTrushWrap">
-            <BtnTrush />
+            <BtnTrush onClick={handleDeleteOrder} />
           </div>
         )}
       </div>

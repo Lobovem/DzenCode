@@ -15,7 +15,7 @@ export const OrderList: FC = () => {
 
   useEffect(() => {
     dispatch(fetchProductListAndOrderList());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="orderList">

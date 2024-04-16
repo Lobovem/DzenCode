@@ -3,9 +3,13 @@ import iconTrush from '../../assets/iconTrush.png';
 import { Button, Image } from 'react-bootstrap';
 import './BtnTrush.scss';
 
-export const BtnTrush: FC = () => {
+interface IBtnTrushProps {
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+export const BtnTrush: FC<IBtnTrushProps> = ({ onClick }) => {
   return (
-    <Button variant="white" className="btnTrush">
+    <Button onClick={onClick} variant="white" className="btnTrush">
       <Image src={iconTrush} className="btnTrush__icon" />
     </Button>
   );

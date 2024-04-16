@@ -7,7 +7,7 @@ import { BtnTrush } from '../BtnTrush/BtnTrush';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store/store';
-import { fetchDetailOrder } from '../../store/api';
+import { deleteProduct, fetchDetailOrder } from '../../store/api';
 import { IProduct } from '../Product/Product';
 import { isDetailOrder } from '../../store/slices';
 
@@ -15,17 +15,21 @@ export const OrderDetail: FC = () => {
   const { id } = useParams();
   const dispatch = useDispatch<AppDispatch>();
 
+  const orderDetail: IProduct[] = useSelector(
+    (state: RootState) => state.dzenCode.detailOrder
+  );
+
   const handleCloseDetailOrder = (): void => {
     dispatch(isDetailOrder());
+  };
+
+  const handleDeleteProduct = (productId: string): void => {
+    dispatch(deleteProduct(productId));
   };
 
   useEffect(() => {
     dispatch(fetchDetailOrder(id));
   }, [id]);
-
-  const orderDetail: IProduct[] = useSelector(
-    (state: RootState) => state.dzenCode.detailOrder
-  );
 
   return (
     <div className="orderDetail">
@@ -67,7 +71,7 @@ export const OrderDetail: FC = () => {
           )}
 
           <div className="product__btnTrushWrap">
-            <BtnTrush />
+            <BtnTrush onClick={() => handleDeleteProduct(product.id)} />
           </div>
         </div>
       ))}

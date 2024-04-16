@@ -49,14 +49,9 @@ export const fetchProductListAndOrderList = createAsyncThunk(
       const orderList: IOrder[] = await orderResponse.json()
       const productList: IProduct[] = await productResponse.json()
 
-
-      console.log("productListFetch", productList);
-
       const orderWithProduct = orderList.map((order) => {
         return { ...order, products: productList.filter((product) => product.order.toString() === order.id) }
       })
-
-      console.log('orderWithProduct', orderWithProduct);
 
       return orderWithProduct
     }
@@ -112,7 +107,7 @@ export const fetchproductListBySelect = createAsyncThunk(
 );
 
 export const deleteProduct = createAsyncThunk(
-  'deleteProduct', async (id: string) => {
+  'deleteProduct', async (id: string | undefined) => {
 
     try {
       const response = await fetch(`${API_URL}products/${id}`, {
@@ -132,5 +127,49 @@ export const deleteProduct = createAsyncThunk(
     }
   }
 );
+
+export const deleteOrder = createAsyncThunk(
+  'deleteOrder', async (id: string) => {
+
+    try {
+      const response = await fetch(`${API_URL}orders/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          // Добавьте любые другие необходимые заголовки, такие как авторизация
+        },
+      });
+      if (!response.ok) {
+        throw new Error('Error fetching news list');
+      }
+
+      return response.json();
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
+  }
+);
+
+// export const deleteOrder = createAsyncThunk(
+//   'deleteOrder', async (id: string) => {
+
+//     try {
+//       const response = await fetch(`${API_URL}orders/${id}`, {
+//         method: 'DELETE',
+//         headers: {
+//           'Content-Type': 'application/json',
+//           // Добавьте любые другие необходимые заголовки, такие как авторизация
+//         },
+//       });
+//       if (!response.ok) {
+//         throw new Error('Error fetching news list');
+//       }
+
+//       return response.json();
+//     } catch (error: any) {
+//       throw new Error(error.message);
+//     }
+//   }
+// );
 
 

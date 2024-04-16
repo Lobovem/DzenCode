@@ -1,11 +1,11 @@
 import { FC } from 'react';
 import './Product.scss';
-import { Button, Image } from 'react-bootstrap';
+import { Image } from 'react-bootstrap';
 import imgMonitor from '../../assets/monitor.png';
-import iconTrush from '../../assets/iconTrush.png';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../store/store';
 import { deleteProduct } from '../../store/api';
+import { BtnTrush } from '../BtnTrush/BtnTrush';
 
 export interface IProduct {
   id: string;
@@ -37,7 +37,6 @@ export const Product: FC<IProductProps> = ({ product }) => {
 
   const handleDeleteProduct = (): void => {
     dispatch(deleteProduct(product.id));
-    // dispatch(fetchProductList());
   };
 
   return (
@@ -111,9 +110,7 @@ export const Product: FC<IProductProps> = ({ product }) => {
       </div>
 
       <div className="product__btnTrushWrap">
-        <Button variant="white" className="btnTrush" onClick={handleDeleteProduct}>
-          <Image src={iconTrush} className="btnTrush__icon" />
-        </Button>
+        <BtnTrush onClick={handleDeleteProduct} />
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { IOrder } from '../components/Order/Order';
-import { deleteProduct, fetchDetailOrder, fetchOrderList, fetchProductList, fetchProductListAndOrderList, fetchproductListBySelect } from './api';
+import { deleteOrder, deleteProduct, fetchDetailOrder, fetchOrderList, fetchProductList, fetchProductListAndOrderList, fetchproductListBySelect } from './api';
 import { IProduct } from '../components/Product/Product';
 
 export interface IDzenCodeState {
@@ -71,6 +71,13 @@ export const dzenCodeSlice = createSlice({
 
     builder.addCase(deleteProduct.fulfilled, (state, action) => {
       state.productList = state.productList.filter(product => product.id !== action.payload.id)//TODO Will be better use filter or new fetch
+      state.productList = state.productList.filter(product => product.id !== action.payload.id)//TODO Will be better use filter or new fetch
+      state.detailOrder = state.detailOrder.filter(product => product.id !== action.payload.id)//TODO Will be better use filter or new fetch
+    })
+
+    builder.addCase(deleteOrder.fulfilled, (state, action) => {
+      state.orderListWithProduct = state.orderListWithProduct.filter(order => order.id !== action.payload.id)//TODO Will be better use filter or new fetch
+
     })
   },
 })
