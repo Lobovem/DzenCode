@@ -1,16 +1,31 @@
 import { Form } from 'react-bootstrap';
 import { FC } from 'react';
 import './Select.scss';
+import { useDispatch } from 'react-redux';
+import { fetchproductListByType } from '../../store/api';
+import { AppDispatch } from '../../store/store';
 
 export const SelectType: FC<{ title: string }> = ({ title }) => {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
+    const type = e.target.value;
+    console.log(type);
+
+    dispatch(fetchproductListByType(type));
+  };
+
   return (
     <div className="select">
       <p className="select__title">{title}:</p>
-      <Form.Select aria-label="Default select example" className="select__body">
+      <Form.Select
+        onChange={handleChange}
+        aria-label="Default select example"
+        className="select__body"
+      >
         <option>Open this select menu</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
+        <option value="Monitors">Monitors</option>
+        <option value="Plazma">Plazma</option>
       </Form.Select>
     </div>
   );

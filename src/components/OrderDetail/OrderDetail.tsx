@@ -7,7 +7,7 @@ import { BtnTrush } from '../BtnTrush/BtnTrush';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store/store';
-import { fetchDetailOrder } from '../../store/api/api';
+import { fetchDetailOrder } from '../../store/api';
 import { IProduct } from '../Product/Product';
 import { isDetailOrder } from '../../store/slices';
 

@@ -71,8 +71,8 @@
       "isNew": true,
       "photo": "pathToFile.jpg",
       "title": "Product 3",
-      "type": "Monitors",
-      "specification": "Specification 1",
+      "type": "Plazma",
+      "specification": "Specification 2",
       "guarantee": {
         "start": "2017-06-29 12:09:33",
         "end": "2017-06-29 12:09:33"
@@ -90,8 +90,8 @@
       "isNew": false,
       "photo": "pathToFile.jpg",
       "title": "Product 4",
-      "type": "Monitors",
-      "specification": "Specification 1",
+      "type": "Plazma",
+      "specification": "Specification 2",
       "guarantee": {
         "start": "2017-06-29 12:09:33",
         "end": "2017-06-29 12:09:33"
@@ -130,7 +130,7 @@
       "photo": "pathToFile.jpg",
       "title": "Product 6",
       "type": "Monitors",
-      "specification": "Specification 1",
+      "specification": "Specification 2",
       "guarantee": {
         "start": "2017-06-29 12:09:33",
         "end": "2017-06-29 12:09:33"

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { IOrder } from '../../components/Order/Order';
-import { IProduct } from '../../components/Product/Product';
+import { IOrder } from '../components/Order/Order';
+import { IProduct } from '../components/Product/Product';
 
 const API_URL: string = "http://localhost:3000/"
 
@@ -83,4 +83,23 @@ export const fetchDetailOrder = createAsyncThunk(
       throw new Error(error.message);
     }
   })
+
+export const fetchproductListByType = createAsyncThunk(
+  'productListByType', async (type: string | undefined) => {
+
+    try {
+      const response = await fetch(`${API_URL}products?type=${type}`)
+      if (!response.ok) {
+        throw new Error('Error fetching news list');
+      }
+
+      const productList: IProduct[] = await response.json()
+      // const result = productList.filter((product) => product.order.toString() === id)
+      return productList
+    }
+    catch (error: any) {
+      throw new Error(error.message);
+    }
+  })
+
 

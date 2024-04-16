@@ -5,7 +5,7 @@ import { IProduct, Product } from '../Product/Product';
 import './ProductList.scss';
 import { AppDispatch, RootState } from '../../store/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProductList } from '../../store/api/api';
+import { fetchProductList } from '../../store/api';
 
 export const ProductList: FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -18,6 +18,8 @@ export const ProductList: FC = () => {
   }, []);
 
   console.log('productList', productList);
+
+  
   return (
     <div className="productList">
       <div className="productList__header">

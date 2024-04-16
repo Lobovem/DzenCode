@@ -4,7 +4,7 @@ import './OrderList.scss';
 import { IOrder, Order } from '../Order/Order';
 import { AppDispatch, RootState } from '../../store/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProductListAndOrderList } from '../../store/api/api';
+import { fetchProductListAndOrderList } from '../../store/api';
 import { Outlet } from 'react-router-dom';
 
 export const OrderList: FC = () => {

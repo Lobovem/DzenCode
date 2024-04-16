@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { IOrder } from '../components/Order/Order';
-import { fetchDetailOrder, fetchOrderList, fetchProductList, fetchProductListAndOrderList } from './api/api';
+import { fetchDetailOrder, fetchOrderList, fetchProductList, fetchProductListAndOrderList, fetchproductListByType } from './api';
 import { IProduct } from '../components/Product/Product';
 
 export interface IDzenCodeState {
@@ -57,6 +57,10 @@ export const dzenCodeSlice = createSlice({
     builder.addCase(fetchDetailOrder.fulfilled, (state, action) => {
       state.detailOrder = action.payload
       state.isDetailOrder = true
+    })
+
+    builder.addCase(fetchproductListByType.fulfilled, (state, action) => {
+      state.productList = action.payload
     })
   },
 })
