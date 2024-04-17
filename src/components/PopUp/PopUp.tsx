@@ -3,15 +3,7 @@ import imgMonitor from '../../assets/img/monitor.png';
 import { Button, Image, Modal } from 'react-bootstrap';
 import { BtnClose } from '../BtnClose/BtnClose';
 import iconTrush from '../../assets/icon/iconTrushRed.png';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
-import {
-  deleteOrder,
-  deleteProduct,
-  fetchDetailOrder,
-  fetchOrderList,
-  fetchProductList,
-} from '../../store/api';
+import { deleteOrder, deleteProduct, fetchOrderList } from '../../store/api';
 import {
   addDeleteOrder,
   addDeleteProduct,
