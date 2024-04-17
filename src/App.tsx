@@ -1,7 +1,6 @@
 // import reactLogo from './assets/react.svg';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './App.scss';
-import { PopUp } from './components/PopUp/PopUp';
 import { ErrorPage } from './pages/ErrorPage';
 import { ProductsPage } from './pages/ProductsPage';
 import { OrdersPage } from './pages/OrdersPage';
@@ -31,7 +30,7 @@ const router = createBrowserRouter([
         element: <OrdersPage />,
         children: [
           {
-            path: '/orders/:id',
+            path: '/orders/:id/:title',
             element: <OrderDetail />,
           },
         ],

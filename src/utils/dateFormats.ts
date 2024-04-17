@@ -7,8 +7,9 @@ export const formatDateWithDot = (date: Date): string => {
 
 export const formatDateWithSlashNameMonthFull = (date: string): string => {
   const dateFull = new Date(date);
+  const formatterMonth = new Intl.DateTimeFormat('en', { month: '2-digit' });
 
-  const day = dateFull.getDate();
+  const day = formatterMonth.format(dateFull)
   const month = dateFull.toLocaleString('en-US', { month: 'short' });
   const year = dateFull.getFullYear();
   return `${day} / ${month} / ${year}`;
@@ -27,8 +28,9 @@ export const formatDateWithSlashFull = (date: string): string => {
 
 export const formatDateWithSlashSmall = (date: string): string => {
   const dateFull = new Date(date);
+  const formatterMonth = new Intl.DateTimeFormat('en', { month: '2-digit' });
 
-  const day = dateFull.getDate();
+  const day = formatterMonth.format(dateFull)
   const year = dateFull.getFullYear();
   return `${day} / ${year}`;
 };

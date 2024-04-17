@@ -69,7 +69,7 @@ export const Order: FC<IOrderProps> = ({ order }) => {
         )}
 
         <div className="order__countWrap">
-          <Link to={`/orders/${order.id}`} className="order__btn">
+          <Link to={`/orders/${order.id}/${order.title}`} className="order__btn">
             <Image src={iconList} className="order__btnIcon" />
           </Link>
 

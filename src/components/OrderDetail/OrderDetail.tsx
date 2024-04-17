@@ -13,7 +13,7 @@ import { addDeleteItem, handleDelete, isDetailOrder } from '../../store/slices';
 import { PopUp } from '../PopUp/PopUp';
 
 export const OrderDetail: FC = () => {
-  const { id } = useParams();
+  const { id, title } = useParams<{ id: string; title: string }>();
   const dispatch = useDispatch<AppDispatch>();
 
   const isDelete: boolean = useSelector((state: RootState) => state.dzenCode.isDelete);
@@ -41,9 +41,7 @@ export const OrderDetail: FC = () => {
         <Link to="/orders">
           <BtnClose onClick={handleCloseDetailOrder} />
         </Link>
-        <h2 className="orderDetail__title">
-          Long long title name very long order long title name very long order
-        </h2>
+        <h2 className="orderDetail__title">{title}</h2>
 
         <div>
           <a href="#" className="orderDetail__btnWrap">
