@@ -7,7 +7,7 @@ import { dataSelectChange } from '../../store/slices';
 import './Select.scss';
 
 export const SelectType: FC<{ title: string }> = ({ title }) => {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const dataSelect = useSelector((state: RootState) => state.dzenCode.dataSelect);
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {

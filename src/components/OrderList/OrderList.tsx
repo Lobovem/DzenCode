@@ -1,15 +1,19 @@
 import { Button } from 'react-bootstrap';
 import { FC, useEffect } from 'react';
-import { IOrder, Order } from '../Order/Order';
-import { AppDispatch, RootState } from '../../store/store';
-import { useDispatch, useSelector } from 'react-redux';
+import { Order } from '../Order/Order';
+import { RootState } from '../../store/store';
+import { useSelector } from 'react-redux';
 import { fetchOrderList } from '../../store/api';
 import { Outlet } from 'react-router-dom';
+import { IOrder } from '../../types/types';
 import './OrderList.scss';
+import { useAppDispatch } from '../../store/appDispatch';
 
 export const OrderList: FC = () => {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const orderList: IOrder[] = useSelector((state: RootState) => state.dzenCode.orderList);
+
+  console.log(orderList);
 
   useEffect(() => {
     dispatch(fetchOrderList());
@@ -32,7 +36,10 @@ export const OrderList: FC = () => {
               <Order key={order.id} order={order} />
             ))}
           </div>
-          <Outlet />
+
+          <div className="orderList__orderDetail">
+            <Outlet />
+          </div>
         </div>
       </div>
     </>

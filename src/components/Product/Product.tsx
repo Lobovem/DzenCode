@@ -1,8 +1,6 @@
 import { FC } from 'react';
 import { Image } from 'react-bootstrap';
 import imgMonitor from '../../assets/img/monitor.png';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../store/store';
 import { BtnTrush } from '../BtnTrush/BtnTrush';
 import { addDeleteItem, handleDelete } from '../../store/slices';
 import {
@@ -11,35 +9,15 @@ import {
   formatDateWithSlashSmall,
 } from '../../utils/dateFormats';
 import './Product.scss';
-
-export interface IProduct {
-  id: string;
-  serialNumber: number;
-  isNew: boolean;
-  photo: string;
-  title: string;
-  type: string;
-  specification: string;
-  guarantee: {
-    start: string;
-    end: string;
-  };
-  price: {
-    value: number;
-    symbol: string;
-    isDefault: boolean;
-  }[];
-  order: number;
-  date: string;
-  orderName?: string;
-}
+import { IProduct } from '../../types/types';
+import { useAppDispatch } from '../../store/appDispatch';
 
 interface IProductProps {
   product: IProduct;
 }
 
 export const Product: FC<IProductProps> = ({ product }) => {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
 
   const handleDeleteProduct = (): void => {
     dispatch(addDeleteItem(product));

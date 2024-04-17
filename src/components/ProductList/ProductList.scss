@@ -11,11 +11,13 @@
     margin-right: 40px;
   }
 
-  &__list {
+
+  &__listWrap {
     overflow: auto;
 
     &::-webkit-scrollbar {
-      width: 6px;
+      // width: 6px;
+      height: 10px;
       border-radius: 10px;
     }
 
@@ -36,7 +38,14 @@
     }
   }
 
-  &__product {
+  &__list {
     min-width: 2000px;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
   }
+
+
+
 }

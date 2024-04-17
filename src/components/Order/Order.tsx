@@ -2,10 +2,9 @@ import { FC, useEffect, useState } from 'react';
 import { Image } from 'react-bootstrap';
 import iconList from '../../assets/icon/iconList.png';
 import { BtnTrush } from '../BtnTrush/BtnTrush';
-import { IProduct } from '../Product/Product';
 import { Link, useParams } from 'react-router-dom';
-import { AppDispatch, RootState } from '../../store/store';
-import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
+import { useSelector } from 'react-redux';
 import { deleteOrder } from '../../store/api';
 import {
   formatDateWithSlashNameMonthFull,
@@ -13,22 +12,16 @@ import {
 } from '../../utils/dateFormats';
 import iconArrow from '../../assets/icon/iconArrow.png';
 import './Order.scss';
-
-export interface IOrder {
-  id: string;
-  title: string;
-  date: string;
-  description: string;
-  products: IProduct[];
-}
-
-interface IOrderProps {
-  order: IOrder;
-}
+import { IOrder } from '../../types/types';
+import { useAppDispatch } from '../../store/appDispatch';
 
 type ParamsType = {
   id: string;
 };
+
+interface IOrderProps {
+  order: IOrder;
+}
 
 //TODO make popUp delete to order
 export const Order: FC<IOrderProps> = ({ order }) => {
@@ -37,7 +30,7 @@ export const Order: FC<IOrderProps> = ({ order }) => {
   const [priceUsd, setpriceUsd] = useState(0);
   const [priceUah, setPriceUah] = useState(0);
 
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
 
   const handleDeleteOrder = (): void => {
     dispatch(deleteOrder(order.id));

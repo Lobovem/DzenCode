@@ -1,6 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { IOrder } from '../components/Order/Order';
-import { IProduct } from '../components/Product/Product';
+import { IOrder, IProduct } from '../types/types'
 
 const API_URL: string = "http://localhost:3000/"
 

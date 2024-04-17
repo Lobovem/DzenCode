@@ -3,14 +3,15 @@ import imgMonitor from '../../assets/img/monitor.png';
 import { Button, Image, Modal } from 'react-bootstrap';
 import { BtnClose } from '../BtnClose/BtnClose';
 import iconTrush from '../../assets/icon/iconTrushRed.png';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../store/store';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 import { deleteProduct } from '../../store/api';
 import { addDeleteItem, handleDelete } from '../../store/slices';
 import './PopUp.scss';
+import { useAppDispatch } from '../../store/appDispatch';
 
 export const PopUp: FC = () => {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const deleteItem = useSelector((state: RootState) => state.dzenCode.deleteItem);
 
   const isDelete = (): void => {
