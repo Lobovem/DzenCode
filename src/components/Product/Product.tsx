@@ -51,7 +51,7 @@ export const Product: FC<IProductProps> = ({ product }) => {
         className={
           product.isNew
             ? 'product__status product__status_smActive '
-            : 'product__status product__status_sm'
+            : 'product__status product__status_smNoActive'
         }
       ></div>
       <Image className="product__img" src={imgMonitor} />
@@ -62,9 +62,9 @@ export const Product: FC<IProductProps> = ({ product }) => {
       </div>
 
       {product.isNew ? (
-        <p className="product__status product__status_active">Free</p>
+        <p className="product__statusActive">Free</p>
       ) : (
-        <p className="product__status">Work</p>
+        <p className="product__statusNoActive">Work</p>
       )}
 
       <div className="product__dateWrap">
@@ -81,9 +81,9 @@ export const Product: FC<IProductProps> = ({ product }) => {
       </div>
 
       {product.isNew ? (
-        <p className="product__status">New</p>
+        <p className="product__statusActive">New</p>
       ) : (
-        <p className="product__status">Used</p>
+        <p className="product__statusNoActive">Used</p>
       )}
 
       <div className="product__dateWrap">

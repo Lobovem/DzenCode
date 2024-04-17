@@ -15,15 +15,16 @@
     box-shadow: 0 0 20px rgba(133, 125, 125, 0.2);
   }
 
-  &__status {
+  &__statusActive {
+    color: green;
+  }
+
+  &__statusNoActive {
     color: black;
+  }
 
-    &_active {
-      color: green;
-
-    }
-
-    &_sm {
+  &__status {
+    &_smNoActive {
       width: 10px;
       height: 10px;
       background-color: black;
