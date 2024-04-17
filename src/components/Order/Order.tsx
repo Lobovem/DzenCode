@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import { Image } from 'react-bootstrap';
-import iconList from '../../assets/iconList.png';
+import iconList from '../../assets/icon/iconList.png';
 import { BtnTrush } from '../BtnTrush/BtnTrush';
 import { IProduct } from '../Product/Product';
 import { Link, useParams } from 'react-router-dom';
@@ -11,7 +11,7 @@ import {
   formatDateWithSlashNameMonthFull,
   formatDateWithSlashSmall,
 } from '../../utils/dateFormats';
-import iconArrow from '../../assets/icon-arrow.png';
+import iconArrow from '../../assets/icon/iconArrow.png';
 import './Order.scss';
 
 export interface IOrder {

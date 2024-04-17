@@ -1,5 +1,5 @@
 import Image from 'react-bootstrap/Image';
-import userPhoto from '../../assets/userPhoto.png';
+import userPhoto from '../../assets/img/userPhoto.png';
 import { FC } from 'react';
 import { NavLink } from 'react-bootstrap';
 import './User.scss';

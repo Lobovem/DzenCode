@@ -1,8 +1,8 @@
 import { FC } from 'react';
-import imgMonitor from '../../assets/monitor.png';
+import imgMonitor from '../../assets/img/monitor.png';
 import { Button, Image, Modal } from 'react-bootstrap';
 import { BtnClose } from '../BtnClose/BtnClose';
-import iconTrush from '../../assets/iconTrushRed.png';
+import iconTrush from '../../assets/icon/iconTrushRed.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store/store';
 import { deleteProduct } from '../../store/api';

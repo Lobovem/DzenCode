@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { Image } from 'react-bootstrap';
-import imgMonitor from '../../assets/monitor.png';
+import imgMonitor from '../../assets/img/monitor.png';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../store/store';
 import { BtnTrush } from '../BtnTrush/BtnTrush';

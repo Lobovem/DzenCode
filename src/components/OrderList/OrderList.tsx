@@ -15,6 +15,9 @@ export const OrderList: FC = () => {
     dispatch(fetchOrderList());
   }, [dispatch]);
 
+  //TODO add to loader
+  //TODO check out styles to orderDetail component
+
   return (
     <>
       <div className="orderList animation">

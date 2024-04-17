@@ -1,6 +1,6 @@
 import { Image } from 'react-bootstrap';
 import { BtnClose } from '../BtnClose/BtnClose';
-import imgMonitor from '../../assets/monitor.png';
+import imgMonitor from '../../assets/img/monitor.png';
 import { FC, useEffect } from 'react';
 import { BtnTrush } from '../BtnTrush/BtnTrush';
 import { Link, useParams } from 'react-router-dom';
