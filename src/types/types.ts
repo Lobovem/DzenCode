@@ -4,6 +4,7 @@ export interface IOrder {
   date: string;
   description: string;
   products: IProduct[];
+  productCount: number;
   totalPrice: { value: number, symbol: string, isDefault: boolean }[]
 }
 
@@ -28,3 +29,7 @@ export interface IProduct {
   date: string;
   orderName?: string;
 }
+
+export const isIProduct = (elem: IProduct): elem is IProduct => 'order' in elem;
+export const isIOrder = (elem: IOrder): elem is IOrder => 'productCount' in elem;
+

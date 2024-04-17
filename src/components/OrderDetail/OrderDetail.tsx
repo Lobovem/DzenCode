@@ -7,9 +7,8 @@ import { fetchDetailOrder } from '../../store/api';
 import { isDetailOrder } from '../../store/slices';
 import { PopUp } from '../PopUp/PopUp';
 import { ProductShort } from '../Product/ProductShort';
-import { IProduct } from '../../types/types';
-import './OrderDetail.scss';
 import { useAppDispatch } from '../../store/appDispatch';
+import './OrderDetail.scss';
 
 type ParamsType = {
   id: string;
@@ -20,11 +19,9 @@ export const OrderDetail: FC = () => {
   const { id, title } = useParams<ParamsType>();
   const dispatch = useAppDispatch();
 
-  const isDelete: boolean = useSelector((state: RootState) => state.dzenCode.isDelete);
-
-  const orderDetail: IProduct[] = useSelector(
-    (state: RootState) => state.dzenCode.detailOrder
-  );
+  const isDelete = useSelector((state: RootState) => state.dzenCode.isDelete);
+  const orderDetail = useSelector((state: RootState) => state.dzenCode.detailOrder);
+  const deleteProduct = useSelector((state: RootState) => state.dzenCode.deleteProduct);
 
   const handleCloseDetailOrder = (): void => {
     dispatch(isDetailOrder());
@@ -58,7 +55,7 @@ export const OrderDetail: FC = () => {
         </div>
       </div>
 
-      {isDelete && <PopUp />}
+      {isDelete && <PopUp deleteItem={deleteProduct} />}
     </>
   );
 };

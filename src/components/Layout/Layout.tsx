@@ -8,8 +8,7 @@ import { NavigationBar } from '../NavigationBar/NavigationBar';
 import './Layout.scss';
 
 export const Layout: FC = () => {
-  //TODO revieww react fragment to all project
-  const isDelete: boolean = useSelector((state: RootState) => state.dzenCode.isDelete);
+  const isDelete = useSelector((state: RootState) => state.dzenCode.isDelete);
   return (
     <>
       <Header />

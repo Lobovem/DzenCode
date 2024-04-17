@@ -12,8 +12,9 @@ import {
 } from '../../utils/dateFormats';
 import iconArrow from '../../assets/icon/iconArrow.png';
 import './Order.scss';
-import { IOrder } from '../../types/types';
+
 import { useAppDispatch } from '../../store/appDispatch';
+import { IOrder } from '../../types/types';
 
 type ParamsType = {
   id: string;
@@ -32,9 +33,7 @@ export const Order: FC<IOrderProps> = ({ order }) => {
     dispatch(deleteOrder(order.id));
   };
 
-  const isDetailOrder: boolean = useSelector(
-    (state: RootState) => state.dzenCode.isDetailOrder
-  );
+  const isDetailOrder = useSelector((state: RootState) => state.dzenCode.isDetailOrder);
 
   return (
     <div className="order animation">
@@ -53,7 +52,7 @@ export const Order: FC<IOrderProps> = ({ order }) => {
           </Link>
 
           <div className="order__countProductsWrap">
-            <p className="order__countProducts">{order.products.length}</p>
+            <p className="order__countProducts">{order.productCount}</p>
             <p className="order__countProductsDesc">Products</p>
           </div>
         </div>
@@ -69,6 +68,7 @@ export const Order: FC<IOrderProps> = ({ order }) => {
           <div className="order__priceWrap">
             {order.totalPrice.map((price) => (
               <p
+                key={price.symbol}
                 className={price.isDefault ? 'order__priceLarge' : 'order__priceShort'}
               >{`${price.value} ${price.symbol}`}</p>
             ))}

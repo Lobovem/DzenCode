@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Image } from 'react-bootstrap';
 import imgMonitor from '../../assets/img/monitor.png';
 import { BtnTrush } from '../BtnTrush/BtnTrush';
-import { addDeleteItem, handleDelete } from '../../store/slices';
+import { addDeleteProduct, handleDelete } from '../../store/slices';
 import {
   formatDateWithSlashFull,
   formatDateWithSlashNameMonthFull,
@@ -20,7 +20,7 @@ export const Product: FC<IProductProps> = ({ product }) => {
   const dispatch = useAppDispatch();
 
   const handleDeleteProduct = (): void => {
-    dispatch(addDeleteItem(product));
+    dispatch(addDeleteProduct(product));
     dispatch(handleDelete());
   };
 

@@ -17,15 +17,13 @@ export const fetchOrderList = createAsyncThunk(
       const orderList: IOrder[] = await orderResponse.json()
       const productList: IProduct[] = await productResponse.json()
 
-      const orderWithProduct = orderList.map((order) => {
-        return { ...order, products: productList.filter((product) => product.order.toString() === order.id) }
-      })
-
-      const result = orderWithProduct.map(order => {
+      const result = orderList.map(order => {
         let totalPriceUSD = 0;
         let totalPriceUAH = 0;
 
-        order.products.forEach(product => {
+        const productCount = productList.filter((product) => product.order.toString() === order.id)
+
+        productList.filter((product) => product.order.toString() === order.id).forEach(product => {
           product.price.forEach(price => {
             if (price.symbol === "USD") {
               totalPriceUSD += price.value;
@@ -42,7 +40,8 @@ export const fetchOrderList = createAsyncThunk(
           },
           {
             value: totalPriceUAH, symbol: "UAH", isDefault: true
-          }]
+          }],
+          productCount: productCount.length
         };
       });
 
@@ -100,17 +99,17 @@ export const fetchproductListBySelect = createAsyncThunk(
   'productListBySelect',
   async ({ type, specification }: { type?: string | undefined, specification?: string | undefined }) => {
 
+    let url = `${API_URL}products`;
+    //TODO search param, quary params, как сформировать quary строку
+    if (type && specification) {
+      url += `?type=${type}&specification=${specification}`;
+    } else if (type) {
+      url += `?type=${type}`;
+    } else if (specification) {
+      url += `?specification=${specification}`;
+    }
+
     try {
-      let url = `${API_URL}products`;
-
-      if (type && specification) {
-        url += `?type=${type}&specification=${specification}`;
-      } else if (type) {
-        url += `?type=${type}`;
-      } else if (specification) {
-        url += `?specification=${specification}`;
-      }
-
       const response = await fetch(url);
       if (!response.ok) {
         throw new Error('Error fetching news list');
@@ -131,7 +130,6 @@ export const deleteProduct = createAsyncThunk(
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-          // Добавьте любые другие необходимые заголовки, такие как авторизация
         },
       });
       if (!response.ok) {
@@ -168,27 +166,5 @@ export const deleteOrder = createAsyncThunk(
 );
 
 
-
-// export const deleteOrder = createAsyncThunk(
-//   'deleteOrder', async (id: string) => {
-
-//     try {
-//       const response = await fetch(`${API_URL}orders/${id}`, {
-//         method: 'DELETE',
-//         headers: {
-//           'Content-Type': 'application/json',
-//           // Добавьте любые другие необходимые заголовки, такие как авторизация
-//         },
-//       });
-//       if (!response.ok) {
-//         throw new Error('Error fetching news list');
-//       }
-
-//       return response.json();
-//     } catch (error: any) {
-//       throw new Error(error.message);
-//     }
-//   }
-// );
 
 

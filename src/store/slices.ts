@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { deleteOrder, deleteProduct, fetchDetailOrder, fetchOrderList, fetchProductList, fetchproductListBySelect } from './api';
 import { IOrder, IProduct } from '../types/types';
+import { initOrder, initProduct } from './initObj';
 
 export interface IDzenCodeState {
   orderList: IOrder[];
@@ -10,7 +11,8 @@ export interface IDzenCodeState {
   isDetailOrder: boolean
   dataSelect: { type?: string, specefication?: string },
   isDelete: boolean,
-  deleteItem: any,
+  deleteOrder: IOrder
+  deleteProduct: IProduct,
   isLoading: boolean,
   error: string | null;
 }
@@ -22,7 +24,8 @@ const initialState: IDzenCodeState = {
   isDetailOrder: false,
   dataSelect: {},
   isDelete: false,
-  deleteItem: '',//TODO add TS  
+  deleteOrder: initOrder,
+  deleteProduct: initProduct,
   isLoading: false,
   error: null,
 }
@@ -43,8 +46,12 @@ export const dzenCodeSlice = createSlice({
       state.isDelete = !state.isDelete
     },
 
-    addDeleteItem: (state, action) => {
-      state.deleteItem = action.payload
+    addDeleteOrder: (state, action) => {
+      state.deleteOrder = action.payload
+    },
+
+    addDeleteProduct: (state, action) => {
+      state.deleteProduct = action.payload
     }
   },
 
@@ -57,7 +64,7 @@ export const dzenCodeSlice = createSlice({
 
       })
       .addCase(fetchOrderList.fulfilled, (state, action) => {
-        state.isDetailOrder = false
+        // state.isDetailOrder = false
         state.orderList = action.payload
         state.isLoading = false;
         state.error = null;
@@ -114,15 +121,15 @@ export const dzenCodeSlice = createSlice({
       builder.addCase(deleteProduct.fulfilled, (state, action) => {
         state.productList = state.productList.filter(product => product.id !== action.payload.id)//TODO Will be better use filter or new fetch
         state.detailOrder = state.detailOrder.filter(product => product.id !== action.payload.id)
-        state.deleteItem = ''
+        state.deleteProduct = initProduct
       })
 
     builder.addCase(deleteOrder.fulfilled, (state, action) => {
       state.orderList = state.orderList.filter(order => order.id !== action.payload.id)//TODO Will be better use filter or new fetch
-      state.deleteItem = ''
+      state.deleteOrder = initOrder
     })
   },
 })
 
-export const { isDetailOrder, dataSelectChange, handleDelete, addDeleteItem } = dzenCodeSlice.actions
+export const { isDetailOrder, dataSelectChange, handleDelete, addDeleteOrder, addDeleteProduct } = dzenCodeSlice.actions
 export default dzenCodeSlice.reducer

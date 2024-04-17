@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { fetchproductListBySelect } from '../../store/api';
 import { dataSelectChange } from '../../store/slices';
-import './Select.scss';
 import { useAppDispatch } from '../../store/appDispatch';
+import './Select.scss';
 
 export const SelectSpecification: FC<{ title: string }> = ({ title }) => {
   const dispatch = useAppDispatch();

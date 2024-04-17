@@ -12,11 +12,9 @@ import { Product } from '../Product/Product';
 
 export const ProductList: FC = () => {
   const dispatch = useAppDispatch();
-  const productList: IProduct[] = useSelector(
-    (state: RootState) => state.dzenCode.productList
-  );
-
-  const isDelete: boolean = useSelector((state: RootState) => state.dzenCode.isDelete);
+  const productList = useSelector((state: RootState) => state.dzenCode.productList);
+  const deleteProduct = useSelector((state: RootState) => state.dzenCode.deleteProduct);
+  const isDelete = useSelector((state: RootState) => state.dzenCode.isDelete);
 
   useEffect(() => {
     dispatch(fetchProductList());
@@ -41,7 +39,7 @@ export const ProductList: FC = () => {
         </div>
       </div>
 
-      {isDelete && <PopUp />}
+      {isDelete && <PopUp deleteItem={deleteProduct} />}
     </>
   );
 };

@@ -5,29 +5,57 @@ import { BtnClose } from '../BtnClose/BtnClose';
 import iconTrush from '../../assets/icon/iconTrushRed.png';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
-import { deleteProduct } from '../../store/api';
-import { addDeleteItem, handleDelete } from '../../store/slices';
-import './PopUp.scss';
+import {
+  deleteOrder,
+  deleteProduct,
+  fetchDetailOrder,
+  fetchOrderList,
+  fetchProductList,
+} from '../../store/api';
+import { addDeleteOrder, addDeleteProduct, handleDelete } from '../../store/slices';
 import { useAppDispatch } from '../../store/appDispatch';
+import './PopUp.scss';
+import { initProduct } from '../../store/initObj';
+import { IOrder, IProduct, isIOrder, isIProduct } from '../../types/types';
 
-export const PopUp: FC = () => {
+interface IItemProps {
+  deleteItem: IProduct | IOrder;
+}
+
+export const PopUp: FC<IItemProps> = ({ deleteItem }) => {
+  console.log(deleteItem);
+  console.log('typeGuard', isIProduct(deleteItem));
+  console.log('typeGuard', isIOrder(deleteItem));
+
   const dispatch = useAppDispatch();
-  const deleteItem = useSelector((state: RootState) => state.dzenCode.deleteItem);
+  // const delOrder = useSelector((state: RootState) => state.dzenCode.deleteOrder);
+  // const delProduct = useSelector((state: RootState) => state.dzenCode.deleteProduct);
 
-  const isDelete = (): void => {
-    dispatch(handleDelete());
-    dispatch(addDeleteItem(''));
+  const handleOpenPopUp = (): void => {
+    if (isIProduct(deleteItem)) {
+      dispatch(addDeleteProduct(initProduct));
+      dispatch(handleDelete());
+    } else {
+      dispatch(addDeleteOrder(initProduct));
+      dispatch(handleDelete());
+    }
   };
 
   const handleDeleteItem = (): void => {
-    dispatch(deleteProduct(deleteItem.id));
-    isDelete();
+    if (isIProduct(deleteItem)) {
+      dispatch(deleteProduct(deleteItem.id));
+      dispatch(fetchDetailOrder());
+    } else {
+      dispatch(deleteOrder(deleteItem.id));
+      // dispatch(fetchOrderList());
+    }
+    handleOpenPopUp();
   };
 
   return (
     <div className="modal show animation">
       <Modal.Dialog className="popUp">
-        <BtnClose onClick={isDelete} />
+        <BtnClose onClick={handleOpenPopUp} />
 
         <Modal.Header className="popUp__header">
           <Modal.Title className="popUp__title">
@@ -39,7 +67,7 @@ export const PopUp: FC = () => {
           <div className="popUp__product product">
             <div
               className={
-                deleteItem.isNew
+                deleteItem?.isNew
                   ? 'product__status product__status_smActive '
                   : 'product__status product__status_smNoActive'
               }
@@ -47,14 +75,18 @@ export const PopUp: FC = () => {
             <Image className="product__img" src={imgMonitor} />
 
             <div className="product__titleWrap">
-              <p className="product__title">{deleteItem.title}</p>
-              <p className="product__titleDesc">{deleteItem.serialNumber}</p>
+              <p className="product__title">{deleteItem?.title}</p>
+              <p className="product__titleDesc">{deleteItem?.serialNumber}</p>
             </div>
           </div>
         </Modal.Body>
 
         <Modal.Footer className="popUp__footer">
-          <Button variant="secondary" className="popUp__btnClose" onClick={isDelete}>
+          <Button
+            variant="secondary"
+            className="popUp__btnClose"
+            onClick={handleOpenPopUp}
+          >
             Close
           </Button>
 
