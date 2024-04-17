@@ -37,7 +37,7 @@ export const OrderDetail: FC = () => {
 
   return (
     <>
-      <div className="orderDetail">
+      <div className="orderDetail animation">
         <Link to="/orders">
           <BtnClose onClick={handleCloseDetailOrder} />
         </Link>

@@ -58,7 +58,7 @@ export const Order: FC<IOrderProps> = ({ order }) => {
   }, []);
 
   return (
-    <div className="order">
+    <div className="order animation">
       <div className="order__wrap">
         {!isDetailOrder && (
           <div className="order__titleWrap">

@@ -25,7 +25,7 @@ export const ProductList: FC = () => {
 
   return (
     <>
-      <div className="productList">
+      <div className="productList animation">
         <div className="productList__header">
           <p className="productList__headerTitle">Products / {productList.length}</p>
 

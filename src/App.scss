@@ -1,14 +1,13 @@
-// #root {
-//   // max-width: 1280px;
-//   // margin: 0 auto;
-//   // padding: 2rem;
-// }
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
 
-// .container {
+  100% {
+    opacity: 1;
+  }
+}
 
-//   &__title {
-//     color: green;
-//     font-size: 50px;
-//   }
-
-// }
+.animation {
+  animation: fadeInOut 0.5s ease;
+}

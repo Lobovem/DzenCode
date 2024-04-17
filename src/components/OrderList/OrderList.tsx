@@ -17,7 +17,7 @@ export const OrderList: FC = () => {
 
   return (
     <>
-      <div className="orderList">
+      <div className="orderList animation">
         <div className="orderList__header">
           <Button className="rounded-circle orderList__button btnAdd">+</Button>
           <p className="orderList__headerTitle">Orders / {orderList.length}</p>

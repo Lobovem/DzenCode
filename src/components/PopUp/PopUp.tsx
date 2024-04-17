@@ -24,7 +24,7 @@ export const PopUp: FC = () => {
   };
 
   return (
-    <div className="modal show">
+    <div className="modal show animation">
       <Modal.Dialog className="popUp">
         <BtnClose onClick={isDelete} />
 
