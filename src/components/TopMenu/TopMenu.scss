@@ -1,15 +1,9 @@
 .time {
-
-
-  &__day {}
-
   &__wrapDate {
     display: flex;
     flex-direction: row;
     gap: 16px;
   }
-
-  &__date {}
 
   &__wrapIcon {
     display: flex;
@@ -21,6 +15,4 @@
     width: 20px;
     height: 20px;
   }
-
-  &__clock {}
 }

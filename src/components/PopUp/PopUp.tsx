@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import './PopUp.scss';
 import imgMonitor from '../../assets/monitor.png';
 import { Button, Image, Modal } from 'react-bootstrap';
 import { BtnClose } from '../BtnClose/BtnClose';
@@ -8,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store/store';
 import { deleteProduct } from '../../store/api';
 import { addDeleteItem, handleDelete } from '../../store/slices';
+import './PopUp.scss';
 
 export const PopUp: FC = () => {
   const dispatch = useDispatch<AppDispatch>();

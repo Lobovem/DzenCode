@@ -2,11 +2,11 @@ import { FC, useEffect } from 'react';
 import { SelectType } from '../Selects/SelectType';
 import { SelectSpecification } from '../Selects/SelectSpecification';
 import { IProduct, Product } from '../Product/Product';
-import './ProductList.scss';
 import { AppDispatch, RootState } from '../../store/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProductList } from '../../store/api';
 import { PopUp } from '../PopUp/PopUp';
+import './ProductList.scss';
 
 export const ProductList: FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -18,7 +18,6 @@ export const ProductList: FC = () => {
 
   useEffect(() => {
     dispatch(fetchProductList());
-    // dispatch(deleteProduct('1'));
   }, [dispatch]);
 
   return (

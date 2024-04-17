@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import './Product.scss';
 import { Image } from 'react-bootstrap';
 import imgMonitor from '../../assets/monitor.png';
 import { useDispatch } from 'react-redux';
@@ -11,6 +10,7 @@ import {
   formatDateWithSlashNameMonthFull,
   formatDateWithSlashSmall,
 } from '../../utils/dateFormats';
+import './Product.scss';
 
 export interface IProduct {
   id: string;
@@ -106,7 +106,6 @@ export const Product: FC<IProductProps> = ({ product }) => {
         Long long title name very long group Long long title name very long group
       </p>
       <p className="product__title product__title_lg"> Volkov Vladimir</p>
-
       <p className="product__title product__title_lg">{product.orderName}</p>
 
       <div className="product__dateWrap">

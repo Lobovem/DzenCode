@@ -1,7 +1,6 @@
 import { Image } from 'react-bootstrap';
 import { BtnClose } from '../BtnClose/BtnClose';
 import imgMonitor from '../../assets/monitor.png';
-import './OrderDetail.scss';
 import { FC, useEffect } from 'react';
 import { BtnTrush } from '../BtnTrush/BtnTrush';
 import { Link, useParams } from 'react-router-dom';
@@ -11,6 +10,7 @@ import { fetchDetailOrder } from '../../store/api';
 import { IProduct } from '../Product/Product';
 import { addDeleteItem, handleDelete, isDetailOrder } from '../../store/slices';
 import { PopUp } from '../PopUp/PopUp';
+import './OrderDetail.scss';
 
 export const OrderDetail: FC = () => {
   const { id, title } = useParams<{ id: string; title: string }>();
@@ -33,7 +33,7 @@ export const OrderDetail: FC = () => {
 
   useEffect(() => {
     dispatch(fetchDetailOrder(id));
-  }, [id]);
+  }, [dispatch, id]);
 
   return (
     <>

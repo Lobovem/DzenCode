@@ -1,11 +1,11 @@
 import { Button } from 'react-bootstrap';
 import { FC, useEffect } from 'react';
-import './OrderList.scss';
 import { IOrder, Order } from '../Order/Order';
 import { AppDispatch, RootState } from '../../store/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchOrderList } from '../../store/api';
 import { Outlet } from 'react-router-dom';
+import './OrderList.scss';
 
 export const OrderList: FC = () => {
   const dispatch = useDispatch<AppDispatch>();

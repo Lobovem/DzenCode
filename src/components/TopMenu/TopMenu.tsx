@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import './TopMenu.scss';
 import { formatDateWithDot } from '../../utils/dateFormats';
+import './TopMenu.scss';
 
 export const TopMenu: React.FC = () => {
   const [currentDateTime, setCurrentDateTime] = useState<Date>(new Date());
@@ -12,6 +12,8 @@ export const TopMenu: React.FC = () => {
 
     return () => clearInterval(interval);
   }, []);
+
+  //TODO move functions
 
   const formatTime = (date: Date): string => {
     const options: Intl.DateTimeFormatOptions = {

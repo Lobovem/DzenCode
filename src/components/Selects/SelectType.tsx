@@ -1,10 +1,10 @@
 import { Form } from 'react-bootstrap';
 import { FC, useEffect } from 'react';
-import './Select.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchproductListBySelect } from '../../store/api';
 import { AppDispatch, RootState } from '../../store/store';
 import { dataSelectChange } from '../../store/slices';
+import './Select.scss';
 
 export const SelectType: FC<{ title: string }> = ({ title }) => {
   const dispatch = useDispatch<AppDispatch>();
