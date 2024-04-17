@@ -2,8 +2,12 @@ import { Nav } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { FC } from 'react';
 import './NavigationMenu.scss';
+import { useAppDispatch } from '../../store/appDispatch';
+import { disableDetailOrder } from '../../store/slices';
 
 export const NavigationMenu: FC = () => {
+  const dispatch = useAppDispatch();
+
   return (
     <Nav variant="underline" defaultActiveKey="#" className="navigationMenu">
       <Nav.Item className="navigationMenu__item">
@@ -22,6 +26,7 @@ export const NavigationMenu: FC = () => {
       <Nav.Item className="navigationMenu__item">
         <NavLink
           to="/orders"
+          onClick={() => dispatch(disableDetailOrder())}
           className={({ isActive }) =>
             isActive
               ? 'navigationMenu__link navigationMenu__link_active'

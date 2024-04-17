@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { fetchDetailOrder } from '../../store/api';
-import { isDetailOrder } from '../../store/slices';
+import { handleDetailOrder } from '../../store/slices';
 import { PopUp } from '../PopUp/PopUp';
 import { ProductShort } from '../Product/ProductShort';
 import { useAppDispatch } from '../../store/appDispatch';
@@ -24,7 +24,7 @@ export const OrderDetail: FC = () => {
   const deleteProduct = useSelector((state: RootState) => state.dzenCode.deleteProduct);
 
   const handleCloseDetailOrder = (): void => {
-    dispatch(isDetailOrder());
+    dispatch(handleDetailOrder());
   };
 
   useEffect(() => {

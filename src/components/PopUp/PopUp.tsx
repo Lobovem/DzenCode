@@ -3,20 +3,12 @@ import imgMonitor from '../../assets/img/monitor.png';
 import { Button, Image, Modal } from 'react-bootstrap';
 import { BtnClose } from '../BtnClose/BtnClose';
 import iconTrush from '../../assets/icon/iconTrushRed.png';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
-import {
-  deleteOrder,
-  deleteProduct,
-  fetchDetailOrder,
-  fetchOrderList,
-  fetchProductList,
-} from '../../store/api';
+import { deleteOrder, deleteProduct, fetchOrderList } from '../../store/api';
 import {
   addDeleteOrder,
   addDeleteProduct,
   handleDelete,
-  isDetailOrder,
+  handleDetailOrder,
 } from '../../store/slices';
 import { useAppDispatch } from '../../store/appDispatch';
 import './PopUp.scss';
@@ -55,7 +47,7 @@ export const PopUp: FC<IItemProps> = ({ deleteItem }) => {
     if (isIProduct(deleteItem)) {
       dispatch(deleteProduct(deleteItem.id));
       dispatch(fetchOrderList());
-      dispatch(isDetailOrder());
+      dispatch(handleDetailOrder());
     }
     if (isIOrder(deleteItem)) {
       dispatch(deleteOrder(deleteItem.id));

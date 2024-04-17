@@ -36,13 +36,15 @@ export const Order: FC<IOrderProps> = ({ order }) => {
     dispatch(handleDelete());
   };
 
-  const isDetailOrder = useSelector((state: RootState) => state.dzenCode.isDetailOrder);
+  const handleDetailOrder = useSelector(
+    (state: RootState) => state.dzenCode.statusDetailOrder
+  );
 
   return (
     <>
       <div className="order animation">
         <div className="order__wrap">
-          {!isDetailOrder && (
+          {!handleDetailOrder && (
             <div className="order__titleWrap">
               <Link to={`/orders/${order.id}`} className="order__title">
                 {order.title}
@@ -68,7 +70,7 @@ export const Order: FC<IOrderProps> = ({ order }) => {
             </p>
           </div>
 
-          {!isDetailOrder && (
+          {!handleDetailOrder && (
             <div className="order__priceWrap">
               {order.totalPrice.map((price) => (
                 <p
@@ -78,13 +80,13 @@ export const Order: FC<IOrderProps> = ({ order }) => {
               ))}
             </div>
           )}
-          {!isDetailOrder && (
+          {!handleDetailOrder && (
             <div className="order__btnTrushWrap">
               <BtnTrush onClick={handleDeleteOrder} />
             </div>
           )}
 
-          {isDetailOrder && (
+          {handleDetailOrder && (
             <div className="order__iconActiveWrap">
               {id === order.id && (
                 <Image className="order__iconActive animation" src={iconArrow} />
