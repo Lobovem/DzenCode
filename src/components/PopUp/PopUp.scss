@@ -9,45 +9,45 @@
   min-width: 700px;
 }
 
-.product {
-  display: flex;
-  gap: 30px;
-  align-items: center;
+// .product {
+//   display: flex;
+//   gap: 30px;
+//   align-items: center;
 
 
-  &__status {
-    color: green;
+//   &__status {
+//     color: green;
 
-    &_sm {
-      width: 8px; //TODO check out
-      height: 8px;
-      background-color: green;
-      border-radius: 6px;
-    }
-  }
+//     &_sm {
+//       width: 8px; //TODO check out
+//       height: 8px;
+//       background-color: green;
+//       border-radius: 6px;
+//     }
+//   }
 
-  &__img {
-    width: 40px;
-    height: 30px;
-  }
+//   &__img {
+//     width: 40px;
+//     height: 30px;
+//   }
 
-  &__title {
-    text-decoration: underline;
-    margin-right: 40px;
-    // font-size: 14px;
+//   &__title {
+//     text-decoration: underline;
+//     margin-right: 40px;
+//     // font-size: 14px;
 
-    &_lg {
-      font-size: 16px;
-    }
-  }
+//     &_lg {
+//       font-size: 16px;
+//     }
+//   }
 
-  &__titleDesc {
-    font-size: 12px;
-    color: gray;
-  }
+//   &__titleDesc {
+//     font-size: 12px;
+//     color: gray;
+//   }
 
 
-}
+// }
 
 .popUp {
   border-radius: 0;

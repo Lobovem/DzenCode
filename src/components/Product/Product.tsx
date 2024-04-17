@@ -102,7 +102,7 @@ export const Product: FC<IProductProps> = ({ product }) => {
       </div>
 
       <p className="product__title product__title_lg">
-        Long long title name very long group
+        Long long title name very long group Long long title name very long group
       </p>
       <p className="product__title product__title_lg"> Volkov Vladimir</p>
 
