@@ -7,8 +7,11 @@ import { IProduct } from '../Product/Product';
 import { Link } from 'react-router-dom';
 import { AppDispatch, RootState } from '../../store/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { addDeleteItem, handleDelete } from '../../store/slices';
 import { deleteOrder } from '../../store/api';
+import {
+  formatDateWithSlashFull,
+  formatDateWithSlashSmall,
+} from '../../utils/dateFormats';
 
 export interface IOrder {
   id: string;
@@ -81,10 +84,8 @@ export const Order: FC<IOrderProps> = ({ order }) => {
         </div>
 
         <div className="order__dateWrap">
-          {/* <p className="order__dateShort">04 / 12</p>
-          <p className="order__dateLarge">06/ Apr / 2024</p> */}
-          <p className="order__dateShort">{order.date}</p>
-          <p className="order__dateLarge">{order.date}</p>
+          <p className="order__dateShort">{formatDateWithSlashSmall(order.date)}</p>
+          <p className="order__dateLarge">{formatDateWithSlashFull(order.date)}</p>
         </div>
 
         {!isDetailOrder && (

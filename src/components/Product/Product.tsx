@@ -6,6 +6,11 @@ import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../store/store';
 import { BtnTrush } from '../BtnTrush/BtnTrush';
 import { addDeleteItem, handleDelete } from '../../store/slices';
+import {
+  formatDateWithSlashFull,
+  formatDateWithSlashNameMonthFull,
+  formatDateWithSlashSmall,
+} from '../../utils/dateFormats';
 
 export interface IProduct {
   id: string;
@@ -64,10 +69,14 @@ export const Product: FC<IProductProps> = ({ product }) => {
 
       <div className="product__dateWrap">
         <div>
-          <p className="product__dateTitle">06 / 04 / 2017</p>
+          <p className="product__dateTitle">
+            {formatDateWithSlashFull(product.guarantee.start)}
+          </p>
         </div>
         <div>
-          <p className="product__dateTitle">07 / 05 / 2019</p>
+          <p className="product__dateTitle">
+            {formatDateWithSlashFull(product.guarantee.end)}
+          </p>
         </div>
       </div>
 
@@ -106,8 +115,12 @@ export const Product: FC<IProductProps> = ({ product }) => {
           <span>06 / 12</span>
         </p>
         <p className="product__dateTitle">07 / Apr / 2019</p> */}
-        <p className="product__dateTitle product__dateTitle_sm">{product.date}</p>
-        <p className="product__dateTitle">{product.date}</p>
+        <p className="product__dateTitle product__dateTitle_sm">
+          {formatDateWithSlashSmall(product.date)}
+        </p>
+        <p className="product__dateTitle">
+          {formatDateWithSlashNameMonthFull(product.date)}
+        </p>
       </div>
 
       <div className="product__btnTrushWrap">

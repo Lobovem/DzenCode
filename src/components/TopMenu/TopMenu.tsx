@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './TopMenu.scss';
+import { formatDateWithDot } from '../../utils/dateFormats';
 
 export const TopMenu: React.FC = () => {
   const [currentDateTime, setCurrentDateTime] = useState<Date>(new Date());
@@ -11,13 +12,6 @@ export const TopMenu: React.FC = () => {
 
     return () => clearInterval(interval);
   }, []);
-
-  const formatDate = (date: Date): string => {
-    const day = date.getDate();
-    const month = date.toLocaleString('en-US', { month: 'short' });
-    const year = date.getFullYear();
-    return `${day} ${month}. ${year}`;
-  };
 
   const formatTime = (date: Date): string => {
     const options: Intl.DateTimeFormatOptions = {
@@ -36,7 +30,7 @@ export const TopMenu: React.FC = () => {
     <div className="time">
       <p className="time__day">{formatDay(currentDateTime)}</p>
       <div className="time__wrapDate">
-        <p className="time__date">{formatDate(currentDateTime)}</p>
+        <p className="time__date">{formatDateWithDot(currentDateTime)}</p>
         <div className="time__wrapIcon">
           <img
             className="time__icon"
