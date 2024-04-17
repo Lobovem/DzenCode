@@ -26,9 +26,13 @@ interface IOrderProps {
   order: IOrder;
 }
 
+type ParamsType = {
+  id: string;
+};
+
 //TODO make popUp delete to order
 export const Order: FC<IOrderProps> = ({ order }) => {
-  const { id } = useParams<{ id: string; title: string }>();
+  const { id } = useParams<ParamsType>();
 
   const [priceUsd, setpriceUsd] = useState(0);
   const [priceUah, setPriceUah] = useState(0);

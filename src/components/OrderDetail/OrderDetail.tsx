@@ -12,8 +12,14 @@ import { addDeleteItem, handleDelete, isDetailOrder } from '../../store/slices';
 import { PopUp } from '../PopUp/PopUp';
 import './OrderDetail.scss';
 
+//TODO move to simple folder
+type ParamsType = {
+  id: string;
+  title: string;
+};
+
 export const OrderDetail: FC = () => {
-  const { id, title } = useParams<{ id: string; title: string }>();
+  const { id, title } = useParams<ParamsType>();
   const dispatch = useDispatch<AppDispatch>();
 
   const isDelete: boolean = useSelector((state: RootState) => state.dzenCode.isDelete);

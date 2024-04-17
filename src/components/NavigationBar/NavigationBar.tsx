@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { User } from '../User/User';
-import './NavigationBar.scss';
 import { NavigationMenu } from '../NavigationMenu/NavigationMenu';
+import './NavigationBar.scss';
 
 export const NavigationBar: FC = () => {
   return (
