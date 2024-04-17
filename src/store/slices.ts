@@ -1,8 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { IOrder } from '../components/Order/Order';
 import { deleteOrder, deleteProduct, fetchDetailOrder, fetchOrderList, fetchProductList, fetchproductListBySelect } from './api';
-import { IProduct } from '../components/Product/Product';
+import { IOrder, IProduct } from '../types/types';
 
 export interface IDzenCodeState {
   orderList: IOrder[];
@@ -51,37 +50,39 @@ export const dzenCodeSlice = createSlice({
 
   extraReducers: (builder) => {
     builder
-      .addCase(fetchProductList.pending, (state) => {
+      .addCase(fetchOrderList.pending, (state) => {
         state.isLoading = true;
         state.error = null;
+        state.isDetailOrder = false
+
       })
-      .addCase(fetchProductList.fulfilled, (state, action) => {
-        state.productList = action.payload;
+      .addCase(fetchOrderList.fulfilled, (state, action) => {
+        state.isDetailOrder = false
+        state.orderList = action.payload
         state.isLoading = false;
+        state.error = null;
       })
-      .addCase(fetchProductList.rejected, (state, action) => {
+      .addCase(fetchOrderList.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.error.message ?? 'Failed to fetch product list';
+        state.isDetailOrder = false
+        state.error = action.error.message ?? 'Failed to fetch order list';
       }),
 
       builder
-        .addCase(fetchOrderList.pending, (state) => {
+        .addCase(fetchProductList.pending, (state) => {
           state.isLoading = true;
           state.error = null;
-          state.isDetailOrder = false
-
         })
-        .addCase(fetchOrderList.fulfilled, (state, action) => {
-          state.isDetailOrder = false
-          state.orderList = action.payload
+        .addCase(fetchProductList.fulfilled, (state, action) => {
+          state.productList = action.payload;
           state.isLoading = false;
-          state.error = null;
         })
-        .addCase(fetchOrderList.rejected, (state, action) => {
+        .addCase(fetchProductList.rejected, (state, action) => {
           state.isLoading = false;
-          state.isDetailOrder = false
-          state.error = action.error.message ?? 'Failed to fetch order list';
+          state.error = action.error.message ?? 'Failed to fetch product list';
         }),
+
+
 
       builder
         .addCase(fetchDetailOrder.pending, (state) => {

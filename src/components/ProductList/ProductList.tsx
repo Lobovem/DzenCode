@@ -1,7 +1,6 @@
 import { FC, useEffect } from 'react';
 import { SelectType } from '../Selects/SelectType';
 import { SelectSpecification } from '../Selects/SelectSpecification';
-import { Product } from '../Product/Product';
 import { RootState } from '../../store/store';
 import { useSelector } from 'react-redux';
 import { fetchProductList } from '../../store/api';
@@ -9,6 +8,7 @@ import { PopUp } from '../PopUp/PopUp';
 import './ProductList.scss';
 import { IProduct } from '../../types/types';
 import { useAppDispatch } from '../../store/appDispatch';
+import { Product } from '../Product/Product';
 
 export const ProductList: FC = () => {
   const dispatch = useAppDispatch();
