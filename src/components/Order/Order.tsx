@@ -4,7 +4,7 @@ import { Image } from 'react-bootstrap';
 import iconList from '../../assets/iconList.png';
 import { BtnTrush } from '../BtnTrush/BtnTrush';
 import { IProduct } from '../Product/Product';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { AppDispatch, RootState } from '../../store/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteOrder } from '../../store/api';
@@ -12,6 +12,8 @@ import {
   formatDateWithSlashNameMonthFull,
   formatDateWithSlashSmall,
 } from '../../utils/dateFormats';
+
+import iconArrow from '../../assets/icon-arrow.png';
 
 export interface IOrder {
   id: string;
@@ -26,6 +28,9 @@ interface IOrderProps {
 }
 
 export const Order: FC<IOrderProps> = ({ order }) => {
+  const { id } = useParams<{ id: string; title: string }>();
+  console.log('id order', id);
+
   const [priceUsd, setpriceUsd] = useState(0);
   const [priceUah, setPriceUah] = useState(0);
 
@@ -95,6 +100,12 @@ export const Order: FC<IOrderProps> = ({ order }) => {
         {!isDetailOrder && (
           <div className="order__btnTrushWrap">
             <BtnTrush onClick={handleDeleteOrder} />
+          </div>
+        )}
+
+        {isDetailOrder && (
+          <div className="order__iconActiveWrap">
+            {id === order.id && <Image className="order__iconActive" src={iconArrow} />}
           </div>
         )}
       </div>
