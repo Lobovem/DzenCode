@@ -14,6 +14,10 @@
   &_detail {
     margin-bottom: 0;
     border: none;
+    border-top: 1px solid lightgray;
+    border-radius: 0;
+    display: flex;
+
   }
 
   &:hover {

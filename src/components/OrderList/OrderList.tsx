@@ -17,7 +17,6 @@ export const OrderList: FC = () => {
   }, [dispatch]);
 
   //TODO add to loader
-  //TODO check out styles to orderDetail component
 
   return (
     <div className="orderList animation">
@@ -33,9 +32,7 @@ export const OrderList: FC = () => {
           ))}
         </div>
 
-        <div className="orderList__orderDetail">
-          <Outlet />
-        </div>
+        <Outlet />
       </div>
     </div>
   );

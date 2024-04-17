@@ -5,6 +5,7 @@ import { BtnTrush } from '../BtnTrush/BtnTrush';
 import { addDeleteProduct, handleDelete } from '../../store/slices';
 import { IProduct } from '../../types/types';
 import { useAppDispatch } from '../../store/appDispatch';
+import './Product.scss';
 
 interface IProductProps {
   product: IProduct;
@@ -18,7 +19,7 @@ export const ProductShort: FC<IProductProps> = ({ product }) => {
     dispatch(handleDelete());
   };
   return (
-    <div key={product.id} className="orderDetail__product product product_detail">
+    <div key={product.id} className="product product_detail">
       <div
         className={
           product.isNew
