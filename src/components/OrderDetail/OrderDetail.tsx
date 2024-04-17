@@ -41,9 +41,9 @@ export const OrderDetail: FC = () => {
         <Link to="/orders">
           <BtnClose onClick={handleCloseDetailOrder} />
         </Link>
-        <p className="orderDetail__title">
+        <h2 className="orderDetail__title">
           Long long title name very long order long title name very long order
-        </p>
+        </h2>
 
         <div>
           <a href="#" className="orderDetail__btnWrap">
@@ -54,34 +54,36 @@ export const OrderDetail: FC = () => {
           </a>
         </div>
 
-        {orderDetail?.map((product) => (
-          <div key={product.id} className="product">
-            <div
-              className={
-                product.isNew
-                  ? 'product__status product__status_smActive '
-                  : 'product__status product__status_sm'
-              }
-            ></div>
+        <div className="orderDetail__productWrap">
+          {orderDetail?.map((product) => (
+            <div key={product.id} className="orderDetail__product item">
+              <div
+                className={
+                  product.isNew
+                    ? 'item__status item__status_smActive '
+                    : 'item__status item__status_smNoActive'
+                }
+              ></div>
 
-            <Image className="product__img" src={imgMonitor} />
+              <Image className="item__img" src={imgMonitor} />
 
-            <div className="product__titleWrap">
-              <p className="product__title">{product.title}</p>
-              <p className="product__titleDesc">{product.serialNumber}</p>
+              <div className="item__titleWrap">
+                <p className="item__title">{product.title}</p>
+                <p className="item__titleDesc">{product.serialNumber}</p>
+              </div>
+
+              {product.isNew ? (
+                <p className="item__status item__status_active">Free</p>
+              ) : (
+                <p className="item__status">Work</p>
+              )}
+
+              <div className="item__btnTrushWrap">
+                <BtnTrush onClick={() => handleDeleteProduct(product)} />
+              </div>
             </div>
-
-            {product.isNew ? (
-              <p className="product__status product__status_active">Free</p>
-            ) : (
-              <p className="product__status">Work</p>
-            )}
-
-            <div className="product__btnTrushWrap">
-              <BtnTrush onClick={() => handleDeleteProduct(product)} />
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
       {isDelete && <PopUp />}

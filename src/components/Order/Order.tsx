@@ -9,7 +9,7 @@ import { AppDispatch, RootState } from '../../store/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteOrder } from '../../store/api';
 import {
-  formatDateWithSlashFull,
+  formatDateWithSlashNameMonthFull,
   formatDateWithSlashSmall,
 } from '../../utils/dateFormats';
 
@@ -32,16 +32,12 @@ export const Order: FC<IOrderProps> = ({ order }) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const handleDeleteOrder = (): void => {
-    // dispatch(addDeleteItem(order));
-    // dispatch(handleDelete());
     dispatch(deleteOrder(order.id));
   };
 
   const isDetailOrder: boolean = useSelector(
     (state: RootState) => state.dzenCode.isDetailOrder
   );
-
-  // const deleteId = useSelector((state: RootState) => state.dzenCode.deleteItem);
 
   const reducePrice = (): void => {
     const priceFirst: number = order.products.reduce(
@@ -85,7 +81,9 @@ export const Order: FC<IOrderProps> = ({ order }) => {
 
         <div className="order__dateWrap">
           <p className="order__dateShort">{formatDateWithSlashSmall(order.date)}</p>
-          <p className="order__dateLarge">{formatDateWithSlashFull(order.date)}</p>
+          <p className="order__dateLarge">
+            {formatDateWithSlashNameMonthFull(order.date)}
+          </p>
         </div>
 
         {!isDetailOrder && (

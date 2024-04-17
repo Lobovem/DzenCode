@@ -3,13 +3,8 @@ import { User } from '../User/User';
 import { Nav } from 'react-bootstrap';
 import './NavigationMenu.scss';
 import { NavLink } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../store/store';
-import { isDetailOrder } from '../../store/slices';
 
 export const NavigationMenu: FC = () => {
-  const dispatch = useDispatch<AppDispatch>();
-
   return (
     <div className="navigationMenu">
       <User />
@@ -28,11 +23,7 @@ export const NavigationMenu: FC = () => {
 
         <Nav.Item className="navBar__item">
           <NavLink
-            to="/orders" //TODO check out it
-            /*функция dispatch нужна, чтобы когда выбран роутер orders скрывался компонент detailOrder и 
-            вновь были показаны все поля order компонента, потому что при открытии dateilOrder 
-            скрываются некоторые поля order component*/
-            onClick={() => dispatch(isDetailOrder())}
+            to="/orders"
             className={({ isActive }) =>
               isActive ? 'navBar__link navBar__link_active' : 'navBar__link'
             }
