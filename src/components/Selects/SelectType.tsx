@@ -1,13 +1,14 @@
 import { Form } from 'react-bootstrap';
 import { FC, useEffect } from 'react';
-import './Select.scss';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { fetchproductListBySelect } from '../../store/api';
-import { AppDispatch, RootState } from '../../store/store';
+import { RootState } from '../../store/store';
 import { dataSelectChange } from '../../store/slices';
+import { useAppDispatch } from '../../store/appDispatch';
+import './Select.scss';
 
 export const SelectType: FC<{ title: string }> = ({ title }) => {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
   const dataSelect = useSelector((state: RootState) => state.dzenCode.dataSelect);
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {

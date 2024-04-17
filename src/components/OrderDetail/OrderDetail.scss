@@ -9,8 +9,8 @@
   background-color: white;
   margin-bottom: auto;
 
+
   &__product {
-    // background-color: white;
     border-top: 1px solid lightgray;
     display: flex;
     gap: 30px;
@@ -56,95 +56,7 @@
   }
 }
 
-.item {
-
-  &:hover {
-    box-shadow: 0 0 20px rgba(133, 125, 125, 0.2);
-  }
-
-  &__status {
-    color: black;
-    // width: 50px;
-
-    &_active {
-      color: green;
-      // flex: 1;
-
-    }
-
-    &_smNoActive {
-      width: 10px;
-      height: 10px;
-      background-color: black;
-      border-radius: 6px;
-    }
-
-    &_smActive {
-      width: 10px;
-      height: 10px;
-      background-color: green;
-      border-radius: 6px;
-    }
-  }
-
-  &__img {
-    width: 40px;
-    height: 30px;
-  }
-
-  &__titleWrap {
-    // background-color: red;
-    flex: 1;
-    // min-width: 200px;
-
-  }
-
-  &__title {
-    text-decoration: underline;
-    margin-right: 40px;
-    font-size: 14px;
-
-
-    &_lg {
-      font-size: 16px;
-    }
-  }
-
-  &__btnTrushWrap {
-    margin-left: auto;
-  }
-
-  &__iconTrush {}
-}
-
-.orderDetail__btnWrap:hover .orderDetail__btnBox,
-.orderDetail__btnWrap:hover .orderDetail__btnTitle {
-  color: black;
-}
-
-// .item__status,
-// .item__img,
-// .item__btnTrushWrap {
-//   flex-shrink: 0; // Предотвращает сжатие этих элементов
-// }
-
-// .item__titleWrap {
-//   flex-grow: 1; // Позволяет заголовку заполнять доступное пространство
-//   min-width: 0; // Предотвращает переполнение элементов за пределы контейнера
-
-//   .item__title,
-//   .item__titleDesc {
-//     white-space: nowrap;
-//     overflow: hidden;
-//     text-overflow: ellipsis; // Добавляет многоточие если текст не умещается
-//   }
-// }
-
-// .item__status {
-//   width: 50px; // Фиксированная ширина для статуса
-//   text-align: center; // Центрирование текста внутри
-// }
-
-// .item__btnTrushWrap {
-//   margin-left: auto; // Автоматический отступ слева, выравнивает элемент по правому краю
+// .orderDetail__btnWrap:hover .orderDetail__btnBox,
+// .orderDetail__btnWrap:hover .orderDetail__btnTitle {
+//   color: black;
 // }

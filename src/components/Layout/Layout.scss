@@ -3,6 +3,7 @@
   margin: 0 auto;
   // padding: 0 20px;
 
+
 }
 
 .leftSide {
@@ -13,9 +14,13 @@
 .rightSide {
   padding-left: 80px;
   padding-top: 50px;
-  // background-color: rgba(211, 211, 211, 0.129);
+  margin-bottom: 100px;
 }
 
 .isDelete {
   background-color: lightgray;
+}
+
+.main {
+  background-color: rgba(211, 211, 211, 0.129);
 }

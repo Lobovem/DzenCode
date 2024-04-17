@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import iconTrush from '../../assets/iconTrush.png';
+import iconTrush from '../../assets/icon/iconTrush.png';
 import { Button, Image } from 'react-bootstrap';
 import './BtnTrush.scss';
 

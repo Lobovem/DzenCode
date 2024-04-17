@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import './TopMenu.scss';
 import { formatDateWithDot } from '../../utils/dateFormats';
+import { formatDay, formatTime } from '../../utils/timeFormats';
+import './TopMenu.scss';
 
 export const TopMenu: React.FC = () => {
   const [currentDateTime, setCurrentDateTime] = useState<Date>(new Date());
@@ -12,19 +13,6 @@ export const TopMenu: React.FC = () => {
 
     return () => clearInterval(interval);
   }, []);
-
-  const formatTime = (date: Date): string => {
-    const options: Intl.DateTimeFormatOptions = {
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: false,
-    };
-    return date.toLocaleTimeString('en-US', options);
-  };
-
-  const formatDay = (date: Date): string => {
-    return new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(date);
-  };
 
   return (
     <div className="time">

@@ -24,6 +24,11 @@
     margin-bottom: auto;
   }
 
+  &__orderDetail {
+    flex: 1;
+    flex-basis: 30%;
+  }
+
   &__button {
     display: flex;
     justify-content: center;

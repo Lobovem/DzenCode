@@ -1,116 +1,100 @@
-import { FC, useEffect, useState } from 'react';
-import './Order.scss';
+import { FC } from 'react';
 import { Image } from 'react-bootstrap';
-import iconList from '../../assets/iconList.png';
+import iconList from '../../assets/icon/iconList.png';
 import { BtnTrush } from '../BtnTrush/BtnTrush';
-import { IProduct } from '../Product/Product';
 import { Link, useParams } from 'react-router-dom';
-import { AppDispatch, RootState } from '../../store/store';
-import { useDispatch, useSelector } from 'react-redux';
-import { deleteOrder } from '../../store/api';
+import { RootState } from '../../store/store';
+import { useSelector } from 'react-redux';
 import {
   formatDateWithSlashNameMonthFull,
   formatDateWithSlashSmall,
 } from '../../utils/dateFormats';
+import iconArrow from '../../assets/icon/iconArrow.png';
+import './Order.scss';
 
-import iconArrow from '../../assets/icon-arrow.png';
+import { useAppDispatch } from '../../store/appDispatch';
+import { IOrder } from '../../types/types';
+import { PopUp } from '../PopUp/PopUp';
+import { addDeleteOrder, handleDelete } from '../../store/slices';
 
-export interface IOrder {
+type ParamsType = {
   id: string;
-  title: string;
-  date: string;
-  description: string;
-  products: IProduct[];
-}
+};
 
 interface IOrderProps {
   order: IOrder;
 }
 
 export const Order: FC<IOrderProps> = ({ order }) => {
-  const { id } = useParams<{ id: string; title: string }>();
-  console.log('id order', id);
-
-  const [priceUsd, setpriceUsd] = useState(0);
-  const [priceUah, setPriceUah] = useState(0);
-
-  const dispatch = useDispatch<AppDispatch>();
+  const { id } = useParams<ParamsType>();
+  const dispatch = useAppDispatch();
+  const isDelete = useSelector((state: RootState) => state.dzenCode.isDelete);
+  const delOrder = useSelector((state: RootState) => state.dzenCode.deleteOrder);
 
   const handleDeleteOrder = (): void => {
-    dispatch(deleteOrder(order.id));
+    dispatch(addDeleteOrder(order));
+    dispatch(handleDelete());
   };
 
-  const isDetailOrder: boolean = useSelector(
-    (state: RootState) => state.dzenCode.isDetailOrder
-  );
-
-  const reducePrice = (): void => {
-    const priceFirst: number = order.products.reduce(
-      (acc, item) => acc + item.price[0].value,
-      0
-    ); //TODO review method reduce
-    const priceSec: number = order.products.reduce(
-      (acc, item) => acc + item.price[1].value,
-      0
-    );
-    setpriceUsd(priceFirst);
-    setPriceUah(priceSec);
-  };
-
-  //TODO check out reduce
-  useEffect(() => {
-    reducePrice();
-  }, []);
+  const isDetailOrder = useSelector((state: RootState) => state.dzenCode.isDetailOrder);
 
   return (
-    <div className="order animation">
-      <div className="order__wrap">
-        {!isDetailOrder && (
-          <div className="order__titleWrap">
-            <Link to={`/orders/${order.id}`} className="order__title">
-              {order.title}
+    <>
+      <div className="order animation">
+        <div className="order__wrap">
+          {!isDetailOrder && (
+            <div className="order__titleWrap">
+              <Link to={`/orders/${order.id}`} className="order__title">
+                {order.title}
+              </Link>
+            </div>
+          )}
+
+          <div className="order__countWrap">
+            <Link to={`/orders/${order.id}/${order.title}`} className="order__btn">
+              <Image src={iconList} className="order__btnIcon" />
             </Link>
-          </div>
-        )}
 
-        <div className="order__countWrap">
-          <Link to={`/orders/${order.id}/${order.title}`} className="order__btn">
-            <Image src={iconList} className="order__btnIcon" />
-          </Link>
-
-          <div className="order__countProductsWrap">
-            <p className="order__countProducts">{order.products.length}</p>
-            <p className="order__countProductsDesc">Products</p>
+            <div className="order__countProductsWrap">
+              <p className="order__countProducts">{order.productCount}</p>
+              <p className="order__countProductsDesc">Products</p>
+            </div>
           </div>
+
+          <div className="order__dateWrap">
+            <p className="order__dateShort">{formatDateWithSlashSmall(order.date)}</p>
+            <p className="order__dateLarge">
+              {formatDateWithSlashNameMonthFull(order.date)}
+            </p>
+          </div>
+
+          {!isDetailOrder && (
+            <div className="order__priceWrap">
+              {order.totalPrice.map((price) => (
+                <p
+                  key={price.symbol}
+                  className={price.isDefault ? 'order__priceLarge' : 'order__priceShort'}
+                >{`${price.value} ${price.symbol}`}</p>
+              ))}
+            </div>
+          )}
+          {!isDetailOrder && (
+            <div className="order__btnTrushWrap">
+              <BtnTrush onClick={handleDeleteOrder} />
+            </div>
+          )}
+
+          {isDetailOrder && (
+            <div className="order__iconActiveWrap">
+              {id === order.id && (
+                <Image className="order__iconActive animation" src={iconArrow} />
+              )}
+            </div>
+          )}
         </div>
-
-        <div className="order__dateWrap">
-          <p className="order__dateShort">{formatDateWithSlashSmall(order.date)}</p>
-          <p className="order__dateLarge">
-            {formatDateWithSlashNameMonthFull(order.date)}
-          </p>
-        </div>
-
-        {!isDetailOrder && (
-          <div className="order__priceWrap">
-            <p className="order__priceShort">{priceUsd} $</p>
-            <p className="order__priceLarge">{priceUah} UAH</p>
-          </div>
-        )}
-        {!isDetailOrder && (
-          <div className="order__btnTrushWrap">
-            <BtnTrush onClick={handleDeleteOrder} />
-          </div>
-        )}
-
-        {isDetailOrder && (
-          <div className="order__iconActiveWrap">
-            {id === order.id && (
-              <Image className="order__iconActive animation" src={iconArrow} />
-            )}
-          </div>
-        )}
       </div>
-    </div>
+
+      {isDelete && <PopUp deleteItem={delOrder} />}
+    </>
   );
 };

@@ -30,7 +30,7 @@
     {
       "id": "0",
       "serialNumber": 1234,
-      "isNew": true,
+      "isNew": 1,
       "photo": "pathToFile.jpg",
       "title": "Product test delete",
       "type": "Monitors",
@@ -40,8 +40,8 @@
           "end": "2019-07-02 12:09:33"
       },
       "price": [
-        {"value": 100, "symbol": "USD", "isDefault": false},
-        {"value": 2600, "symbol": "UAH", "isDefault": true}
+        {"value": 100, "symbol": "USD", "isDefault": 0},
+        {"value": 2600, "symbol": "UAH", "isDefault": 1}
       ],
       "order": "1",
       "date": "2017-06-01 12:09:33"
@@ -50,7 +50,7 @@
     {
       "id": "1",
       "serialNumber": 1234,
-      "isNew": true,
+      "isNew": 1,
       "photo": "pathToFile.jpg",
       "title": "LG UltraGear 38GN950-B 38",
       "type": "Monitors",
@@ -60,8 +60,8 @@
           "end": "2019-07-21 12:09:33"
       },
       "price": [
-        {"value": 100, "symbol": "USD", "isDefault": false},
-        {"value": 2600, "symbol": "UAH", "isDefault": true}
+        {"value": 100, "symbol": "USD", "isDefault": 0},
+        {"value": 2600, "symbol": "UAH", "isDefault": 1}
       ],
       "order": "1",
       "date": "2017-06-29 12:09:33"
@@ -69,7 +69,7 @@
     {
       "id": "2",
       "serialNumber": 1234,
-      "isNew": false,
+      "isNew": 0,
       "photo": "pathToFile.jpg",
       "title": "Samsung Odyssey G7 C27G75T",
       "type": "Monitors",
@@ -79,8 +79,8 @@
           "end": "2019-07-21 12:09:33"
       },
       "price": [
-         {"value": 100, "symbol": "USD", "isDefault": false},
-        {"value": 2600, "symbol": "UAH", "isDefault": true}
+         {"value": 100, "symbol": "USD", "isDefault": 0},
+        {"value": 2600, "symbol": "UAH", "isDefault": 1}
       ],
       "order": "1",
       "date": "2017-06-29 12:09:33"
@@ -88,7 +88,7 @@
     {
       "id": "3",
       "serialNumber": 1234,
-      "isNew": true,
+      "isNew": 1,
       "photo": "pathToFile.jpg",
       "title": "Dell Alienware AW3420DW",
       "type": "Plazma",
@@ -98,8 +98,8 @@
           "end": "2019-07-21 12:09:33"
       },
       "price": [
-         {"value": 100, "symbol": "USD", "isDefault": false},
-        {"value": 2600, "symbol": "UAH", "isDefault": true}
+         {"value": 100, "symbol": "USD", "isDefault": 0},
+        {"value": 2600, "symbol": "UAH", "isDefault": 1}
       ],
       "order": "2",
       "date": "2017-06-29 12:09:33"
@@ -107,7 +107,7 @@
     {
       "id": "4",
       "serialNumber": 1234,
-      "isNew": false,
+      "isNew": 0,
       "photo": "pathToFile.jpg",
       "title": "ASUS ROG Swift PG259QN",
       "type": "Plazma",
@@ -117,8 +117,8 @@
           "end": "2019-07-21 12:09:33"
       },
       "price": [
-         {"value": 100, "symbol": "USD", "isDefault": false},
-        {"value": 2600, "symbol": "UAH", "isDefault": true}
+         {"value": 100, "symbol": "USD", "isDefault": 0},
+        {"value": 2600, "symbol": "UAH", "isDefault": 1}
       ],
       "order": "2",
       "date": "2017-06-29 12:09:33"
@@ -126,7 +126,7 @@
     {
       "id": "5",
       "serialNumber": 1234,
-      "isNew": true,
+      "isNew": 1,
       "photo": "pathToFile.jpg",
       "title": "Acer Predator X35",
       "type": "Monitors",
@@ -136,8 +136,8 @@
           "end": "2019-07-21 12:09:33"
       },
       "price": [
-         {"value": 100, "symbol": "USD", "isDefault": false},
-        {"value": 2600, "symbol": "UAH", "isDefault": true}
+         {"value": 100, "symbol": "USD", "isDefault": 0},
+        {"value": 2600, "symbol": "UAH", "isDefault": 1}
       ],
       "order": "2",
       "date": "2017-06-29 12:09:33"
@@ -146,7 +146,7 @@
     {
       "id": "6",
       "serialNumber": 1234,
-      "isNew": false,
+      "isNew": 0,
       "photo": "pathToFile.jpg",
       "title": "MSI Optix MPG341CQR",
       "type": "Monitors",
@@ -156,8 +156,8 @@
           "end": "2019-07-21 12:09:33"
       },
       "price": [
-         {"value": 100, "symbol": "USD", "isDefault": false},
-        {"value": 2600, "symbol": "UAH", "isDefault": true}
+         {"value": 100, "symbol": "USD", "isDefault": 0},
+        {"value": 2600, "symbol": "UAH", "isDefault": 1}
       ],
       "order": "3",
       "date": "2017-06-29 12:09:33"
@@ -165,7 +165,7 @@
     {
       "id": "7",
       "serialNumber": 1234,
-      "isNew": true,
+      "isNew": 1,
       "photo": "pathToFile.jpg",
       "title": "LG UltraGear 38GN950-B ",
       "type": "Monitors",
@@ -175,8 +175,8 @@
           "end": "2019-07-21 12:09:33"
       },
       "price": [
-        {"value": 100, "symbol": "USD", "isDefault": false},
-        {"value": 2600, "symbol": "UAH", "isDefault": true}
+        {"value": 100, "symbol": "USD", "isDefault": 0},
+        {"value": 2600, "symbol": "UAH", "isDefault": 1}
       ],
       "order": "1",
       "date": "2017-06-29 12:09:33"

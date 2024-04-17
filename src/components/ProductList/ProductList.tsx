@@ -1,27 +1,24 @@
 import { FC, useEffect } from 'react';
 import { SelectType } from '../Selects/SelectType';
 import { SelectSpecification } from '../Selects/SelectSpecification';
-import { IProduct, Product } from '../Product/Product';
-import './ProductList.scss';
-import { AppDispatch, RootState } from '../../store/store';
-import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
+import { useSelector } from 'react-redux';
 import { fetchProductList } from '../../store/api';
 import { PopUp } from '../PopUp/PopUp';
+import './ProductList.scss';
+import { IProduct } from '../../types/types';
+import { useAppDispatch } from '../../store/appDispatch';
+import { Product } from '../Product/Product';
 
 export const ProductList: FC = () => {
-  const dispatch = useDispatch<AppDispatch>();
-  const productList: IProduct[] = useSelector(
-    (state: RootState) => state.dzenCode.productList
-  );
-
-  const isDelete: boolean = useSelector((state: RootState) => state.dzenCode.isDelete);
+  const dispatch = useAppDispatch();
+  const productList = useSelector((state: RootState) => state.dzenCode.productList);
+  const deleteProduct = useSelector((state: RootState) => state.dzenCode.deleteProduct);
+  const isDelete = useSelector((state: RootState) => state.dzenCode.isDelete);
 
   useEffect(() => {
     dispatch(fetchProductList());
-    // dispatch(deleteProduct('1'));
   }, [dispatch]);
-
-  console.log('productList', productList);
 
   return (
     <>
@@ -33,8 +30,8 @@ export const ProductList: FC = () => {
           <SelectSpecification title="Specification" />
         </div>
 
-        <div className="productList__list">
-          <div className="productList__product ">
+        <div className="productList__listWrap">
+          <div className="productList__list">
             {productList?.map((product: IProduct) => (
               <Product key={product.id} product={product} />
             ))}
@@ -42,7 +39,7 @@ export const ProductList: FC = () => {
         </div>
       </div>
 
-      {isDelete && <PopUp />}
+      {isDelete && <PopUp deleteItem={deleteProduct} />}
     </>
   );
 };

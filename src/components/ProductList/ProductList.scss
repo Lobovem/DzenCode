@@ -1,4 +1,5 @@
 .productList {
+
   &__header {
     margin-bottom: 30px;
     display: flex;
@@ -10,13 +11,14 @@
     margin-right: 40px;
   }
 
-  &__list {
+
+  &__listWrap {
     overflow: auto;
 
     &::-webkit-scrollbar {
-      width: 6px;
+      // width: 6px;
+      height: 10px;
       border-radius: 10px;
-      // border: 1px solid black;
     }
 
     &::-webkit-scrollbar-track {
@@ -36,7 +38,14 @@
     }
   }
 
-  &__product {
+  &__list {
     min-width: 2000px;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 20px;
   }
+
+
+
 }
