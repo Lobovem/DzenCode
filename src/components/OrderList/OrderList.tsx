@@ -19,7 +19,7 @@ export const OrderList: FC = () => {
     <>
       <div className="orderList animation">
         <div className="orderList__header">
-          <Button className="rounded-circle orderList__button btnAdd">+</Button>
+          <Button className="rounded-circle orderList__button">+</Button>
           <p className="orderList__headerTitle">Orders / {orderList.length}</p>
         </div>
 

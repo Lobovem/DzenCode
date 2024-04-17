@@ -1,5 +1,4 @@
 .navigationMenu {
-  //TODO make color underline to green
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,10 +20,14 @@
     &:hover {
       color: gray;
       text-decoration: underline;
+      text-underline-offset: 4px;
+
     }
 
     &_active {
       color: green;
+      text-decoration: underline;
+      text-underline-offset: 4px;
 
       &:hover {
         color: green;

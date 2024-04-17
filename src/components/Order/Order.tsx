@@ -105,7 +105,9 @@ export const Order: FC<IOrderProps> = ({ order }) => {
 
         {isDetailOrder && (
           <div className="order__iconActiveWrap">
-            {id === order.id && <Image className="order__iconActive" src={iconArrow} />}
+            {id === order.id && (
+              <Image className="order__iconActive animation" src={iconArrow} />
+            )}
           </div>
         )}
       </div>
