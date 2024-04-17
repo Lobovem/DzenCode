@@ -111,10 +111,6 @@ export const Product: FC<IProductProps> = ({ product }) => {
       </p>
 
       <div className="product__dateWrap">
-        {/* <p className="product__dateTitle product__dateTitle_center">
-          <span>06 / 12</span>
-        </p>
-        <p className="product__dateTitle">07 / Apr / 2019</p> */}
         <p className="product__dateTitle product__dateTitle_sm">
           {formatDateWithSlashSmall(product.date)}
         </p>

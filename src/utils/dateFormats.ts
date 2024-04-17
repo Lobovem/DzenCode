@@ -16,9 +16,11 @@ export const formatDateWithSlashNameMonthFull = (date: string): string => {
 
 export const formatDateWithSlashFull = (date: string): string => {
   const dateFull = new Date(date);
+  const formatterMonth = new Intl.DateTimeFormat('en', { month: '2-digit' });
+  const formatterDay = new Intl.DateTimeFormat('en', { day: '2-digit' });
 
-  const day = dateFull.getDate();
-  const month = dateFull.getMonth();
+  const month = formatterMonth.format(dateFull)
+  const day = formatterDay.format(dateFull)
   const year = dateFull.getFullYear();
   return `${day} / ${month} / ${year}`;
 };
