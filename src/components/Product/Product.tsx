@@ -31,6 +31,7 @@ export interface IProduct {
   }[];
   order: number;
   date: string;
+  orderName?: string;
 }
 
 interface IProductProps {
@@ -38,6 +39,8 @@ interface IProductProps {
 }
 
 export const Product: FC<IProductProps> = ({ product }) => {
+  console.log('product', product);
+
   const dispatch = useDispatch<AppDispatch>();
 
   const handleDeleteProduct = (): void => {
@@ -106,9 +109,7 @@ export const Product: FC<IProductProps> = ({ product }) => {
       </p>
       <p className="product__title product__title_lg"> Volkov Vladimir</p>
 
-      <p className="product__title product__title_lg">
-        Long name very long very long order
-      </p>
+      <p className="product__title product__title_lg">{product.orderName}</p>
 
       <div className="product__dateWrap">
         <p className="product__dateTitle product__dateTitle_sm">

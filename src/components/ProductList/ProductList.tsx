@@ -5,19 +5,19 @@ import { IProduct, Product } from '../Product/Product';
 import './ProductList.scss';
 import { AppDispatch, RootState } from '../../store/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProductList } from '../../store/api';
+import { fetchProductListWithOrdersName } from '../../store/api';
 import { PopUp } from '../PopUp/PopUp';
 
 export const ProductList: FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const productList: IProduct[] = useSelector(
-    (state: RootState) => state.dzenCode.productList
+    (state: RootState) => state.dzenCode.productListWithOrderName
   );
 
   const isDelete: boolean = useSelector((state: RootState) => state.dzenCode.isDelete);
 
   useEffect(() => {
-    dispatch(fetchProductList());
+    dispatch(fetchProductListWithOrdersName());
     // dispatch(deleteProduct('1'));
   }, [dispatch]);
 

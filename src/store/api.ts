@@ -34,9 +34,34 @@ export const fetchProductList = createAsyncThunk(
     }
   })
 
+export const fetchProductListWithOrdersName = createAsyncThunk(
+  'productListWithOrdersName', async () => {
 
-export const fetchProductListAndOrderList = createAsyncThunk(
-  'productsAndOrders', async () => {
+    try {
+      const productResponse = await fetch(`${API_URL}products`)
+      const orderResponse = await fetch(`${API_URL}orders`)
+
+      if (!orderResponse.ok || !productResponse.ok) {
+        throw new Error('Error fetching news list');
+      }
+
+      const orderList: IOrder[] = await orderResponse.json()
+      const productList: IProduct[] = await productResponse.json()
+
+      const productListWithOrdersName = productList.map((product) => {
+        return { ...product, orderName: orderList.find((order) => order.id === product.order.toString())?.title }
+      })
+
+      return productListWithOrdersName
+    }
+    catch (error: any) {
+      throw new Error(error.message);
+    }
+  })
+
+
+export const fetchOrderListWithProductList = createAsyncThunk(
+  'orderListWithProductList', async () => {
 
     try {
       const orderResponse = await fetch(`${API_URL}orders`)
@@ -149,6 +174,8 @@ export const deleteOrder = createAsyncThunk(
     }
   }
 );
+
+
 
 // export const deleteOrder = createAsyncThunk(
 //   'deleteOrder', async (id: string) => {
