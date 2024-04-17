@@ -71,7 +71,7 @@
       "serialNumber": 1234,
       "isNew": false,
       "photo": "pathToFile.jpg",
-      "title": "Product 2",
+      "title": "Samsung Odyssey G7 C27G75T",
       "type": "Monitors",
       "specification": "Specification-1",
       "guarantee": {
@@ -90,7 +90,7 @@
       "serialNumber": 1234,
       "isNew": true,
       "photo": "pathToFile.jpg",
-      "title": "Product 3",
+      "title": "Dell Alienware AW3420DW",
       "type": "Plazma",
       "specification": "Specification-2",
       "guarantee": {
@@ -109,7 +109,7 @@
       "serialNumber": 1234,
       "isNew": false,
       "photo": "pathToFile.jpg",
-      "title": "Product 4",
+      "title": "ASUS ROG Swift PG259QN",
       "type": "Plazma",
       "specification": "Specification-1",
       "guarantee": {
@@ -128,7 +128,7 @@
       "serialNumber": 1234,
       "isNew": true,
       "photo": "pathToFile.jpg",
-      "title": "Product 5",
+      "title": "Acer Predator X35",
       "type": "Monitors",
       "specification": "Specification-1",
       "guarantee": {
@@ -148,7 +148,7 @@
       "serialNumber": 1234,
       "isNew": false,
       "photo": "pathToFile.jpg",
-      "title": "Product 6",
+      "title": "MSI Optix MPG341CQR",
       "type": "Monitors",
       "specification": "Specification-2",
       "guarantee": {
@@ -167,7 +167,7 @@
       "serialNumber": 1234,
       "isNew": true,
       "photo": "pathToFile.jpg",
-      "title": "Product 1",
+      "title": "LG UltraGear 38GN950-B ",
       "type": "Monitors",
       "specification": "Specification-1",
       "guarantee": {

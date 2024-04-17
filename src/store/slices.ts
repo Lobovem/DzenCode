@@ -1,13 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { IOrder } from '../components/Order/Order';
-import { deleteOrder, deleteProduct, fetchDetailOrder, fetchOrderList, fetchProductList, fetchOrderListWithProductList, fetchproductListBySelect, fetchProductListWithOrdersName } from './api';
+import { deleteOrder, deleteProduct, fetchDetailOrder, fetchOrderList, fetchProductList, fetchOrderListWithProductList, fetchproductListBySelect } from './api';
 import { IProduct } from '../components/Product/Product';
 
 export interface IDzenCodeState {
   orderList: IOrder[];
   productList: IProduct[],
-  productListWithOrderName: IProduct[],
   orderListWithProduct: IOrder[],
   detailOrder: IProduct[]
   isDetailOrder: boolean
@@ -20,7 +19,6 @@ export interface IDzenCodeState {
 const initialState: IDzenCodeState = {
   orderList: [],
   productList: [],
-  productListWithOrderName: [],
   orderListWithProduct: [],
   detailOrder: [],
   isDetailOrder: false,
@@ -70,14 +68,10 @@ export const dzenCodeSlice = createSlice({
       state.productList = action.payload
     }),
 
-      builder.addCase(fetchProductListWithOrdersName.fulfilled, (state, action) => {
-        state.productListWithOrderName = action.payload
+      builder.addCase(fetchOrderListWithProductList.fulfilled, (state, action) => {
+        state.isDetailOrder = false
+        state.orderListWithProduct = action.payload
       })
-
-    builder.addCase(fetchOrderListWithProductList.fulfilled, (state, action) => {
-      state.isDetailOrder = false
-      state.orderListWithProduct = action.payload
-    })
 
     builder.addCase(fetchDetailOrder.fulfilled, (state, action) => {
       state.detailOrder = action.payload
@@ -89,7 +83,7 @@ export const dzenCodeSlice = createSlice({
     })
 
     builder.addCase(deleteProduct.fulfilled, (state, action) => {
-      state.productListWithOrderName = state.productListWithOrderName.filter(product => product.id !== action.payload.id)//TODO Will be better use filter or new fetch
+      state.productList = state.productList.filter(product => product.id !== action.payload.id)//TODO Will be better use filter or new fetch
       // state.productList = state.productList.filter(product => product.id !== action.payload.id)//TODO Will be better use filter or new fetch
       state.detailOrder = state.detailOrder.filter(product => product.id !== action.payload.id)//TODO Will be better use filter or new fetch
       state.deleteItem = ''

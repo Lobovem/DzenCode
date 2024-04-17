@@ -22,7 +22,7 @@ export const OrderList: FC = () => {
       <div className="orderList">
         <div className="orderList__header">
           <Button className="rounded-circle orderList__button btnAdd">+</Button>
-          <p className="orderList__headerTitle">OrderList / {orderList.length}</p>
+          <p className="orderList__headerTitle">Orders / {orderList.length}</p>
         </div>
 
         <div className="orderList__wrap">

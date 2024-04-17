@@ -39,8 +39,6 @@ interface IProductProps {
 }
 
 export const Product: FC<IProductProps> = ({ product }) => {
-  console.log('product', product);
-
   const dispatch = useDispatch<AppDispatch>();
 
   const handleDeleteProduct = (): void => {
