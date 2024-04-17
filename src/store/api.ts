@@ -21,43 +21,32 @@ export const fetchOrderList = createAsyncThunk(
         return { ...order, products: productList.filter((product) => product.order.toString() === order.id) }
       })
 
-      // const res = orderWithProduct.map((order) => {
-      //   return order.products.map((product) => {
-      //     return { ...product, totalPrice: { usd: product.price.reduce((acc, item) => acc + item.value, 0) } }
-      //   })
-      // })
+      const result = orderWithProduct.map(order => {
+        let totalPriceUSD = 0;
+        let totalPriceUAH = 0;
 
-      // const totalPrice: any = {};
-      // // Проходим по всем товарам в заказе
-      // orderWithProduct.products.forEach(product => {
-      //   // Проходим по всем ценам товара
-      //   product.price.forEach(price => {
-      //     // Если такой тип валюты уже есть в totalPrice, то добавляем к существующему значению
-      //     if (totalPrice[price.symbol]) {
-      //       totalPrice[price.symbol] += price.value;
-      //     } else { // Иначе создаем новую запись в totalPrice
-      //       totalPrice[price.symbol] = price.value;
-      //     }
-      //   });
-      // });
+        order.products.forEach(product => {
+          product.price.forEach(price => {
+            if (price.symbol === "USD") {
+              totalPriceUSD += price.value;
+            } else if (price.symbol === "UAH") {
+              totalPriceUAH += price.value;
+            }
+          });
+        });
 
-      // const priceTotalList = Object.entries(totalPrice).map(([symbol, price]) => ({ price, symbol }));
+        return {
+          ...order,
+          totalPrice: [{
+            value: totalPriceUSD, symbol: "USD", isDefault: false
+          },
+          {
+            value: totalPriceUAH, symbol: "UAH", isDefault: true
+          }]
+        };
+      });
 
-      // // Создаем объект order с новым свойством priceTotalList
-      // const res = { ...orderWithProduct, priceTotalList };
-      // console.log(res);
-
-
-
-
-      // {
-      //   priceUSD: "100",
-      //     priceUAH: "200"
-      // }
-
-
-
-      return orderWithProduct
+      return result
     }
     catch (error: any) {
       throw new Error(error.message);

@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 import { Image } from 'react-bootstrap';
 import iconList from '../../assets/icon/iconList.png';
 import { BtnTrush } from '../BtnTrush/BtnTrush';
@@ -26,10 +26,6 @@ interface IOrderProps {
 //TODO make popUp delete to order
 export const Order: FC<IOrderProps> = ({ order }) => {
   const { id } = useParams<ParamsType>();
-
-  const [priceUsd, setpriceUsd] = useState(0);
-  const [priceUah, setPriceUah] = useState(0);
-
   const dispatch = useAppDispatch();
 
   const handleDeleteOrder = (): void => {
@@ -39,24 +35,6 @@ export const Order: FC<IOrderProps> = ({ order }) => {
   const isDetailOrder: boolean = useSelector(
     (state: RootState) => state.dzenCode.isDetailOrder
   );
-
-  const reducePrice = (): void => {
-    const priceFirst: number = order.products.reduce(
-      (acc, item) => acc + item.price[0].value,
-      0
-    ); //TODO review method reduce
-    const priceSec: number = order.products.reduce(
-      (acc, item) => acc + item.price[1].value,
-      0
-    );
-    setpriceUsd(priceFirst);
-    setPriceUah(priceSec);
-  };
-
-  //TODO check out reduce
-  useEffect(() => {
-    reducePrice();
-  }, []);
 
   return (
     <div className="order animation">
@@ -89,8 +67,11 @@ export const Order: FC<IOrderProps> = ({ order }) => {
 
         {!isDetailOrder && (
           <div className="order__priceWrap">
-            <p className="order__priceShort">{priceUsd} $</p>
-            <p className="order__priceLarge">{priceUah} UAH</p>
+            {order.totalPrice.map((price) => (
+              <p
+                className={price.isDefault ? 'order__priceLarge' : 'order__priceShort'}
+              >{`${price.value} ${price.symbol}`}</p>
+            ))}
           </div>
         )}
         {!isDetailOrder && (

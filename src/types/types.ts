@@ -4,6 +4,7 @@ export interface IOrder {
   date: string;
   description: string;
   products: IProduct[];
+  totalPrice: { value: number, symbol: string, isDefault: boolean }[]
 }
 
 export interface IProduct {
