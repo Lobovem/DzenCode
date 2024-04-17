@@ -15,10 +15,21 @@ export const ProductList: FC = () => {
   const productList = useSelector((state: RootState) => state.dzenCode.productList);
   const deleteProduct = useSelector((state: RootState) => state.dzenCode.deleteProduct);
   const isDelete = useSelector((state: RootState) => state.dzenCode.isDelete);
+  // const isLoading = useSelector((state: RootState) => state.dzenCode.isLoading);
+  // const error = useSelector((state: RootState) => state.dzenCode.error);
 
+  //TODO check out three fetch productList and two selects
   useEffect(() => {
     dispatch(fetchProductList());
   }, [dispatch]);
+
+  // if (isLoading) {
+  //   return <div>Loading...</div>;
+  // }
+
+  // if (error) {
+  //   return <div>Error: {error}</div>;
+  // }
 
   return (
     <>

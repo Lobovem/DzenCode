@@ -28,27 +28,32 @@ export const PopUp: FC<IItemProps> = ({ deleteItem }) => {
   console.log('typeGuard order', isIOrder(deleteItem));
 
   const dispatch = useAppDispatch();
-  // const delOrder = useSelector((state: RootState) => state.dzenCode.deleteOrder);
-  // const delProduct = useSelector((state: RootState) => state.dzenCode.deleteProduct);
 
   const handleOpenPopUp = (): void => {
     if (isIProduct(deleteItem)) {
       dispatch(addDeleteProduct(initProduct));
-    } else {
+    } else if (isIOrder(deleteItem)) {
       dispatch(addDeleteOrder(initOrder));
     }
     dispatch(handleDelete());
   };
 
   const handleDeleteItem = (): void => {
+    // if (isIProduct(deleteItem)) {
+    //   dispatch(deleteProduct(deleteItem.id));
+    //   // dispatch(fetchDetailOrder());
+    //   dispatch(fetchProductList());
+    // } else if (isIOrder(deleteItem)) {
+    //   dispatch(deleteOrder(deleteItem.id));
+    //   // dispatch(fetchOrderList());
+    // }
     if (isIProduct(deleteItem)) {
       dispatch(deleteProduct(deleteItem.id));
-      // dispatch(fetchDetailOrder());
-      dispatch(fetchProductList());
-    } else {
-      dispatch(deleteOrder(deleteItem.id));
-      // dispatch(fetchOrderList());
     }
+    if (isIOrder(deleteItem)) {
+      dispatch(deleteOrder(deleteItem.id));
+    }
+
     handleOpenPopUp();
   };
 
@@ -76,7 +81,7 @@ export const PopUp: FC<IItemProps> = ({ deleteItem }) => {
               <Image className="product__img" src={imgMonitor} />
 
               <div className="product__titleWrap">
-                <p className="product__title">{deleteItem?.title}</p>
+                <p className="product__title">{deleteItem.title}</p>
                 <p className="product__titleDesc">{deleteItem?.serialNumber}</p>
               </div>
             </div>

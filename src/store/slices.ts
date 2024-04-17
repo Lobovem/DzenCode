@@ -64,7 +64,6 @@ export const dzenCodeSlice = createSlice({
 
       })
       .addCase(fetchOrderList.fulfilled, (state, action) => {
-        // state.isDetailOrder = false
         state.orderList = action.payload
         state.isLoading = false;
         state.error = null;
@@ -83,13 +82,12 @@ export const dzenCodeSlice = createSlice({
         .addCase(fetchProductList.fulfilled, (state, action) => {
           state.productList = action.payload;
           state.isLoading = false;
+          state.error = null;
         })
         .addCase(fetchProductList.rejected, (state, action) => {
           state.isLoading = false;
           state.error = action.error.message ?? 'Failed to fetch product list';
         }),
-
-
 
       builder
         .addCase(fetchDetailOrder.pending, (state) => {
@@ -99,6 +97,8 @@ export const dzenCodeSlice = createSlice({
         .addCase(fetchDetailOrder.fulfilled, (state, action) => {
           state.detailOrder = action.payload
           state.isDetailOrder = true
+          state.isLoading = false;
+          state.error = null;
         })
         .addCase(fetchDetailOrder.rejected, (state, action) => {
           state.isLoading = false;
@@ -112,6 +112,8 @@ export const dzenCodeSlice = createSlice({
         })
         .addCase(fetchproductListBySelect.fulfilled, (state, action) => {
           state.productList = action.payload
+          state.isLoading = false;
+          state.error = null;
         })
         .addCase(fetchproductListBySelect.rejected, (state, action) => {
           state.isLoading = false;
@@ -119,8 +121,8 @@ export const dzenCodeSlice = createSlice({
         }),
 
       builder.addCase(deleteProduct.fulfilled, (state, action) => {
-        // state.productList = state.productList.filter(product => product.id !== action.payload.id)
-        state.detailOrder = state.detailOrder.filter(product => product.id !== action.payload.id)
+        state.productList = state.productList.filter(product => product.id !== action.payload.id)
+        // state.detailOrder = state.detailOrder.filter(product => product.id !== action.payload.id)
         state.deleteProduct = initProduct
       })
 
