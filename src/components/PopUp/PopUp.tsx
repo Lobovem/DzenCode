@@ -36,7 +36,13 @@ export const PopUp: FC = () => {
 
         <Modal.Body className="popUp__body">
           <div className="popUp__product product">
-            <div className="product__status product__status_sm"></div>
+            <div
+              className={
+                deleteItem.isNew
+                  ? 'product__status product__status_smActive '
+                  : 'product__status product__status_smNoActive'
+              }
+            ></div>
             <Image className="product__img" src={imgMonitor} />
 
             <div className="product__titleWrap">
