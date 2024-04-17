@@ -15,7 +15,7 @@ import {
 import { addDeleteOrder, addDeleteProduct, handleDelete } from '../../store/slices';
 import { useAppDispatch } from '../../store/appDispatch';
 import './PopUp.scss';
-import { initProduct } from '../../store/initObj';
+import { initOrder, initProduct } from '../../store/initObj';
 import { IOrder, IProduct, isIOrder, isIProduct } from '../../types/types';
 
 interface IItemProps {
@@ -24,8 +24,8 @@ interface IItemProps {
 
 export const PopUp: FC<IItemProps> = ({ deleteItem }) => {
   console.log(deleteItem);
-  console.log('typeGuard', isIProduct(deleteItem));
-  console.log('typeGuard', isIOrder(deleteItem));
+  console.log('typeGuard product', isIProduct(deleteItem));
+  console.log('typeGuard order', isIOrder(deleteItem));
 
   const dispatch = useAppDispatch();
   // const delOrder = useSelector((state: RootState) => state.dzenCode.deleteOrder);
@@ -34,17 +34,17 @@ export const PopUp: FC<IItemProps> = ({ deleteItem }) => {
   const handleOpenPopUp = (): void => {
     if (isIProduct(deleteItem)) {
       dispatch(addDeleteProduct(initProduct));
-      dispatch(handleDelete());
     } else {
-      dispatch(addDeleteOrder(initProduct));
-      dispatch(handleDelete());
+      dispatch(addDeleteOrder(initOrder));
     }
+    dispatch(handleDelete());
   };
 
   const handleDeleteItem = (): void => {
     if (isIProduct(deleteItem)) {
       dispatch(deleteProduct(deleteItem.id));
       dispatch(fetchDetailOrder());
+      dispatch(fetchProductList());
     } else {
       dispatch(deleteOrder(deleteItem.id));
       // dispatch(fetchOrderList());

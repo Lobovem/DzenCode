@@ -30,6 +30,6 @@ export interface IProduct {
   orderName?: string;
 }
 
-export const isIProduct = (elem: IProduct): elem is IProduct => 'order' in elem;
-export const isIOrder = (elem: IOrder): elem is IOrder => 'productCount' in elem;
+export const isIProduct = (elem: IProduct | IOrder): elem is IProduct => 'order' in elem;
+export const isIOrder = (elem: IOrder | IProduct): elem is IOrder => 'productCount' in elem;
 

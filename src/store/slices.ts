@@ -118,9 +118,9 @@ export const dzenCodeSlice = createSlice({
           state.error = action.error.message ?? 'Failed to fetch product list';
         }),
 
-      builder.addCase(deleteProduct.fulfilled, (state, action) => {
-        state.productList = state.productList.filter(product => product.id !== action.payload.id)//TODO Will be better use filter or new fetch
-        state.detailOrder = state.detailOrder.filter(product => product.id !== action.payload.id)
+      builder.addCase(deleteProduct.fulfilled, (state) => {
+        // state.productList = state.productList.filter(product => product.id !== action.payload.id)//TODO Will be better use filter or new fetch
+        // state.detailOrder = state.detailOrder.filter(product => product.id !== action.payload.id)
         state.deleteProduct = initProduct
       })
 
