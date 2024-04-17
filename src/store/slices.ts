@@ -119,13 +119,13 @@ export const dzenCodeSlice = createSlice({
         }),
 
       builder.addCase(deleteProduct.fulfilled, (state, action) => {
-        // state.productList = state.productList.filter(product => product.id !== action.payload.id)//TODO Will be better use filter or new fetch
+        // state.productList = state.productList.filter(product => product.id !== action.payload.id)
         state.detailOrder = state.detailOrder.filter(product => product.id !== action.payload.id)
         state.deleteProduct = initProduct
       })
 
     builder.addCase(deleteOrder.fulfilled, (state, action) => {
-      state.orderList = state.orderList.filter(order => order.id !== action.payload.id)//TODO Will be better use filter or new fetch
+      state.orderList = state.orderList.filter(order => order.id !== action.payload.id)
       state.deleteOrder = initOrder
     })
   },

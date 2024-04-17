@@ -46,14 +46,14 @@ export const Product: FC<IProductProps> = ({ product }) => {
         <p className="product__statusNoActive">Work</p>
       )}
 
-      <div className="product__dateWrap">
+      <div className="product__textWrap">
+        <p className="product__textTitle">
+          <span className="product__textTitle product__textTitle_sm">c </span>
+          {formatDateWithSlashFull(product.guarantee.start)}
+        </p>
         <div>
-          <p className="product__dateTitle">
-            {formatDateWithSlashFull(product.guarantee.start)}
-          </p>
-        </div>
-        <div>
-          <p className="product__dateTitle">
+          <p className="product__textTitle">
+            <span className="product__textTitle product__textTitle_sm">по </span>
             {formatDateWithSlashFull(product.guarantee.end)}
           </p>
         </div>
@@ -65,14 +65,14 @@ export const Product: FC<IProductProps> = ({ product }) => {
         <p className="product__statusNoActive">Used</p>
       )}
 
-      <div className="product__dateWrap">
+      <div className="product__textWrap product__textWrap_left">
         {product?.price.map((price, index) => (
           <p
             key={index}
             className={
               price.isDefault
-                ? 'product__dateTitle'
-                : 'product__dateTitle product__dateTitle_sm'
+                ? 'product__textTitle'
+                : 'product__textTitle product__textTitle_sm'
             }
           >
             {`${price.value} ${price.symbol}`}
@@ -86,11 +86,11 @@ export const Product: FC<IProductProps> = ({ product }) => {
       <p className="product__title product__title_lg"> Volkov Vladimir</p>
       <p className="product__title product__title_lg">{product.orderName}</p>
 
-      <div className="product__dateWrap">
-        <p className="product__dateTitle product__dateTitle_sm">
+      <div className="product__textWrap product__textWrap_center">
+        <p className="product__textTitle product__textTitle_sm">
           {formatDateWithSlashSmall(product.date)}
         </p>
-        <p className="product__dateTitle">
+        <p className="product__textTitle">
           {formatDateWithSlashNameMonthFull(product.date)}
         </p>
       </div>
