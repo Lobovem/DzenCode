@@ -10,8 +10,6 @@ export const SelectSpecification: FC<{ title: string }> = ({ title }) => {
   const dispatch = useDispatch<AppDispatch>();
   const dataSelect = useSelector((state: RootState) => state.dzenCode.dataSelect);
 
-  console.log('dataSelect', dataSelect);
-
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
     const selectedType = e.target.value;
     dispatch(dataSelectChange({ specification: selectedType }));

@@ -21,8 +21,6 @@ export const ProductList: FC = () => {
     // dispatch(deleteProduct('1'));
   }, [dispatch]);
 
-  console.log('productList', productList);
-
   return (
     <>
       <div className="productList animation">

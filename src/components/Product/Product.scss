@@ -12,6 +12,11 @@
   padding-left: 25px;
   padding-right: 20px;
 
+  &_detail {
+    margin-bottom: 0;
+    border: none;
+  }
+
   &:hover {
     box-shadow: 0 0 20px rgba(133, 125, 125, 0.2);
   }
@@ -46,7 +51,9 @@
     height: 30px;
   }
 
-  &__titleWrap {}
+  &__titleWrap {
+    flex: 1;
+  }
 
   &__title {
     text-decoration: underline;

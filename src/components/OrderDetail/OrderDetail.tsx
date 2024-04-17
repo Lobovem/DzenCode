@@ -54,29 +54,29 @@ export const OrderDetail: FC = () => {
 
         <div className="orderDetail__productWrap">
           {orderDetail?.map((product) => (
-            <div key={product.id} className="orderDetail__product item">
+            <div key={product.id} className="orderDetail__product product product_detail">
               <div
                 className={
                   product.isNew
-                    ? 'item__status item__status_smActive '
-                    : 'item__status item__status_smNoActive'
+                    ? 'product__status product__status_smActive '
+                    : 'product__status product__status_smNoActive'
                 }
               ></div>
 
-              <Image className="item__img" src={imgMonitor} />
+              <Image className="product__img" src={imgMonitor} />
 
-              <div className="item__titleWrap">
-                <p className="item__title">{product.title}</p>
-                <p className="item__titleDesc">{product.serialNumber}</p>
+              <div className="product__titleWrap">
+                <p className="product__title">{product.title}</p>
+                <p className="product__titleDesc">{product.serialNumber}</p>
               </div>
 
               {product.isNew ? (
-                <p className="item__status item__status_active">Free</p>
+                <p className="product__statusActive">Free</p>
               ) : (
-                <p className="item__status">Work</p>
+                <p className="product__statusNoActive">Work</p>
               )}
 
-              <div className="item__btnTrushWrap">
+              <div className="product__btnTrushWrap">
                 <BtnTrush onClick={() => handleDeleteProduct(product)} />
               </div>
             </div>

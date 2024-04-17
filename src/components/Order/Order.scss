@@ -3,17 +3,17 @@
   padding-left: 0;
   display: flex;
   flex: 1;
+  background-color: white;
+  margin-bottom: 10px;
 
   &__itemWrap {
     flex: 1;
-
   }
 
   &__wrap {
     align-items: center;
     border: 1px solid lightgrey;
     border-radius: 6px;
-    margin-bottom: 10px;
     display: flex;
     flex: 1;
     gap: 10px;
@@ -27,7 +27,6 @@
   &__titleWrap {
     flex: 1;
     flex-basis: 50%;
-
   }
 
   &__title {
@@ -35,7 +34,6 @@
     text-underline-offset: 4px;
     flex: 1;
     color: black;
-
   }
 
   &__countWrap {
@@ -44,8 +42,6 @@
     gap: 10px;
     flex: 1;
     flex-basis: 10%;
-
-
   }
 
   &__btn {
@@ -57,7 +53,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
   }
 
   &__btnIcon {
@@ -76,7 +71,6 @@
   &__dateWrap {
     flex: 1;
     flex-basis: 10%;
-
   }
 
   &__date {
@@ -93,7 +87,6 @@
   &__priceWrap {
     flex: 1;
     flex-basis: 20%;
-
   }
 
   &__priceShort {
@@ -114,5 +107,4 @@
     width: 30px;
     height: 30px;
   }
-
 }

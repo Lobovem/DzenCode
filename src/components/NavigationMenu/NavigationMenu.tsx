@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { User } from '../User/User';
 import { Nav } from 'react-bootstrap';
-import './NavigationMenu.scss';
 import { NavLink } from 'react-router-dom';
+import './NavigationMenu.scss';
 
 export const NavigationMenu: FC = () => {
   return (
