@@ -12,7 +12,12 @@ import {
   fetchOrderList,
   fetchProductList,
 } from '../../store/api';
-import { addDeleteOrder, addDeleteProduct, handleDelete } from '../../store/slices';
+import {
+  addDeleteOrder,
+  addDeleteProduct,
+  handleDelete,
+  isDetailOrder,
+} from '../../store/slices';
 import { useAppDispatch } from '../../store/appDispatch';
 import './PopUp.scss';
 import { initOrder, initProduct } from '../../store/initObj';
@@ -49,6 +54,8 @@ export const PopUp: FC<IItemProps> = ({ deleteItem }) => {
     // }
     if (isIProduct(deleteItem)) {
       dispatch(deleteProduct(deleteItem.id));
+      dispatch(fetchOrderList());
+      dispatch(isDetailOrder());
     }
     if (isIOrder(deleteItem)) {
       dispatch(deleteOrder(deleteItem.id));
