@@ -8,11 +8,21 @@ export const fetchOrderList = createAsyncThunk(
   'orders', async () => {
 
     try {
-      const response = await fetch(`${API_URL}orders`)
-      if (!response.ok) {
+      const orderResponse = await fetch(`${API_URL}orders`)
+      const productResponse = await fetch(`${API_URL}products`)
+
+      if (!orderResponse.ok || !productResponse.ok) {
         throw new Error('Error fetching news list');
       }
-      return response.json()
+
+      const orderList: IOrder[] = await orderResponse.json()
+      const productList: IProduct[] = await productResponse.json()
+
+      const orderWithProduct = orderList.map((order) => {
+        return { ...order, products: productList.filter((product) => product.order.toString() === order.id) }
+      })
+
+      return orderWithProduct
     }
     catch (error: any) {
       throw new Error(error.message);
@@ -43,33 +53,6 @@ export const fetchProductList = createAsyncThunk(
       throw new Error(error.message);
     }
   })
-
-
-export const fetchOrderListWithProductList = createAsyncThunk(
-  'orderListWithProductList', async () => {
-
-    try {
-      const orderResponse = await fetch(`${API_URL}orders`)
-      const productResponse = await fetch(`${API_URL}products`)
-
-      if (!orderResponse.ok || !productResponse.ok) {
-        throw new Error('Error fetching news list');
-      }
-
-      const orderList: IOrder[] = await orderResponse.json()
-      const productList: IProduct[] = await productResponse.json()
-
-      const orderWithProduct = orderList.map((order) => {
-        return { ...order, products: productList.filter((product) => product.order.toString() === order.id) }
-      })
-
-      return orderWithProduct
-    }
-    catch (error: any) {
-      throw new Error(error.message);
-    }
-  })
-
 
 export const fetchDetailOrder = createAsyncThunk(
   'detailOrder', async (id: string | undefined) => {
