@@ -13,7 +13,8 @@ export const TopMenu: React.FC = () => {
     return () => clearInterval(interval);
   }, []);
 
-  //TODO move functions
+  //TODO move functions formatTime
+  //TODO think about custom hook
 
   const formatTime = (date: Date): string => {
     const options: Intl.DateTimeFormatOptions = {

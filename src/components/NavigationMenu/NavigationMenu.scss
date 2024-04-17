@@ -1,15 +1,8 @@
 .navigationMenu {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  margin-top: 40px;
-}
-
-.navBar {
   gap: 10px;
   font-size: 14px;
   align-items: center;
+  flex-direction: column;
 
   &__link {
     color: black;
