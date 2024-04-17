@@ -16,7 +16,7 @@ import {
   addDeleteOrder,
   addDeleteProduct,
   handleDelete,
-  isDetailOrder,
+  handleDetailOrder,
 } from '../../store/slices';
 import { useAppDispatch } from '../../store/appDispatch';
 import './PopUp.scss';
@@ -55,7 +55,7 @@ export const PopUp: FC<IItemProps> = ({ deleteItem }) => {
     if (isIProduct(deleteItem)) {
       dispatch(deleteProduct(deleteItem.id));
       dispatch(fetchOrderList());
-      dispatch(isDetailOrder());
+      dispatch(handleDetailOrder());
     }
     if (isIOrder(deleteItem)) {
       dispatch(deleteOrder(deleteItem.id));

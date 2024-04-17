@@ -8,7 +8,7 @@ export interface IDzenCodeState {
   orderList: IOrder[];
   productList: IProduct[],
   detailOrder: IProduct[]
-  isDetailOrder: boolean
+  statusDetailOrder: boolean
   dataSelect: { type?: string, specefication?: string },
   isDelete: boolean,
   deleteOrder: IOrder
@@ -21,7 +21,7 @@ const initialState: IDzenCodeState = {
   orderList: [],
   productList: [],
   detailOrder: [],
-  isDetailOrder: false,
+  statusDetailOrder: false,
   dataSelect: {},
   isDelete: false,
   deleteOrder: initOrder,
@@ -34,8 +34,12 @@ export const dzenCodeSlice = createSlice({
   name: 'dzenCode',
   initialState,
   reducers: {
-    isDetailOrder: (state) => {
-      state.isDetailOrder = !state.isDetailOrder
+    handleDetailOrder: (state) => {
+      state.statusDetailOrder = !state.statusDetailOrder
+    },
+
+    disableDetailOrder: (state) => {
+      state.statusDetailOrder = false
     },
 
     dataSelectChange: (state, action: PayloadAction<{ type?: string; specification?: string }>) => {
@@ -60,7 +64,7 @@ export const dzenCodeSlice = createSlice({
       .addCase(fetchOrderList.pending, (state) => {
         state.isLoading = true;
         state.error = null;
-        state.isDetailOrder = false
+        state.statusDetailOrder = false
 
       })
       .addCase(fetchOrderList.fulfilled, (state, action) => {
@@ -70,7 +74,7 @@ export const dzenCodeSlice = createSlice({
       })
       .addCase(fetchOrderList.rejected, (state, action) => {
         state.isLoading = false;
-        state.isDetailOrder = false
+        state.statusDetailOrder = false
         state.error = action.error.message ?? 'Failed to fetch order list';
       }),
 
@@ -96,7 +100,7 @@ export const dzenCodeSlice = createSlice({
         })
         .addCase(fetchDetailOrder.fulfilled, (state, action) => {
           state.detailOrder = action.payload
-          state.isDetailOrder = true
+          state.statusDetailOrder = true
           state.isLoading = false;
           state.error = null;
         })
@@ -121,7 +125,7 @@ export const dzenCodeSlice = createSlice({
         }),
 
       builder.addCase(deleteProduct.fulfilled, (state, action) => {
-        state.productList = state.productList.filter(product => product.id !== action.payload.id)//TODO Will be better use filter or new fetch
+        state.productList = state.productList.filter(product => product.id !== action.payload.id)
         state.detailOrder = state.detailOrder.filter(product => product.id !== action.payload.id)
         state.deleteProduct = initProduct
       })
@@ -133,5 +137,5 @@ export const dzenCodeSlice = createSlice({
   },
 })
 
-export const { isDetailOrder, dataSelectChange, handleDelete, addDeleteOrder, addDeleteProduct } = dzenCodeSlice.actions
+export const { handleDetailOrder, dataSelectChange, handleDelete, addDeleteOrder, addDeleteProduct, disableDetailOrder } = dzenCodeSlice.actions
 export default dzenCodeSlice.reducer
