@@ -43,7 +43,7 @@ export const PopUp: FC<IItemProps> = ({ deleteItem }) => {
   const handleDeleteItem = (): void => {
     if (isIProduct(deleteItem)) {
       dispatch(deleteProduct(deleteItem.id));
-      dispatch(fetchDetailOrder());
+      // dispatch(fetchDetailOrder());
       dispatch(fetchProductList());
     } else {
       dispatch(deleteOrder(deleteItem.id));
@@ -53,7 +53,7 @@ export const PopUp: FC<IItemProps> = ({ deleteItem }) => {
   };
 
   return (
-    <div className="modal show animation">
+    <div className="modal show">
       <Modal.Dialog className="popUp">
         <BtnClose onClick={handleOpenPopUp} />
 
@@ -64,21 +64,25 @@ export const PopUp: FC<IItemProps> = ({ deleteItem }) => {
         </Modal.Header>
 
         <Modal.Body className="popUp__body">
-          <div className="popUp__product product">
-            <div
-              className={
-                deleteItem?.isNew
-                  ? 'product__status product__status_smActive '
-                  : 'product__status product__status_smNoActive'
-              }
-            ></div>
-            <Image className="product__img" src={imgMonitor} />
+          {deleteItem?.order ? (
+            <div className="popUp__product product">
+              <div
+                className={
+                  deleteItem?.isNew
+                    ? 'product__status product__status_smActive '
+                    : 'product__status product__status_smNoActive'
+                }
+              ></div>
+              <Image className="product__img" src={imgMonitor} />
 
-            <div className="product__titleWrap">
-              <p className="product__title">{deleteItem?.title}</p>
-              <p className="product__titleDesc">{deleteItem?.serialNumber}</p>
+              <div className="product__titleWrap">
+                <p className="product__title">{deleteItem?.title}</p>
+                <p className="product__titleDesc">{deleteItem?.serialNumber}</p>
+              </div>
             </div>
-          </div>
+          ) : (
+            <p>{deleteItem.title}</p>
+          )}
         </Modal.Body>
 
         <Modal.Footer className="popUp__footer">
