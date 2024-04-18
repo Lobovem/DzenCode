@@ -28,7 +28,7 @@ $ npm run dev
 
 ```
 
-## If tou need Running Docker image
+## If you need Running Docker image
 
 ```bash
 # development
