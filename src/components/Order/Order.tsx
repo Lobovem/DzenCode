@@ -31,6 +31,8 @@ const Order: FC<IOrderProps> = ({ order }) => {
   const isDelete = useSelector((state: RootState) => state.dzenCode.isDelete);
   const delOrder = useSelector((state: RootState) => state.dzenCode.deleteOrder);
 
+
+  
   const handleDeleteOrder = (): void => {
     dispatch(addDeleteOrder(order));
     dispatch(handleDelete());

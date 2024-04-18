@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { IOrder, IProduct } from '../types/types'
+import { errorBuilder } from '../utils/errorBuilder'
 
 const API_URL: string = "http://localhost:3000/"
 
@@ -47,35 +48,11 @@ export const fetchOrderList = createAsyncThunk(
 
       return result
     }
-    catch (error: any) {
-      throw new Error(error.message);
+    catch (error) {
+      errorBuilder(error)
     }
   })
 
-// export const fetchProductList = createAsyncThunk(
-//   'products', async () => {
-
-//     try {
-//       const productResponse = await fetch(`${API_URL}products`)
-//       const orderResponse = await fetch(`${API_URL}orders`)
-
-//       if (!orderResponse.ok || !productResponse.ok) {
-//         throw new Error('Error fetching news list');
-//       }
-
-//       const orderList: IOrder[] = await orderResponse.json()
-//       const productList: IProduct[] = await productResponse.json()
-
-//       const productListWithOrdersName = productList.map((product) => {
-//         return { ...product, orderName: orderList.find((order) => order.id === product.order.toString())?.title }
-//       })
-
-//       return productListWithOrdersName
-//     }
-//     catch (error: any) {
-//       throw new Error(error.message);
-//     }
-//   })
 
 export const fetchDetailOrder = createAsyncThunk(
   'detailOrder', async (id: string | undefined) => {
@@ -90,8 +67,8 @@ export const fetchDetailOrder = createAsyncThunk(
       const result = productList.filter((product) => product.order.toString() === id)
       return result
     }
-    catch (error: any) {
-      throw new Error(error.message);
+    catch (error) {
+      errorBuilder(error)
     }
   })
 
@@ -125,9 +102,8 @@ export const fetchproductListBySelect = createAsyncThunk(
 
       return result
 
-      // return response.json();
-    } catch (error: any) {
-      throw new Error(error.message);
+    } catch (error) {
+      errorBuilder(error)
     }
   }
 );
@@ -147,8 +123,8 @@ export const deleteProduct = createAsyncThunk(
       }
 
       return response.json();
-    } catch (error: any) {
-      throw new Error(error.message);
+    } catch (error) {
+      errorBuilder(error)
     }
   }
 );
@@ -161,7 +137,6 @@ export const deleteOrder = createAsyncThunk(
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-          // Добавьте любые другие необходимые заголовки, такие как авторизация
         },
       });
       if (!response.ok) {
@@ -170,11 +145,10 @@ export const deleteOrder = createAsyncThunk(
 
       return response.json();
     } catch (error) {
-      throw new Error(error.message);
+      errorBuilder(error)
     }
   }
 );
-
 
 
 

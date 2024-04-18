@@ -21,6 +21,11 @@ export interface IDzenCodeState {
   errorOrderList: string | null;
 }
 
+interface IItemPopUp {
+  title: string,
+  isNew?: boolean,
+}
+
 const initialState: IDzenCodeState = {
   orderList: [],
   productList: [],

@@ -21,7 +21,7 @@ interface IItemProps {
 
 export const PopUp: FC<IItemProps> = ({ deleteItem }) => {
   const dispatch = useAppDispatch();
-
+  //TODO edit functions into popUp
   const handleOpenPopUp = (): void => {
     if (isIProduct(deleteItem)) {
       dispatch(addDeleteProduct(initProduct));
