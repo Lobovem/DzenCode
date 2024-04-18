@@ -45,7 +45,7 @@ export const PopUp: FC<IItemProps> = ({ deleteItem }) => {
   };
 
   return (
-    <div className="modal show">
+    <div className="modal show animation">
       <Modal.Dialog className="popUp">
         <BtnClose onClick={handleOpenPopUp} />
 

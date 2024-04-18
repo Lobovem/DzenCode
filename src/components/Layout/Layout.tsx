@@ -9,6 +9,15 @@ import './Layout.scss';
 
 export const Layout: FC = () => {
   const isDelete = useSelector((state: RootState) => state.dzenCode.isDelete);
+  const handleOpenModal = () => document.body.classList.add('modalActive');
+  const handleCloseModal = () => document.body.classList.remove('modalActive');
+
+  if (isDelete) {
+    handleOpenModal();
+  } else {
+    handleCloseModal();
+  }
+
   return (
     <>
       <Header />
