@@ -169,7 +169,7 @@ export const deleteOrder = createAsyncThunk(
       }
 
       return response.json();
-    } catch (error: any) {
+    } catch (error) {
       throw new Error(error.message);
     }
   }

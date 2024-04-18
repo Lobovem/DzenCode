@@ -24,7 +24,9 @@ const OrderDetail: FC = () => {
   const deleteProduct = useSelector((state: RootState) => state.dzenCode.deleteProduct);
 
   const isLoading = useSelector((state: RootState) => state.dzenCode.isLoadingDetail);
-  const error = useSelector((state: RootState) => state.dzenCode.error);
+  const errorOrderDetail = useSelector(
+    (state: RootState) => state.dzenCode.errorOrderDetail
+  );
 
   const handleCloseDetailOrder = (): void => {
     dispatch(handleDetailOrder());
@@ -38,8 +40,8 @@ const OrderDetail: FC = () => {
     return <div>Loading...</div>;
   }
 
-  if (error) {
-    return <div>Error: {error}</div>;
+  if (errorOrderDetail) {
+    return <div>Error: {errorOrderDetail}</div>;
   }
 
   return (

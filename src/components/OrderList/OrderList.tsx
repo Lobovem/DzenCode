@@ -16,7 +16,7 @@ const OrderList: FC = () => {
   );
 
   const isLoading = useSelector((state: RootState) => state.dzenCode.isLoading);
-  const error = useSelector((state: RootState) => state.dzenCode.error);
+  const errorOrderList = useSelector((state: RootState) => state.dzenCode.errorOrderList);
 
   useEffect(() => {
     dispatch(fetchOrderList());
@@ -26,8 +26,8 @@ const OrderList: FC = () => {
     return <div>Loading...</div>;
   }
 
-  if (error) {
-    return <div>Error: {error}</div>;
+  if (errorOrderList) {
+    return <div>Error: {errorOrderList}</div>;
   }
 
   return (
