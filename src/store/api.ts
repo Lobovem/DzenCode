@@ -2,7 +2,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import { IOrder, IProduct } from '../types/types'
 
 const API_URL: string = "http://localhost:3000/"
-// const API_URL: string = "https://json-server-v2-0-versel-liard.vercel.app/"
 
 export const fetchOrderList = createAsyncThunk(
   'orders', async () => {

@@ -22,7 +22,7 @@ const initialState: IDzenCodeState = {
   productList: [],
   detailOrder: [],
   statusDetailOrder: false,
-  dataSelect: {},
+  dataSelect: { type: '', specefication: '' },
   isDelete: false,
   deleteOrder: initOrder,
   deleteProduct: initProduct,
