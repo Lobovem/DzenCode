@@ -1,6 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { IOrder, IProduct } from '../types/types'
-import { errorBuilder } from '../utils/errorBuilder'
 
 const API_URL: string = "http://localhost:3000/"
 
@@ -49,7 +48,7 @@ export const fetchOrderList = createAsyncThunk(
       return result
     }
     catch (error) {
-      errorBuilder(error)
+      throw new Error('Error fetching news list');
     }
   })
 
@@ -68,7 +67,7 @@ export const fetchDetailOrder = createAsyncThunk(
       return result
     }
     catch (error) {
-      errorBuilder(error)
+      throw new Error('Error fetching detailOrder');
     }
   })
 
@@ -103,7 +102,7 @@ export const fetchproductListBySelect = createAsyncThunk(
       return result
 
     } catch (error) {
-      errorBuilder(error)
+      throw new Error('Error fetching productListBySelect');
     }
   }
 );
@@ -124,7 +123,7 @@ export const deleteProduct = createAsyncThunk(
 
       return response.json();
     } catch (error) {
-      errorBuilder(error)
+      throw new Error('Error deleteProduct');
     }
   }
 );
@@ -145,7 +144,7 @@ export const deleteOrder = createAsyncThunk(
 
       return response.json();
     } catch (error) {
-      errorBuilder(error)
+      throw new Error('Error ddeleteOrder');
     }
   }
 );

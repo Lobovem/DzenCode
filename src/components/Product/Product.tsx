@@ -2,12 +2,7 @@ import { FC } from 'react';
 import { Image } from 'react-bootstrap';
 import imgMonitor from '../../assets/img/monitor.png';
 import { BtnTrush } from '../BtnTrush/BtnTrush';
-import {
-  addHandleDeleteItem,
-  addItemToDelete,
-  handleDetailOrder,
-  handlePopUpOpen,
-} from '../../store/slices';
+import { addItemToDelete, handleDetailOrder, handlePopUpOpen } from '../../store/slices';
 import {
   formatDateWithSlashFull,
   formatDateWithSlashNameMonthFull,
@@ -17,7 +12,7 @@ import './Product.scss';
 import { IProduct } from '../../types/types';
 import { useAppDispatch } from '../../store/appDispatch';
 import { deleteProduct, fetchOrderList } from '../../store/api';
-import { useGetConfirmation } from '../../ConfirmationProvider';
+import { useGetConfirmation } from '../provider/ConfirmationProvider';
 
 interface IProductProps {
   product: IProduct;
@@ -26,12 +21,6 @@ interface IProductProps {
 export const Product: FC<IProductProps> = ({ product }) => {
   const getConfirmation = useGetConfirmation();
   const dispatch = useAppDispatch();
-
-  // const handleItemDelete = (): void => {
-  //   dispatch(deleteProduct(product.id));
-  //   dispatch(fetchOrderList());
-  //   dispatch(handleDetailOrder());
-  // };
 
   const handleDeleteProduct = async (): Promise<void> => {
     dispatch(addItemToDelete(product));
@@ -43,7 +32,6 @@ export const Product: FC<IProductProps> = ({ product }) => {
       dispatch(deleteProduct(product.id));
       dispatch(fetchOrderList());
       dispatch(handleDetailOrder());
-      console.log('OKPRODUCT====>');
     }
   };
 

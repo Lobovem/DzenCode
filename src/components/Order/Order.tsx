@@ -14,13 +14,9 @@ import './Order.scss';
 
 import { useAppDispatch } from '../../store/appDispatch';
 import { IOrder } from '../../types/types';
-import {
-  addHandleDeleteItem,
-  addItemToDelete,
-  handlePopUpOpen,
-} from '../../store/slices';
+import { addItemToDelete, handlePopUpOpen } from '../../store/slices';
 import { deleteOrder } from '../../store/api';
-import { useGetConfirmation } from '../../ConfirmationProvider';
+import { useGetConfirmation } from '../provider/ConfirmationProvider';
 
 type ParamsType = {
   id: string;
@@ -35,11 +31,6 @@ export const Order: FC<IOrderProps> = ({ order }) => {
   const { id } = useParams<ParamsType>();
   const dispatch = useAppDispatch();
 
-  // const handleItemDelete = (): void => {
-  //   dispatch(deleteOrder(order.id));
-  //   // console.log('orderList delete order');
-  // };
-
   const handleDeleteOrder = async (): Promise<void> => {
     dispatch(addItemToDelete(order));
     dispatch(handlePopUpOpen());
@@ -47,7 +38,6 @@ export const Order: FC<IOrderProps> = ({ order }) => {
 
     if (confirmation) {
       dispatch(deleteOrder(order.id));
-      console.log('OK====>');
     }
   };
 

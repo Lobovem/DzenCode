@@ -1,5 +1,5 @@
 import { Context, FC, HTMLAttributes, createContext, useContext, useState } from 'react';
-import { PopUp } from './components/PopUp/PopUp';
+import { PopUp } from '../PopUp/PopUp';
 interface ConfirmationProps extends HTMLAttributes<HTMLDivElement> {}
 
 export type ConfirmationContext = {

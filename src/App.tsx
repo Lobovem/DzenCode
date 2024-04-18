@@ -3,7 +3,7 @@ import { RouterProvider } from 'react-router-dom';
 import { FC } from 'react';
 import { router } from './router/router';
 import './App.scss';
-import { ConfirmationProvider } from './ConfirmationProvider';
+import { ConfirmationProvider } from './components/provider/ConfirmationProvider';
 
 export const App: FC = () => {
   return (

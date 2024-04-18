@@ -7,7 +7,7 @@ import { IProduct } from '../../types/types';
 import { useAppDispatch } from '../../store/appDispatch';
 import './Product.scss';
 import { deleteProduct, fetchOrderList } from '../../store/api';
-import { useGetConfirmation } from '../../ConfirmationProvider';
+import { useGetConfirmation } from '../provider/ConfirmationProvider';
 
 interface IProductProps {
   product: IProduct;
@@ -17,16 +17,7 @@ export const ProductShort: FC<IProductProps> = ({ product }) => {
   const getConfirmation = useGetConfirmation();
   const dispatch = useAppDispatch();
 
-  // const handleItemDelete = (): void => {
-  //   dispatch(deleteProduct(product.id));
-  //   dispatch(fetchOrderList());
-  //   dispatch(handleDetailOrder());
-  //   console.log('detail delete product');
-  // };
-
   const handleDeleteProduct = async (): Promise<void> => {
-    console.log('productShortTOdelete', product);
-
     dispatch(addItemToDelete(product));
     dispatch(handlePopUpOpen());
     const confirmation = await getConfirmation({});
@@ -35,7 +26,6 @@ export const ProductShort: FC<IProductProps> = ({ product }) => {
       dispatch(deleteProduct(product.id));
       dispatch(fetchOrderList());
       dispatch(handleDetailOrder());
-      console.log('OKDETAIL====>');
     }
   };
 

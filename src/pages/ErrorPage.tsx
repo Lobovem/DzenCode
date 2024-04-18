@@ -9,7 +9,7 @@ interface IRouteError {
 
 export const ErrorPage: FC = () => {
   const error = useRouteError() as IRouteError;
-  console.error(error);
+  // console.error(error);
 
   return (
     <div
