@@ -1,38 +1,21 @@
 import { Context, FC, HTMLAttributes, createContext, useContext, useState } from 'react';
 import { PopUp } from '../PopUp/PopUp';
-interface ConfirmationProps extends HTMLAttributes<HTMLDivElement> {}
 
-export type ConfirmationContext = {
-  getConfirmation: (params: ConfirmationParams) => Promise<boolean>;
-  closeConfirmation: () => void;
+type ConfirmationContext = {
+  getConfirmation: () => Promise<boolean>;
 };
 
-export type ConfirmModalParams = {
-  title: string;
-  description: string;
-  closeText: string;
-  confirmText: string;
+type ConfirmModalParams = {
   onClose: () => void;
   onConfirm: () => void;
 };
 
-export const confirmationParamsDefault: ConfirmModalParams = {
-  title: 'Confirm action',
-  description: 'Are you sure you want to continue?',
-  closeText: 'Cancel',
-  confirmText: 'Confirm',
+const confirmationParamsDefault: ConfirmModalParams = {
   onClose: () => {},
   onConfirm: () => {},
 };
 
-export type ConfirmationParams = {
-  title?: string;
-  description?: string;
-  closeText?: string;
-  confirmText?: string;
-};
-
-export const confirmationContext = createStrictContext<ConfirmationContext>();
+const confirmationContext = createStrictContext<ConfirmationContext>();
 
 export const useGetConfirmation = () => {
   const { getConfirmation } = useStrictContext(confirmationContext);
@@ -40,26 +23,20 @@ export const useGetConfirmation = () => {
   return getConfirmation;
 };
 
-export const ConfirmationProvider: FC<ConfirmationProps> = (props) => {
+export const ConfirmationProvider: FC<HTMLAttributes<HTMLDivElement>> = (props) => {
   const { children } = props;
   const [modalParams, setModalParams] = useState<ConfirmModalParams>();
 
-  const closeConfirmation = () => {
-    modalParams?.onClose();
-  };
-
-  const getConfirmation = (params: ConfirmationParams) => {
+  const getConfirmation = () => {
     return new Promise<boolean>((resolve) => {
       setModalParams({
         ...confirmationParamsDefault,
-        ...params,
 
         onConfirm: () => {
           setModalParams(undefined);
           resolve(true);
         },
         onClose: () => {
-          closeConfirmation();
           setModalParams(undefined);
           resolve(false);
         },
@@ -71,12 +48,10 @@ export const ConfirmationProvider: FC<ConfirmationProps> = (props) => {
     <confirmationContext.Provider
       value={{
         getConfirmation,
-        closeConfirmation,
       }}
     >
       {children}
 
-      {/* {modalParams && <PopUp params={modalParams} />} */}
       {modalParams && <PopUp params={modalParams} />}
     </confirmationContext.Provider>
   );

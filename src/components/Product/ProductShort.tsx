@@ -20,7 +20,7 @@ export const ProductShort: FC<IProductProps> = ({ product }) => {
   const handleDeleteProduct = async (): Promise<void> => {
     dispatch(addItemToDelete(product));
     dispatch(handlePopUpOpen());
-    const confirmation = await getConfirmation({});
+    const confirmation = await getConfirmation();
 
     if (confirmation) {
       dispatch(deleteProduct(product.id));

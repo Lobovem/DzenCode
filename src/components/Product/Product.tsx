@@ -26,7 +26,7 @@ export const Product: FC<IProductProps> = ({ product }) => {
     dispatch(addItemToDelete(product));
     dispatch(handlePopUpOpen());
 
-    const confirmation = await getConfirmation({});
+    const confirmation = await getConfirmation();
 
     if (confirmation) {
       dispatch(deleteProduct(product.id));

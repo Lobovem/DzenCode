@@ -35,7 +35,6 @@ export const Layout: FC = () => {
           </Row>
         </Container>
       </main>
-      {/* <PopUp /> */}
     </>
   );
 };

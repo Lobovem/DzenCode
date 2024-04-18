@@ -34,7 +34,7 @@ export const Order: FC<IOrderProps> = ({ order }) => {
   const handleDeleteOrder = async (): Promise<void> => {
     dispatch(addItemToDelete(order));
     dispatch(handlePopUpOpen());
-    const confirmation = await getConfirmation({});
+    const confirmation = await getConfirmation();
 
     if (confirmation) {
       dispatch(deleteOrder(order.id));
