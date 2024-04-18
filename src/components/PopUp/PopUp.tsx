@@ -20,10 +20,6 @@ interface IItemProps {
 }
 
 export const PopUp: FC<IItemProps> = ({ deleteItem }) => {
-  console.log(deleteItem);
-  console.log('typeGuard product', isIProduct(deleteItem));
-  console.log('typeGuard order', isIOrder(deleteItem));
-
   const dispatch = useAppDispatch();
 
   const handleOpenPopUp = (): void => {
@@ -36,14 +32,6 @@ export const PopUp: FC<IItemProps> = ({ deleteItem }) => {
   };
 
   const handleDeleteItem = (): void => {
-    // if (isIProduct(deleteItem)) {
-    //   dispatch(deleteProduct(deleteItem.id));
-    //   // dispatch(fetchDetailOrder());
-    //   dispatch(fetchProductList());
-    // } else if (isIOrder(deleteItem)) {
-    //   dispatch(deleteOrder(deleteItem.id));
-    //   // dispatch(fetchOrderList());
-    // }
     if (isIProduct(deleteItem)) {
       dispatch(deleteProduct(deleteItem.id));
       dispatch(fetchOrderList());
@@ -68,7 +56,7 @@ export const PopUp: FC<IItemProps> = ({ deleteItem }) => {
         </Modal.Header>
 
         <Modal.Body className="popUp__body">
-          {deleteItem?.order ? (
+          {isIProduct(deleteItem) && deleteItem?.order ? (
             <div className="popUp__product product">
               <div
                 className={
