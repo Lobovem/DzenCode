@@ -5,9 +5,9 @@ import { BtnTrush } from '../BtnTrush/BtnTrush';
 import { addItemToDelete, handleDetailOrder, handlePopUpOpen } from '../../store/slices';
 import { IProduct } from '../../types/types';
 import { useAppDispatch } from '../../store/appDispatch';
-import './Product.scss';
 import { deleteProduct, fetchOrderList } from '../../store/api';
 import { useGetConfirmation } from '../provider/ConfirmationProvider';
+import './Product.scss';
 
 interface IProductProps {
   product: IProduct;

@@ -1,21 +1,16 @@
-import { FC, HTMLAttributes, ReactNode } from 'react';
+import { FC, HTMLAttributes } from 'react';
 import imgMonitor from '../../assets/img/monitor.png';
 import { Button, Image, Modal } from 'react-bootstrap';
 import { BtnClose } from '../BtnClose/BtnClose';
 import iconTrush from '../../assets/icon/iconTrushRed.png';
 import { handlePopUpOpen } from '../../store/slices';
 import { useAppDispatch } from '../../store/appDispatch';
-import './PopUp.scss';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
+import './PopUp.scss';
 
 interface IModalProps extends HTMLAttributes<HTMLDivElement> {
   params: {
-    title?: string;
-    description?: string;
-    element?: ReactNode;
-    closeText?: string;
-    confirmText?: string;
     onClose: () => void;
     onConfirm: () => void;
   };

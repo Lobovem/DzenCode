@@ -1,9 +1,9 @@
 import { Nav } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { FC } from 'react';
-import './NavigationMenu.scss';
 import { useAppDispatch } from '../../store/appDispatch';
 import { disableDetailOrder } from '../../store/slices';
+import './NavigationMenu.scss';
 
 export const NavigationMenu: FC = () => {
   const dispatch = useAppDispatch();

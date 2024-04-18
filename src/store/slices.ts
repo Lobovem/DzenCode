@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { deleteOrder, deleteProduct, fetchDetailOrder, fetchOrderList, fetchproductListBySelect } from './api';
 import { IItemToDelete, IOrder, IProduct } from '../types/types';
-import { initItem, initProduct } from './initObj';
+import { initOrder, initProduct } from './initObj';
 
 export interface IDzenCodeState {
   orderList: IOrder[];
@@ -27,7 +27,7 @@ const initialState: IDzenCodeState = {
   statusDetailOrder: false,
   dataSelect: {},
   isDelete: false,
-  deleteItem: initItem,
+  deleteItem: initOrder,
   isLoading: false,
   isLoadingDetail: false,
   isLoadingProduct: false,
@@ -128,7 +128,7 @@ export const dzenCodeSlice = createSlice({
 
       builder.addCase(deleteOrder.fulfilled, (state, action) => {
         state.orderList = state.orderList.filter(order => order.id !== action.payload.id)
-        state.deleteItem = initItem
+        state.deleteItem = initOrder
       })
   },
 })

@@ -2,9 +2,9 @@ import { Form } from 'react-bootstrap';
 import { FC } from 'react';
 import { dataSelectChange } from '../../store/slices';
 import { useAppDispatch } from '../../store/appDispatch';
-import './Select.scss';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
+import './Select.scss';
 
 export const SelectSpecification: FC<{ title: string }> = ({ title }) => {
   const dispatch = useAppDispatch();

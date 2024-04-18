@@ -13,10 +13,6 @@ export const ProductList: FC = () => {
   const dispatch = useAppDispatch();
   const productList = useSelector((state: RootState) => state.dzenCode.productList);
   const dataSelect = useSelector((state: RootState) => state.dzenCode.dataSelect);
-  const deleteItem = useSelector((state: RootState) => state.dzenCode.deleteItem);
-
-  console.log('deleteItem productList', deleteItem);
-
   const isLoading = useSelector((state: RootState) => state.dzenCode.isLoadingProduct);
   const errorProductList = useSelector(
     (state: RootState) => state.dzenCode.errorProductList

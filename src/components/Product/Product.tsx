@@ -8,11 +8,11 @@ import {
   formatDateWithSlashNameMonthFull,
   formatDateWithSlashSmall,
 } from '../../utils/dateFormats';
-import './Product.scss';
 import { IProduct } from '../../types/types';
 import { useAppDispatch } from '../../store/appDispatch';
 import { deleteProduct, fetchOrderList } from '../../store/api';
 import { useGetConfirmation } from '../provider/ConfirmationProvider';
+import './Product.scss';
 
 interface IProductProps {
   product: IProduct;

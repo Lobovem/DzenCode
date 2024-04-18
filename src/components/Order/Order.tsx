@@ -10,13 +10,12 @@ import {
   formatDateWithSlashSmall,
 } from '../../utils/dateFormats';
 import iconArrow from '../../assets/icon/iconArrow.png';
-import './Order.scss';
-
 import { useAppDispatch } from '../../store/appDispatch';
 import { IOrder } from '../../types/types';
 import { addItemToDelete, handlePopUpOpen } from '../../store/slices';
 import { deleteOrder } from '../../store/api';
 import { useGetConfirmation } from '../provider/ConfirmationProvider';
+import './Order.scss';
 
 type ParamsType = {
   id: string;

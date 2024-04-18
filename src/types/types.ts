@@ -38,6 +38,4 @@ export interface IItemToDelete {
   title: string;
 }
 
-// export const isIProduct = (elem: IProduct | IOrder): elem is IProduct => 'order' in elem;
-// export const isIOrder = (elem: IOrder | IProduct): elem is IOrder => 'productCount' in elem;
 

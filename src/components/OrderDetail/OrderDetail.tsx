@@ -6,8 +6,8 @@ import { RootState } from '../../store/store';
 import { handleDetailOrder } from '../../store/slices';
 import { ProductShort } from '../Product/ProductShort';
 import { useAppDispatch } from '../../store/appDispatch';
-import './OrderDetail.scss';
 import { fetchDetailOrder } from '../../store/api';
+import './OrderDetail.scss';
 
 type ParamsType = {
   id: string;
