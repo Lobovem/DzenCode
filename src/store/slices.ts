@@ -9,12 +9,15 @@ export interface IDzenCodeState {
   productList: IProduct[],
   detailOrder: IProduct[]
   statusDetailOrder: boolean
-  dataSelect: { type?: string, specefication?: string },
+  dataSelect: { type?: string, specification?: string },
   isDelete: boolean,
   deleteOrder: IOrder
   deleteProduct: IProduct,
   isLoading: boolean,
+  isLoadingDetail: boolean,
+  isLoadingProduct: boolean,
   error: string | null;
+  errorProductList: string | null;
 }
 
 const initialState: IDzenCodeState = {
@@ -27,7 +30,10 @@ const initialState: IDzenCodeState = {
   deleteOrder: initOrder,
   deleteProduct: initProduct,
   isLoading: false,
+  isLoadingDetail: false,
+  isLoadingProduct: false,
   error: null,
+  errorProductList: null
 }
 
 export const dzenCodeSlice = createSlice({
@@ -94,35 +100,35 @@ export const dzenCodeSlice = createSlice({
       //   }),
 
       builder
-        // .addCase(fetchDetailOrder.pending, (state) => {
-        //   state.isLoading = true;
-        //   state.error = null;
-        // })
+        .addCase(fetchDetailOrder.pending, (state) => {
+          state.isLoadingDetail = true;
+          state.error = null;
+        })
         .addCase(fetchDetailOrder.fulfilled, (state, action) => {
           state.statusDetailOrder = true
-          state.isLoading = false;
+          state.isLoadingDetail = false;
           state.error = null;
           state.detailOrder = action.payload
         })
         .addCase(fetchDetailOrder.rejected, (state, action) => {
-          state.isLoading = false;
+          state.isLoadingDetail = false;
           state.error = action.error.message ?? 'Failed to fetch detail order list';
         }),
 
       builder
-        // .addCase(fetchproductListBySelect.pending, (state) => {
-        //   state.isLoading = true;
-        //   state.error = null;
-        // })
+        .addCase(fetchproductListBySelect.pending, (state) => {
+          state.isLoadingProduct = true;
+          state.errorProductList = null;
+        })
         .addCase(fetchproductListBySelect.fulfilled, (state, action) => {
 
-          state.isLoading = false;
-          state.error = null;
+          state.isLoadingProduct = false;
+          state.errorProductList = null;
           state.productList = action.payload
         })
         .addCase(fetchproductListBySelect.rejected, (state, action) => {
-          state.isLoading = false;
-          state.error = action.error.message ?? 'Failed to fetch product list';
+          state.isLoadingProduct = false;
+          state.errorProductList = action.error.message ?? 'Failed to fetch product list';
         }),
 
       builder.addCase(deleteProduct.fulfilled, (state, action) => {

@@ -1,5 +1,5 @@
 import { BtnClose } from '../BtnClose/BtnClose';
-import { FC, useEffect } from 'react';
+import { FC, memo, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
@@ -15,13 +15,16 @@ type ParamsType = {
   title: string;
 };
 
-export const OrderDetail: FC = () => {
+const OrderDetail: FC = () => {
   const { id, title } = useParams<ParamsType>();
   const dispatch = useAppDispatch();
 
   const isDelete = useSelector((state: RootState) => state.dzenCode.isDelete);
   const orderDetail = useSelector((state: RootState) => state.dzenCode.detailOrder);
   const deleteProduct = useSelector((state: RootState) => state.dzenCode.deleteProduct);
+
+  const isLoading = useSelector((state: RootState) => state.dzenCode.isLoadingDetail);
+  const error = useSelector((state: RootState) => state.dzenCode.error);
 
   const handleCloseDetailOrder = (): void => {
     dispatch(handleDetailOrder());
@@ -30,6 +33,14 @@ export const OrderDetail: FC = () => {
   useEffect(() => {
     dispatch(fetchDetailOrder(id));
   }, [dispatch, id]);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <>
@@ -59,3 +70,5 @@ export const OrderDetail: FC = () => {
     </>
   );
 };
+
+export default memo(OrderDetail);

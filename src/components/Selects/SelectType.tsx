@@ -3,6 +3,8 @@ import { FC } from 'react';
 import { dataSelectChange } from '../../store/slices';
 import { useAppDispatch } from '../../store/appDispatch';
 import './Select.scss';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 
 export const SelectType: FC<{ title: string }> = ({ title }) => {
   const dispatch = useAppDispatch();
@@ -12,10 +14,13 @@ export const SelectType: FC<{ title: string }> = ({ title }) => {
     dispatch(dataSelectChange({ type: selectedType }));
   };
 
+  const selectValue = useSelector((state: RootState) => state.dzenCode.dataSelect);
+
   return (
     <div className="select">
       <p className="select__title">{title}:</p>
       <Form.Select
+        defaultValue={selectValue.type}
         onChange={handleChange}
         aria-label="Default select example"
         className="select__body"

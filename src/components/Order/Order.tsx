@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { Image } from 'react-bootstrap';
 import iconList from '../../assets/icon/iconList.png';
 import { BtnTrush } from '../BtnTrush/BtnTrush';
@@ -25,7 +25,7 @@ interface IOrderProps {
   order: IOrder;
 }
 
-export const Order: FC<IOrderProps> = ({ order }) => {
+const Order: FC<IOrderProps> = ({ order }) => {
   const { id } = useParams<ParamsType>();
   const dispatch = useAppDispatch();
   const isDelete = useSelector((state: RootState) => state.dzenCode.isDelete);
@@ -106,3 +106,5 @@ export const Order: FC<IOrderProps> = ({ order }) => {
     </>
   );
 };
+
+export default memo(Order);

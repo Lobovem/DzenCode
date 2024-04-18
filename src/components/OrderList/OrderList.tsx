@@ -1,6 +1,6 @@
 import { Button } from 'react-bootstrap';
-import { FC, useEffect } from 'react';
-import { Order } from '../Order/Order';
+import { FC, memo, useEffect } from 'react';
+import Order from '../Order/Order';
 import { RootState } from '../../store/store';
 import { useSelector } from 'react-redux';
 import { fetchOrderList } from '../../store/api';
@@ -8,7 +8,7 @@ import { Outlet } from 'react-router-dom';
 import { useAppDispatch } from '../../store/appDispatch';
 import './OrderList.scss';
 
-export const OrderList: FC = () => {
+const OrderList: FC = () => {
   const dispatch = useAppDispatch();
   const orderList = useSelector((state: RootState) => state.dzenCode.orderList);
   const handleDetailOrder = useSelector(
@@ -53,3 +53,5 @@ export const OrderList: FC = () => {
     </div>
   );
 };
+
+export default memo(OrderList);

@@ -3,38 +3,31 @@ import { SelectType } from '../Selects/SelectType';
 import { SelectSpecification } from '../Selects/SelectSpecification';
 import { RootState } from '../../store/store';
 import { useSelector } from 'react-redux';
-import { fetchProductList, fetchproductListBySelect } from '../../store/api';
+import { fetchproductListBySelect } from '../../store/api';
 import { PopUp } from '../PopUp/PopUp';
-import './ProductList.scss';
 import { IProduct } from '../../types/types';
 import { useAppDispatch } from '../../store/appDispatch';
 import { Product } from '../Product/Product';
+import './ProductList.scss';
 
 export const ProductList: FC = () => {
   const dispatch = useAppDispatch();
   const productList = useSelector((state: RootState) => state.dzenCode.productList);
   const deleteProduct = useSelector((state: RootState) => state.dzenCode.deleteProduct);
   const isDelete = useSelector((state: RootState) => state.dzenCode.isDelete);
-  const isLoading = useSelector((state: RootState) => state.dzenCode.isLoading);
-  const error = useSelector((state: RootState) => state.dzenCode.error);
   const dataSelect = useSelector((state: RootState) => state.dzenCode.dataSelect);
-  console.log(productList);
 
-  //TODO check out three fetch productList and two selects
+  const isLoading = useSelector((state: RootState) => state.dzenCode.isLoadingProduct);
+  const errorProductList = useSelector(
+    (state: RootState) => state.dzenCode.errorProductList
+  );
+
   useEffect(() => {
     dispatch(fetchproductListBySelect(dataSelect));
   }, [dispatch, dataSelect]);
 
-  // useEffect(() => {
-  //   dispatch(fetchProductList());
-  // }, [dispatch]);
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
+  if (errorProductList) {
+    return <div>Error: {errorProductList}</div>;
   }
 
   return (
@@ -47,13 +40,17 @@ export const ProductList: FC = () => {
           <SelectSpecification title="Specification" />
         </div>
 
-        <div className="productList__listWrap">
-          <div className="productList__list">
-            {productList?.map((product: IProduct) => (
-              <Product key={product.id} product={product} />
-            ))}
+        {isLoading ? (
+          <p>loading</p>
+        ) : (
+          <div className="productList__listWrap">
+            <div className="productList__list">
+              {productList?.map((product: IProduct) => (
+                <Product key={product.id} product={product} />
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       {isDelete && <PopUp deleteItem={deleteProduct} />}
