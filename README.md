@@ -27,3 +27,12 @@ $ npx json-server db.json
 $ npm run dev
 
 ```
+
+## If tou need Running Docker image
+
+```bash
+# development
+$ docker run -p 3000:3000 -p 3030:5173 my-app
+
+
+```
