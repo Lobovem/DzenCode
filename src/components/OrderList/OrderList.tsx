@@ -11,6 +11,10 @@ import './OrderList.scss';
 export const OrderList: FC = () => {
   const dispatch = useAppDispatch();
   const orderList = useSelector((state: RootState) => state.dzenCode.orderList);
+  const handleDetailOrder = useSelector(
+    (state: RootState) => state.dzenCode.statusDetailOrder
+  );
+
   const isLoading = useSelector((state: RootState) => state.dzenCode.isLoading);
   const error = useSelector((state: RootState) => state.dzenCode.error);
 
@@ -34,7 +38,11 @@ export const OrderList: FC = () => {
       </div>
 
       <div className="orderList__wrap">
-        <div className="orderList__list">
+        <div
+          className={
+            handleDetailOrder ? 'orderList__list orderList__list_sm' : 'orderList__list'
+          }
+        >
           {orderList?.map((order) => (
             <Order key={order.id} order={order} />
           ))}

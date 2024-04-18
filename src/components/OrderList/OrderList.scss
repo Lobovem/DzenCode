@@ -20,8 +20,13 @@
   &__list {
     display: flex;
     flex-direction: column;
-    flex: 1;
     margin-bottom: auto;
+    width: 100%;
+    transition: width 0.5s ease-in-out 0.1s;
+
+    &_sm {
+      width: 30%;
+    }
   }
 
   &__orderDetail {
