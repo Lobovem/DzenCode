@@ -1,14 +1,14 @@
 import { BtnClose } from '../BtnClose/BtnClose';
-import { FC, memo, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
-import { deleteProduct, fetchDetailOrder, fetchOrderList } from '../../store/api';
 import { handleDetailOrder, handlePopUpOpen } from '../../store/slices';
 import { ProductShort } from '../Product/ProductShort';
 import { useAppDispatch } from '../../store/appDispatch';
 import './OrderDetail.scss';
 import { PopUp } from '../PopUp/PopUp';
+import { fetchDeleteProduct, fetchDetailOrder, fetchOrderList } from '../../store/api';
 
 type ParamsType = {
   id: string;
@@ -17,10 +17,11 @@ type ParamsType = {
 
 const OrderDetail: FC = () => {
   const { id, title } = useParams<ParamsType>();
-  console.log(id, title);
+  console.log('id', id, 'title', title);
 
   const dispatch = useAppDispatch();
   const orderDetail = useSelector((state: RootState) => state.dzenCode.detailOrder);
+  console.log('orderDetail', orderDetail);
 
   const isLoading = useSelector((state: RootState) => state.dzenCode.isLoadingDetail);
   const deleteItem = useSelector((state: RootState) => state.dzenCode.deleteItem);
@@ -28,15 +29,17 @@ const OrderDetail: FC = () => {
     (state: RootState) => state.dzenCode.errorOrderDetail
   );
 
+  console.log('deleteItem===>', deleteItem?.id);
+
   const handleCloseDetailOrder = (): void => {
     dispatch(handleDetailOrder());
   };
 
   const handleDeleteProduct = (): void => {
-    dispatch(deleteProduct(deleteItem.id));
-    dispatch(fetchOrderList());
-    dispatch(handleDetailOrder());
-    dispatch(handlePopUpOpen());
+    // dispatch(fetchDeleteProduct(deleteItem?.id));
+    // dispatch(fetchOrderList());
+    // dispatch(handleDetailOrder());
+    console.log('detail delete product');
   };
 
   useEffect(() => {
@@ -75,9 +78,9 @@ const OrderDetail: FC = () => {
         </div>
       </div>
 
-      <PopUp onClick={handleDeleteProduct}></PopUp>
+      {/* <PopUp key='orderDetail' handleDelete={handleDeleteProduct} /> */}
     </>
   );
 };
 
-export default memo(OrderDetail);
+export default OrderDetail;

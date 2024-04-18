@@ -108,7 +108,7 @@ export const fetchproductListBySelect = createAsyncThunk(
   }
 );
 
-export const deleteProduct = createAsyncThunk(
+export const fetchDeleteProduct = createAsyncThunk(
   'deleteProduct', async (id: string | undefined) => {
 
     try {

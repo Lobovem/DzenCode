@@ -1,15 +1,17 @@
 .modal {
   position: fixed;
-  display: block;
+  // display: block;
   // top: 0;
   background-color: rgba(183, 183, 183, 0.415);
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
   pointer-events: none;
+  display: none;
 
   &_active {
     opacity: 1;
     pointer-events: auto;
+    display: block;
   }
 }
 

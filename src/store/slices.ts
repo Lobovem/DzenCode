@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { deleteOrder, deleteProduct, fetchDetailOrder, fetchOrderList, fetchproductListBySelect } from './api';
+import { deleteOrder, fetchDeleteProduct, fetchDetailOrder, fetchOrderList, fetchproductListBySelect } from './api';
 import { IItemToDelete, IOrder, IProduct } from '../types/types';
 import { initItem, initProduct } from './initObj';
 
@@ -18,6 +18,7 @@ export interface IDzenCodeState {
   errorOrderDetail: string | null;
   errorProductList: string | null;
   errorOrderList: string | null;
+  handleDeleteItem: () => void
 }
 
 const initialState: IDzenCodeState = {
@@ -34,6 +35,7 @@ const initialState: IDzenCodeState = {
   errorOrderDetail: null,
   errorProductList: null,
   errorOrderList: null,
+  handleDeleteItem: () => { }
 }
 
 export const dzenCodeSlice = createSlice({
@@ -62,6 +64,10 @@ export const dzenCodeSlice = createSlice({
 
     addItemToDelete: (state, action) => {
       state.deleteItem = action.payload
+    },
+
+    addHandleDeleteItem: (state, action) => {
+      state.handleDeleteItem = action.payload
     }
   },
 
@@ -131,7 +137,7 @@ export const dzenCodeSlice = createSlice({
           state.errorProductList = action.error.message ?? 'Failed to fetch product list';
         }),
 
-      builder.addCase(deleteProduct.fulfilled, (state, action) => {
+      builder.addCase(fetchDeleteProduct.fulfilled, (state, action) => {
         state.productList = state.productList.filter(product => product.id !== action.payload.id)
         state.detailOrder = state.detailOrder.filter(product => product.id !== action.payload.id)
         state.deleteItem = initProduct
@@ -144,5 +150,5 @@ export const dzenCodeSlice = createSlice({
   },
 })
 
-export const { handleDetailOrder, dataSelectChange, handlePopUpOpen, addDeleteOrder, addItemToDelete, disableDetailOrder } = dzenCodeSlice.actions
+export const { handleDetailOrder, dataSelectChange, addHandleDeleteItem, handlePopUpOpen, addDeleteOrder, addItemToDelete, disableDetailOrder } = dzenCodeSlice.actions
 export default dzenCodeSlice.reducer

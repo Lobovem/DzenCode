@@ -19,9 +19,16 @@ interface IProductProps {
 export const Product: FC<IProductProps> = ({ product }) => {
   const dispatch = useAppDispatch();
 
+  // const handleDeleteProduct = (): void => {
+  //   dispatch(fetchDeleteProduct(deleteItem.id));
+  //   dispatch(fetchOrderList());
+  //   dispatch(handleDetailOrder());
+  // };
+
   const handleDeleteProduct = (): void => {
     dispatch(addItemToDelete(product));
     dispatch(handlePopUpOpen());
+    // dispatch(addHandleDeleteItem());
   };
 
   return (

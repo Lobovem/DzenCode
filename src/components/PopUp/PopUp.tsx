@@ -3,50 +3,32 @@ import imgMonitor from '../../assets/img/monitor.png';
 import { Button, Image, Modal } from 'react-bootstrap';
 import { BtnClose } from '../BtnClose/BtnClose';
 import iconTrush from '../../assets/icon/iconTrushRed.png';
-import { deleteOrder, deleteProduct, fetchOrderList } from '../../store/api';
-import {
-  addDeleteOrder,
-  addDeleteProduct,
-  handlePopUpOpen,
-  handleDetailOrder,
-} from '../../store/slices';
+import { handlePopUpOpen } from '../../store/slices';
 import { useAppDispatch } from '../../store/appDispatch';
 import './PopUp.scss';
-import { initOrder, initProduct } from '../../store/initObj';
-import { IOrder, IProduct, isIOrder, isIProduct } from '../../types/types';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 
-interface IPopUpProps {
-  onClick: MouseEventHandler<HTMLButtonElement>;
-}
+// interface IPopUpProps {
+//   handleDelete: () => void;
+// } //TODO TS
 
 // export const PopUp: FC<IItemProps> = ({ deleteItem }) => {
-export const PopUp: FC<IPopUpProps> = ({ onClick }) => {
+export const PopUp: FC = () => {
+  // console.log('ONCLICK', handleDelete);
+
   const isDelete = useSelector((state: RootState) => state.dzenCode.isDelete);
   const deleteItem = useSelector((state: RootState) => state.dzenCode.deleteItem);
+  const handleDelete = useSelector((state: RootState) => state.dzenCode.handleDeleteItem);
 
   const dispatch = useAppDispatch();
   const handleOpen = (): void => {
-    // if (isIProduct(deleteItem)) {
-    //   dispatch(addDeleteProduct(initProduct));
-    // } else if (isIOrder(deleteItem)) {
-    //   dispatch(addDeleteOrder(initOrder));
-    // }
     dispatch(handlePopUpOpen());
   };
 
-  const handleDeleteItem = (): void => {
-    // if (isIProduct(deleteItem)) {
-    //   dispatch(deleteProduct(deleteItem.id));
-    //   dispatch(fetchOrderList());
-    //   dispatch(handleDetailOrder());
-    // }
-    // if (isIOrder(deleteItem)) {
-    //   dispatch(deleteOrder(deleteItem.id));
-    // }
-
-    handleOpen();
+  const handleClickSucces = () => {
+    handleDelete();
+    dispatch(handlePopUpOpen());
   };
 
   return (
@@ -61,7 +43,7 @@ export const PopUp: FC<IPopUpProps> = ({ onClick }) => {
         </Modal.Header>
 
         <Modal.Body className="popUp__body">
-          {deleteItem?.isNew ? (
+          {deleteItem?.serialNumber ? (
             <div className="popUp__product product">
               <div
                 className={
@@ -87,7 +69,11 @@ export const PopUp: FC<IPopUpProps> = ({ onClick }) => {
             Close
           </Button>
 
-          <Button variant="primary" className="popUp__btnDelete" onClick={onClick}>
+          <Button
+            variant="primary"
+            className="popUp__btnDelete"
+            onClick={handleClickSucces}
+          >
             <Image src={iconTrush} className="popUp__btnDeleteIcon" /> Delete
           </Button>
         </Modal.Footer>

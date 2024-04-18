@@ -15,6 +15,8 @@ export const ProductShort: FC<IProductProps> = ({ product }) => {
   const dispatch = useAppDispatch();
 
   const handleDeleteProduct = (): void => {
+    console.log('productShortTOdelete', product);
+
     dispatch(addItemToDelete(product));
     dispatch(handlePopUpOpen());
   };

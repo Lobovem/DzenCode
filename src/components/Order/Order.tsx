@@ -1,4 +1,4 @@
-import { FC, memo } from 'react';
+import { FC } from 'react';
 import { Image } from 'react-bootstrap';
 import iconList from '../../assets/icon/iconList.png';
 import { BtnTrush } from '../BtnTrush/BtnTrush';
@@ -102,4 +102,4 @@ const Order: FC<IOrderProps> = ({ order }) => {
   );
 };
 
-export default memo(Order);
+export default Order;

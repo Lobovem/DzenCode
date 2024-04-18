@@ -3,12 +3,16 @@ import { SelectType } from '../Selects/SelectType';
 import { SelectSpecification } from '../Selects/SelectSpecification';
 import { RootState } from '../../store/store';
 import { useSelector } from 'react-redux';
-import { deleteProduct, fetchOrderList, fetchproductListBySelect } from '../../store/api';
+import {
+  fetchDeleteProduct,
+  fetchOrderList,
+  fetchproductListBySelect,
+} from '../../store/api';
 import { IProduct } from '../../types/types';
 import { useAppDispatch } from '../../store/appDispatch';
 import { Product } from '../Product/Product';
 import './ProductList.scss';
-import { handleDetailOrder, handlePopUpOpen } from '../../store/slices';
+import { handleDetailOrder } from '../../store/slices';
 import { PopUp } from '../PopUp/PopUp';
 
 export const ProductList: FC = () => {
@@ -25,10 +29,9 @@ export const ProductList: FC = () => {
   );
 
   const handleDeleteProduct = (): void => {
-    dispatch(deleteProduct(deleteItem.id));
+    dispatch(fetchDeleteProduct(deleteItem.id));
     dispatch(fetchOrderList());
     dispatch(handleDetailOrder());
-    dispatch(handlePopUpOpen());
   };
 
   useEffect(() => {
@@ -62,7 +65,7 @@ export const ProductList: FC = () => {
         )}
       </div>
 
-      <PopUp onClick={handleDeleteProduct} />
+      {/* <PopUp handleDelete={handleDeleteProduct} /> */}
     </>
   );
 };

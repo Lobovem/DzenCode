@@ -1,5 +1,5 @@
 import { Button } from 'react-bootstrap';
-import { FC, memo, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import Order from '../Order/Order';
 import { RootState } from '../../store/store';
 import { useSelector } from 'react-redux';
@@ -23,7 +23,7 @@ const OrderList: FC = () => {
 
   const handleDeleteOrder = (): void => {
     dispatch(deleteOrder(delOrder.id));
-    dispatch(handlePopUpOpen());
+    // console.log('orderList delete order');
   };
 
   useEffect(() => {
@@ -58,9 +58,9 @@ const OrderList: FC = () => {
 
         <Outlet />
       </div>
-      <PopUp onClick={handleDeleteOrder} />
+      {/* <PopUp key="orderList" handleDelete={handleDeleteOrder} /> */}
     </div>
   );
 };
 
-export default memo(OrderList);
+export default OrderList;
