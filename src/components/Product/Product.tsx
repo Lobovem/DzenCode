@@ -17,25 +17,34 @@ import './Product.scss';
 import { IProduct } from '../../types/types';
 import { useAppDispatch } from '../../store/appDispatch';
 import { deleteProduct, fetchOrderList } from '../../store/api';
+import { useGetConfirmation } from '../../ConfirmationProvider';
 
 interface IProductProps {
   product: IProduct;
 }
 
 export const Product: FC<IProductProps> = ({ product }) => {
+  const getConfirmation = useGetConfirmation();
   const dispatch = useAppDispatch();
 
-  const handleItemDelete = (): void => {
-    dispatch(deleteProduct(product.id));
-    dispatch(fetchOrderList());
-    dispatch(handleDetailOrder());
-  };
+  // const handleItemDelete = (): void => {
+  //   dispatch(deleteProduct(product.id));
+  //   dispatch(fetchOrderList());
+  //   dispatch(handleDetailOrder());
+  // };
 
-  const handleDeleteProduct = async () => {
+  const handleDeleteProduct = async (): Promise<void> => {
     dispatch(addItemToDelete(product));
     dispatch(handlePopUpOpen());
 
-    // dispatch(addHandleDeleteItem(handleItemDelete));
+    const confirmation = await getConfirmation({});
+
+    if (confirmation) {
+      dispatch(deleteProduct(product.id));
+      dispatch(fetchOrderList());
+      dispatch(handleDetailOrder());
+      console.log('OKPRODUCT====>');
+    }
   };
 
   return (

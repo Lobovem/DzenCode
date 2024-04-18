@@ -49,7 +49,6 @@ export const Order: FC<IOrderProps> = ({ order }) => {
       dispatch(deleteOrder(order.id));
       console.log('OK====>');
     }
-    // dispatch(addHandleDeleteItem(handleItemDelete));
   };
 
   const handleDetailOrder = useSelector(
