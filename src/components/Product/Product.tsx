@@ -16,7 +16,7 @@ import {
 import './Product.scss';
 import { IProduct } from '../../types/types';
 import { useAppDispatch } from '../../store/appDispatch';
-import { fetchDeleteProduct, fetchOrderList } from '../../store/api';
+import { deleteProduct, fetchOrderList } from '../../store/api';
 
 interface IProductProps {
   product: IProduct;
@@ -26,7 +26,7 @@ export const Product: FC<IProductProps> = ({ product }) => {
   const dispatch = useAppDispatch();
 
   const handleItemDelete = (): void => {
-    dispatch(fetchDeleteProduct(product.id));
+    dispatch(deleteProduct(product.id));
     dispatch(fetchOrderList());
     dispatch(handleDetailOrder());
   };

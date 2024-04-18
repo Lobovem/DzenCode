@@ -29,7 +29,7 @@ interface IOrderProps {
   order: IOrder;
 }
 
-const Order: FC<IOrderProps> = ({ order }) => {
+export const Order: FC<IOrderProps> = ({ order }) => {
   const { id } = useParams<ParamsType>();
   const dispatch = useAppDispatch();
 
@@ -112,5 +112,3 @@ const Order: FC<IOrderProps> = ({ order }) => {
     </>
   );
 };
-
-export default Order;

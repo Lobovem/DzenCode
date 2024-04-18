@@ -14,7 +14,7 @@ type ParamsType = {
   title: string;
 };
 
-const OrderDetail: FC = () => {
+export const OrderDetail: FC = () => {
   const { id, title } = useParams<ParamsType>();
   console.log('id', id, 'title', title);
 
@@ -72,5 +72,3 @@ const OrderDetail: FC = () => {
     </>
   );
 };
-
-export default OrderDetail;

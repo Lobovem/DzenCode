@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { deleteOrder, fetchDeleteProduct, fetchDetailOrder, fetchOrderList, fetchproductListBySelect } from './api';
+import { deleteOrder, deleteProduct, fetchDetailOrder, fetchOrderList, fetchproductListBySelect } from './api';
 import { IItemToDelete, IOrder, IProduct } from '../types/types';
 import { initItem, initProduct } from './initObj';
 
@@ -68,8 +68,6 @@ export const dzenCodeSlice = createSlice({
 
     addHandleDeleteItem: (state, action) => {
       state.handleDeleteItem = action.payload
-      console.log('state.handleDeleteItem', state.handleDeleteItem);
-
     }
   },
 
@@ -79,45 +77,33 @@ export const dzenCodeSlice = createSlice({
         state.isLoading = true;
         state.errorOrderList = null;
         state.statusDetailOrder = false
-
       })
+
       .addCase(fetchOrderList.fulfilled, (state, action) => {
         state.isLoading = false;
         state.errorOrderList = null;
         state.orderList = action.payload
       })
+
       .addCase(fetchOrderList.rejected, (state, action) => {
         state.isLoading = false;
         state.statusDetailOrder = false
         state.errorOrderList = action.error.message ?? 'Failed to fetch order list';
       }),
 
-      // builder
-      //   .addCase(fetchProductList.pending, (state) => {
-      //     state.isLoading = true;
-      //     state.error = null;
-      //   })
-      //   .addCase(fetchProductList.fulfilled, (state, action) => {
-      //     state.isLoading = false;
-      //     state.error = null;
-      //     state.productList = action.payload;
-      //   })
-      //   .addCase(fetchProductList.rejected, (state, action) => {
-      //     state.isLoading = false;
-      //     state.error = action.error.message ?? 'Failed to fetch product list';
-      //   }),
-
       builder
         .addCase(fetchDetailOrder.pending, (state) => {
           state.isLoadingDetail = true;
           state.errorOrderDetail = null;
         })
+
         .addCase(fetchDetailOrder.fulfilled, (state, action) => {
           state.statusDetailOrder = true
           state.isLoadingDetail = false;
           state.errorOrderDetail = null;
           state.detailOrder = action.payload
         })
+
         .addCase(fetchDetailOrder.rejected, (state, action) => {
           state.isLoadingDetail = false;
           state.errorOrderDetail = action.error.message ?? 'Failed to fetch detail order list';
@@ -128,18 +114,19 @@ export const dzenCodeSlice = createSlice({
           state.isLoadingProduct = true;
           state.errorProductList = null;
         })
-        .addCase(fetchproductListBySelect.fulfilled, (state, action) => {
 
+        .addCase(fetchproductListBySelect.fulfilled, (state, action) => {
           state.isLoadingProduct = false;
           state.errorProductList = null;
           state.productList = action.payload
         })
+
         .addCase(fetchproductListBySelect.rejected, (state, action) => {
           state.isLoadingProduct = false;
           state.errorProductList = action.error.message ?? 'Failed to fetch product list';
         }),
 
-      builder.addCase(fetchDeleteProduct.fulfilled, (state, action) => {
+      builder.addCase(deleteProduct.fulfilled, (state, action) => {
         state.productList = state.productList.filter(product => product.id !== action.payload.id)
         state.detailOrder = state.detailOrder.filter(product => product.id !== action.payload.id)
         state.deleteItem = initProduct
