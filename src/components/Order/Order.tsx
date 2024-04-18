@@ -87,9 +87,15 @@ export const Order: FC<IOrderProps> = ({ order }) => {
           )}
 
           {handleDetailOrder && (
-            <div className="order__iconActiveWrap">
+            <div
+              className={
+                id === order.id
+                  ? 'order__iconWrap order__iconWrap_active'
+                  : 'order__iconWrap'
+              }
+            >
               {id === order.id && (
-                <Image className="order__iconActive animation" src={iconArrow} />
+                <Image className="order__iconArrow animation" src={iconArrow} />
               )}
             </div>
           )}
