@@ -2,10 +2,16 @@ import { FC } from 'react';
 import imgMonitor from '../../assets/img/monitor.png';
 import { Image } from 'react-bootstrap';
 import { BtnTrush } from '../BtnTrush/BtnTrush';
-import { addItemToDelete, handlePopUpOpen } from '../../store/slices';
+import {
+  addHandleDeleteItem,
+  addItemToDelete,
+  handleDetailOrder,
+  handlePopUpOpen,
+} from '../../store/slices';
 import { IProduct } from '../../types/types';
 import { useAppDispatch } from '../../store/appDispatch';
 import './Product.scss';
+import { fetchDeleteProduct, fetchOrderList } from '../../store/api';
 
 interface IProductProps {
   product: IProduct;
@@ -14,12 +20,21 @@ interface IProductProps {
 export const ProductShort: FC<IProductProps> = ({ product }) => {
   const dispatch = useAppDispatch();
 
+  const handleItemDelete = (): void => {
+    dispatch(fetchDeleteProduct(product.id));
+    dispatch(fetchOrderList());
+    dispatch(handleDetailOrder());
+    console.log('detail delete product');
+  };
+
   const handleDeleteProduct = (): void => {
     console.log('productShortTOdelete', product);
 
     dispatch(addItemToDelete(product));
     dispatch(handlePopUpOpen());
+    dispatch(addHandleDeleteItem(handleItemDelete));
   };
+
   return (
     <div key={product.id} className="product product_detail">
       <div

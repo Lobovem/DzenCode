@@ -3,12 +3,11 @@ import { FC, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
-import { handleDetailOrder, handlePopUpOpen } from '../../store/slices';
+import { handleDetailOrder } from '../../store/slices';
 import { ProductShort } from '../Product/ProductShort';
 import { useAppDispatch } from '../../store/appDispatch';
 import './OrderDetail.scss';
-import { PopUp } from '../PopUp/PopUp';
-import { fetchDeleteProduct, fetchDetailOrder, fetchOrderList } from '../../store/api';
+import { fetchDetailOrder } from '../../store/api';
 
 type ParamsType = {
   id: string;
@@ -33,13 +32,6 @@ const OrderDetail: FC = () => {
 
   const handleCloseDetailOrder = (): void => {
     dispatch(handleDetailOrder());
-  };
-
-  const handleDeleteProduct = (): void => {
-    // dispatch(fetchDeleteProduct(deleteItem?.id));
-    // dispatch(fetchOrderList());
-    // dispatch(handleDetailOrder());
-    console.log('detail delete product');
   };
 
   useEffect(() => {
@@ -77,8 +69,6 @@ const OrderDetail: FC = () => {
           ))}
         </div>
       </div>
-
-      {/* <PopUp key='orderDetail' handleDelete={handleDeleteProduct} /> */}
     </>
   );
 };

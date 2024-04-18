@@ -3,17 +3,11 @@ import { SelectType } from '../Selects/SelectType';
 import { SelectSpecification } from '../Selects/SelectSpecification';
 import { RootState } from '../../store/store';
 import { useSelector } from 'react-redux';
-import {
-  fetchDeleteProduct,
-  fetchOrderList,
-  fetchproductListBySelect,
-} from '../../store/api';
+import { fetchproductListBySelect } from '../../store/api';
 import { IProduct } from '../../types/types';
 import { useAppDispatch } from '../../store/appDispatch';
 import { Product } from '../Product/Product';
 import './ProductList.scss';
-import { handleDetailOrder } from '../../store/slices';
-import { PopUp } from '../PopUp/PopUp';
 
 export const ProductList: FC = () => {
   const dispatch = useAppDispatch();
@@ -27,12 +21,6 @@ export const ProductList: FC = () => {
   const errorProductList = useSelector(
     (state: RootState) => state.dzenCode.errorProductList
   );
-
-  const handleDeleteProduct = (): void => {
-    dispatch(fetchDeleteProduct(deleteItem.id));
-    dispatch(fetchOrderList());
-    dispatch(handleDetailOrder());
-  };
 
   useEffect(() => {
     dispatch(fetchproductListBySelect(dataSelect));
@@ -64,8 +52,6 @@ export const ProductList: FC = () => {
           </div>
         )}
       </div>
-
-      {/* <PopUp handleDelete={handleDeleteProduct} /> */}
     </>
   );
 };

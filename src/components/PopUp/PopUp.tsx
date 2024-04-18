@@ -1,4 +1,4 @@
-import { FC, MouseEventHandler } from 'react';
+import { FC } from 'react';
 import imgMonitor from '../../assets/img/monitor.png';
 import { Button, Image, Modal } from 'react-bootstrap';
 import { BtnClose } from '../BtnClose/BtnClose';
@@ -9,14 +9,7 @@ import './PopUp.scss';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 
-// interface IPopUpProps {
-//   handleDelete: () => void;
-// } //TODO TS
-
-// export const PopUp: FC<IItemProps> = ({ deleteItem }) => {
 export const PopUp: FC = () => {
-  // console.log('ONCLICK', handleDelete);
-
   const isDelete = useSelector((state: RootState) => state.dzenCode.isDelete);
   const deleteItem = useSelector((state: RootState) => state.dzenCode.deleteItem);
   const handleDelete = useSelector((state: RootState) => state.dzenCode.handleDeleteItem);

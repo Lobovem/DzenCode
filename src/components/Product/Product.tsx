@@ -2,7 +2,12 @@ import { FC } from 'react';
 import { Image } from 'react-bootstrap';
 import imgMonitor from '../../assets/img/monitor.png';
 import { BtnTrush } from '../BtnTrush/BtnTrush';
-import { addItemToDelete, handlePopUpOpen } from '../../store/slices';
+import {
+  addHandleDeleteItem,
+  addItemToDelete,
+  handleDetailOrder,
+  handlePopUpOpen,
+} from '../../store/slices';
 import {
   formatDateWithSlashFull,
   formatDateWithSlashNameMonthFull,
@@ -11,6 +16,7 @@ import {
 import './Product.scss';
 import { IProduct } from '../../types/types';
 import { useAppDispatch } from '../../store/appDispatch';
+import { fetchDeleteProduct, fetchOrderList } from '../../store/api';
 
 interface IProductProps {
   product: IProduct;
@@ -19,16 +25,16 @@ interface IProductProps {
 export const Product: FC<IProductProps> = ({ product }) => {
   const dispatch = useAppDispatch();
 
-  // const handleDeleteProduct = (): void => {
-  //   dispatch(fetchDeleteProduct(deleteItem.id));
-  //   dispatch(fetchOrderList());
-  //   dispatch(handleDetailOrder());
-  // };
+  const handleItemDelete = (): void => {
+    dispatch(fetchDeleteProduct(product.id));
+    dispatch(fetchOrderList());
+    dispatch(handleDetailOrder());
+  };
 
   const handleDeleteProduct = (): void => {
     dispatch(addItemToDelete(product));
     dispatch(handlePopUpOpen());
-    // dispatch(addHandleDeleteItem());
+    dispatch(addHandleDeleteItem(handleItemDelete));
   };
 
   return (

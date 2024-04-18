@@ -68,6 +68,8 @@ export const dzenCodeSlice = createSlice({
 
     addHandleDeleteItem: (state, action) => {
       state.handleDeleteItem = action.payload
+      console.log('state.handleDeleteItem', state.handleDeleteItem);
+
     }
   },
 
