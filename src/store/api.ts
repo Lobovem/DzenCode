@@ -52,30 +52,30 @@ export const fetchOrderList = createAsyncThunk(
     }
   })
 
-export const fetchProductList = createAsyncThunk(
-  'products', async () => {
+// export const fetchProductList = createAsyncThunk(
+//   'products', async () => {
 
-    try {
-      const productResponse = await fetch(`${API_URL}products`)
-      const orderResponse = await fetch(`${API_URL}orders`)
+//     try {
+//       const productResponse = await fetch(`${API_URL}products`)
+//       const orderResponse = await fetch(`${API_URL}orders`)
 
-      if (!orderResponse.ok || !productResponse.ok) {
-        throw new Error('Error fetching news list');
-      }
+//       if (!orderResponse.ok || !productResponse.ok) {
+//         throw new Error('Error fetching news list');
+//       }
 
-      const orderList: IOrder[] = await orderResponse.json()
-      const productList: IProduct[] = await productResponse.json()
+//       const orderList: IOrder[] = await orderResponse.json()
+//       const productList: IProduct[] = await productResponse.json()
 
-      const productListWithOrdersName = productList.map((product) => {
-        return { ...product, orderName: orderList.find((order) => order.id === product.order.toString())?.title }
-      })
+//       const productListWithOrdersName = productList.map((product) => {
+//         return { ...product, orderName: orderList.find((order) => order.id === product.order.toString())?.title }
+//       })
 
-      return productListWithOrdersName
-    }
-    catch (error: any) {
-      throw new Error(error.message);
-    }
-  })
+//       return productListWithOrdersName
+//     }
+//     catch (error: any) {
+//       throw new Error(error.message);
+//     }
+//   })
 
 export const fetchDetailOrder = createAsyncThunk(
   'detailOrder', async (id: string | undefined) => {
@@ -100,7 +100,6 @@ export const fetchproductListBySelect = createAsyncThunk(
   async ({ type, specification }: { type?: string | undefined, specification?: string | undefined }) => {
 
     let url = `${API_URL}products`;
-    //TODO search param, quary params, как сформировать quary строку
     if (type && specification) {
       url += `?type=${type}&specification=${specification}`;
     } else if (type) {
@@ -110,12 +109,23 @@ export const fetchproductListBySelect = createAsyncThunk(
     }
 
     try {
-      const response = await fetch(url);
-      if (!response.ok) {
+      const productResponse = await fetch(url);
+      const orderResponse = await fetch(`${API_URL}orders`)
+
+      if (!orderResponse.ok || !productResponse.ok) {
         throw new Error('Error fetching news list');
       }
 
-      return response.json();
+      const orderList: IOrder[] = await orderResponse.json()
+      const productList: IProduct[] = await productResponse.json()
+
+      const result = productList.map((product) => {
+        return { ...product, orderName: orderList.find((order) => order.id === product.order.toString())?.title }
+      })
+
+      return result
+
+      // return response.json();
     } catch (error: any) {
       throw new Error(error.message);
     }

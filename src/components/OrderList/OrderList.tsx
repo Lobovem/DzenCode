@@ -11,20 +11,20 @@ import './OrderList.scss';
 export const OrderList: FC = () => {
   const dispatch = useAppDispatch();
   const orderList = useSelector((state: RootState) => state.dzenCode.orderList);
-  // const isLoading = useSelector((state: RootState) => state.dzenCode.isLoading);
-  // const error = useSelector((state: RootState) => state.dzenCode.error);
+  const isLoading = useSelector((state: RootState) => state.dzenCode.isLoading);
+  const error = useSelector((state: RootState) => state.dzenCode.error);
 
   useEffect(() => {
     dispatch(fetchOrderList());
   }, [dispatch]);
 
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
-  // if (error) {
-  //   return <div>Error: {error}</div>;
-  // }
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <div className="orderList animation">

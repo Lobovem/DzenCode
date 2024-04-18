@@ -22,7 +22,7 @@ const initialState: IDzenCodeState = {
   productList: [],
   detailOrder: [],
   statusDetailOrder: false,
-  dataSelect: { type: '', specefication: '' },
+  dataSelect: {},
   isDelete: false,
   deleteOrder: initOrder,
   deleteProduct: initProduct,
@@ -68,9 +68,9 @@ export const dzenCodeSlice = createSlice({
 
       })
       .addCase(fetchOrderList.fulfilled, (state, action) => {
-        state.orderList = action.payload
         state.isLoading = false;
         state.error = null;
+        state.orderList = action.payload
       })
       .addCase(fetchOrderList.rejected, (state, action) => {
         state.isLoading = false;
@@ -78,31 +78,31 @@ export const dzenCodeSlice = createSlice({
         state.error = action.error.message ?? 'Failed to fetch order list';
       }),
 
-      builder
-        .addCase(fetchProductList.pending, (state) => {
-          state.isLoading = true;
-          state.error = null;
-        })
-        .addCase(fetchProductList.fulfilled, (state, action) => {
-          state.productList = action.payload;
-          state.isLoading = false;
-          state.error = null;
-        })
-        .addCase(fetchProductList.rejected, (state, action) => {
-          state.isLoading = false;
-          state.error = action.error.message ?? 'Failed to fetch product list';
-        }),
+      // builder
+      //   .addCase(fetchProductList.pending, (state) => {
+      //     state.isLoading = true;
+      //     state.error = null;
+      //   })
+      //   .addCase(fetchProductList.fulfilled, (state, action) => {
+      //     state.isLoading = false;
+      //     state.error = null;
+      //     state.productList = action.payload;
+      //   })
+      //   .addCase(fetchProductList.rejected, (state, action) => {
+      //     state.isLoading = false;
+      //     state.error = action.error.message ?? 'Failed to fetch product list';
+      //   }),
 
       builder
-        .addCase(fetchDetailOrder.pending, (state) => {
-          state.isLoading = true;
-          state.error = null;
-        })
+        // .addCase(fetchDetailOrder.pending, (state) => {
+        //   state.isLoading = true;
+        //   state.error = null;
+        // })
         .addCase(fetchDetailOrder.fulfilled, (state, action) => {
-          state.detailOrder = action.payload
           state.statusDetailOrder = true
           state.isLoading = false;
           state.error = null;
+          state.detailOrder = action.payload
         })
         .addCase(fetchDetailOrder.rejected, (state, action) => {
           state.isLoading = false;
@@ -110,14 +110,15 @@ export const dzenCodeSlice = createSlice({
         }),
 
       builder
-        .addCase(fetchproductListBySelect.pending, (state) => {
-          state.isLoading = true;
-          state.error = null;
-        })
+        // .addCase(fetchproductListBySelect.pending, (state) => {
+        //   state.isLoading = true;
+        //   state.error = null;
+        // })
         .addCase(fetchproductListBySelect.fulfilled, (state, action) => {
-          state.productList = action.payload
+
           state.isLoading = false;
           state.error = null;
+          state.productList = action.payload
         })
         .addCase(fetchproductListBySelect.rejected, (state, action) => {
           state.isLoading = false;
@@ -128,12 +129,12 @@ export const dzenCodeSlice = createSlice({
         state.productList = state.productList.filter(product => product.id !== action.payload.id)
         state.detailOrder = state.detailOrder.filter(product => product.id !== action.payload.id)
         state.deleteProduct = initProduct
-      })
+      }),
 
-    builder.addCase(deleteOrder.fulfilled, (state, action) => {
-      state.orderList = state.orderList.filter(order => order.id !== action.payload.id)
-      state.deleteOrder = initOrder
-    })
+      builder.addCase(deleteOrder.fulfilled, (state, action) => {
+        state.orderList = state.orderList.filter(order => order.id !== action.payload.id)
+        state.deleteOrder = initOrder
+      })
   },
 })
 
