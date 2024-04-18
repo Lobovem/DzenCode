@@ -32,7 +32,7 @@ export const ProductShort: FC<IProductProps> = ({ product }) => {
 
     dispatch(addItemToDelete(product));
     dispatch(handlePopUpOpen());
-    dispatch(addHandleDeleteItem(handleItemDelete));
+    // dispatch(addHandleDeleteItem(handleItemDelete));
   };
 
   return (

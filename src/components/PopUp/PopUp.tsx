@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, HTMLAttributes, ReactNode } from 'react';
 import imgMonitor from '../../assets/img/monitor.png';
 import { Button, Image, Modal } from 'react-bootstrap';
 import { BtnClose } from '../BtnClose/BtnClose';
@@ -9,25 +9,39 @@ import './PopUp.scss';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 
-export const PopUp: FC = () => {
+interface IModalProps extends HTMLAttributes<HTMLDivElement> {
+  params: {
+    title?: string;
+    description?: string;
+    element?: ReactNode;
+    closeText?: string;
+    confirmText?: string;
+    onClose: () => void;
+    onConfirm: () => void;
+  };
+}
+
+export const PopUp: FC<IModalProps> = ({ params }) => {
+  const { onClose, onConfirm } = params;
+
   const isDelete = useSelector((state: RootState) => state.dzenCode.isDelete);
   const deleteItem = useSelector((state: RootState) => state.dzenCode.deleteItem);
-  const handleDelete = useSelector((state: RootState) => state.dzenCode.handleDeleteItem);
 
   const dispatch = useAppDispatch();
-  const handleOpen = (): void => {
+  const handleClose = (): void => {
+    onClose();
     dispatch(handlePopUpOpen());
   };
 
-  const handleClickSucces = () => {
-    handleDelete();
+  const handleClickSuccess = () => {
+    onConfirm();
     dispatch(handlePopUpOpen());
   };
 
   return (
     <div className={isDelete ? 'modal modal_active show' : 'modal show'}>
       <Modal.Dialog className="popUp">
-        <BtnClose onClick={handleOpen} />
+        <BtnClose onClick={handleClose} />
 
         <Modal.Header className="popUp__header">
           <Modal.Title className="popUp__title">
@@ -58,14 +72,14 @@ export const PopUp: FC = () => {
         </Modal.Body>
 
         <Modal.Footer className="popUp__footer">
-          <Button variant="secondary" className="popUp__btnClose" onClick={handleOpen}>
+          <Button variant="secondary" className="popUp__btnClose" onClick={handleClose}>
             Close
           </Button>
 
           <Button
             variant="primary"
             className="popUp__btnDelete"
-            onClick={handleClickSucces}
+            onClick={handleClickSuccess}
           >
             <Image src={iconTrush} className="popUp__btnDeleteIcon" /> Delete
           </Button>

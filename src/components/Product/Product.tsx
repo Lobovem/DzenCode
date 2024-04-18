@@ -31,10 +31,11 @@ export const Product: FC<IProductProps> = ({ product }) => {
     dispatch(handleDetailOrder());
   };
 
-  const handleDeleteProduct = (): void => {
+  const handleDeleteProduct = async () => {
     dispatch(addItemToDelete(product));
     dispatch(handlePopUpOpen());
-    dispatch(addHandleDeleteItem(handleItemDelete));
+
+    // dispatch(addHandleDeleteItem(handleItemDelete));
   };
 
   return (

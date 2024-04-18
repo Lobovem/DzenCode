@@ -18,7 +18,6 @@ export interface IDzenCodeState {
   errorOrderDetail: string | null;
   errorProductList: string | null;
   errorOrderList: string | null;
-  handleDeleteItem: () => void
 }
 
 const initialState: IDzenCodeState = {
@@ -35,7 +34,6 @@ const initialState: IDzenCodeState = {
   errorOrderDetail: null,
   errorProductList: null,
   errorOrderList: null,
-  handleDeleteItem: () => { }
 }
 
 export const dzenCodeSlice = createSlice({
@@ -65,10 +63,6 @@ export const dzenCodeSlice = createSlice({
     addItemToDelete: (state, action) => {
       state.deleteItem = action.payload
     },
-
-    addHandleDeleteItem: (state, action) => {
-      state.handleDeleteItem = action.payload
-    }
   },
 
   extraReducers: (builder) => {
@@ -139,5 +133,5 @@ export const dzenCodeSlice = createSlice({
   },
 })
 
-export const { handleDetailOrder, dataSelectChange, addHandleDeleteItem, handlePopUpOpen, addDeleteOrder, addItemToDelete, disableDetailOrder } = dzenCodeSlice.actions
+export const { handleDetailOrder, dataSelectChange, handlePopUpOpen, addDeleteOrder, addItemToDelete, disableDetailOrder } = dzenCodeSlice.actions
 export default dzenCodeSlice.reducer

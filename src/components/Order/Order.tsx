@@ -20,6 +20,7 @@ import {
   handlePopUpOpen,
 } from '../../store/slices';
 import { deleteOrder } from '../../store/api';
+import { useGetConfirmation } from '../../ConfirmationProvider';
 
 type ParamsType = {
   id: string;
@@ -30,18 +31,25 @@ interface IOrderProps {
 }
 
 export const Order: FC<IOrderProps> = ({ order }) => {
+  const getConfirmation = useGetConfirmation();
   const { id } = useParams<ParamsType>();
   const dispatch = useAppDispatch();
 
-  const handleItemDelete = (): void => {
-    dispatch(deleteOrder(order.id));
-    // console.log('orderList delete order');
-  };
+  // const handleItemDelete = (): void => {
+  //   dispatch(deleteOrder(order.id));
+  //   // console.log('orderList delete order');
+  // };
 
-  const handleDeleteOrder = (): void => {
+  const handleDeleteOrder = async (): Promise<void> => {
     dispatch(addItemToDelete(order));
     dispatch(handlePopUpOpen());
-    dispatch(addHandleDeleteItem(handleItemDelete));
+    const confirmation = await getConfirmation({});
+
+    if (confirmation) {
+      dispatch(deleteOrder(order.id));
+      console.log('OK====>');
+    }
+    // dispatch(addHandleDeleteItem(handleItemDelete));
   };
 
   const handleDetailOrder = useSelector(
