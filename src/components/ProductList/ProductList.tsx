@@ -3,24 +3,33 @@ import { SelectType } from '../Selects/SelectType';
 import { SelectSpecification } from '../Selects/SelectSpecification';
 import { RootState } from '../../store/store';
 import { useSelector } from 'react-redux';
-import { fetchproductListBySelect } from '../../store/api';
-import { PopUp } from '../PopUp/PopUp';
+import { deleteProduct, fetchOrderList, fetchproductListBySelect } from '../../store/api';
 import { IProduct } from '../../types/types';
 import { useAppDispatch } from '../../store/appDispatch';
 import { Product } from '../Product/Product';
 import './ProductList.scss';
+import { handleDetailOrder, handlePopUpOpen } from '../../store/slices';
+import { PopUp } from '../PopUp/PopUp';
 
 export const ProductList: FC = () => {
   const dispatch = useAppDispatch();
   const productList = useSelector((state: RootState) => state.dzenCode.productList);
-  const deleteProduct = useSelector((state: RootState) => state.dzenCode.deleteProduct);
-  const isDelete = useSelector((state: RootState) => state.dzenCode.isDelete);
   const dataSelect = useSelector((state: RootState) => state.dzenCode.dataSelect);
+  const deleteItem = useSelector((state: RootState) => state.dzenCode.deleteItem);
+
+  console.log('deleteItem productList', deleteItem);
 
   const isLoading = useSelector((state: RootState) => state.dzenCode.isLoadingProduct);
   const errorProductList = useSelector(
     (state: RootState) => state.dzenCode.errorProductList
   );
+
+  const handleDeleteProduct = (): void => {
+    dispatch(deleteProduct(deleteItem.id));
+    dispatch(fetchOrderList());
+    dispatch(handleDetailOrder());
+    dispatch(handlePopUpOpen());
+  };
 
   useEffect(() => {
     dispatch(fetchproductListBySelect(dataSelect));
@@ -53,7 +62,7 @@ export const ProductList: FC = () => {
         )}
       </div>
 
-      {isDelete && <PopUp deleteItem={deleteProduct} />}
+      <PopUp onClick={handleDeleteProduct} />
     </>
   );
 };

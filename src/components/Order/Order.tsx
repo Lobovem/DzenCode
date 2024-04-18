@@ -14,8 +14,7 @@ import './Order.scss';
 
 import { useAppDispatch } from '../../store/appDispatch';
 import { IOrder } from '../../types/types';
-import { PopUp } from '../PopUp/PopUp';
-import { addDeleteOrder, handleDelete } from '../../store/slices';
+import { addItemToDelete, handlePopUpOpen } from '../../store/slices';
 
 type ParamsType = {
   id: string;
@@ -28,14 +27,10 @@ interface IOrderProps {
 const Order: FC<IOrderProps> = ({ order }) => {
   const { id } = useParams<ParamsType>();
   const dispatch = useAppDispatch();
-  const isDelete = useSelector((state: RootState) => state.dzenCode.isDelete);
-  const delOrder = useSelector((state: RootState) => state.dzenCode.deleteOrder);
 
-
-  
   const handleDeleteOrder = (): void => {
-    dispatch(addDeleteOrder(order));
-    dispatch(handleDelete());
+    dispatch(addItemToDelete(order));
+    dispatch(handlePopUpOpen());
   };
 
   const handleDetailOrder = useSelector(
@@ -48,7 +43,7 @@ const Order: FC<IOrderProps> = ({ order }) => {
         <div className="order__wrap">
           {!handleDetailOrder && (
             <div className="order__titleWrap">
-              <Link to={`/orders/${order.id}`} className="order__title">
+              <Link to={`/orders/${order.id}/${order.title}`} className="order__title">
                 {order.title}
               </Link>
             </div>
@@ -103,8 +98,6 @@ const Order: FC<IOrderProps> = ({ order }) => {
           )}
         </div>
       </div>
-
-      {isDelete && <PopUp deleteItem={delOrder} />}
     </>
   );
 };

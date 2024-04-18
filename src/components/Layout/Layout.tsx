@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { NavigationBar } from '../NavigationBar/NavigationBar';
 import './Layout.scss';
+import { PopUp } from '../PopUp/PopUp';
 
 export const Layout: FC = () => {
   const isDelete = useSelector((state: RootState) => state.dzenCode.isDelete);

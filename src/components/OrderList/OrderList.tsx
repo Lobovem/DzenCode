@@ -3,20 +3,28 @@ import { FC, memo, useEffect } from 'react';
 import Order from '../Order/Order';
 import { RootState } from '../../store/store';
 import { useSelector } from 'react-redux';
-import { fetchOrderList } from '../../store/api';
+import { deleteOrder, fetchOrderList } from '../../store/api';
 import { Outlet } from 'react-router-dom';
 import { useAppDispatch } from '../../store/appDispatch';
 import './OrderList.scss';
+import { handlePopUpOpen } from '../../store/slices';
+import { PopUp } from '../PopUp/PopUp';
 
 const OrderList: FC = () => {
   const dispatch = useAppDispatch();
   const orderList = useSelector((state: RootState) => state.dzenCode.orderList);
+  const delOrder = useSelector((state: RootState) => state.dzenCode.deleteItem);
   const handleDetailOrder = useSelector(
     (state: RootState) => state.dzenCode.statusDetailOrder
   );
 
   const isLoading = useSelector((state: RootState) => state.dzenCode.isLoading);
   const errorOrderList = useSelector((state: RootState) => state.dzenCode.errorOrderList);
+
+  const handleDeleteOrder = (): void => {
+    dispatch(deleteOrder(delOrder.id));
+    dispatch(handlePopUpOpen());
+  };
 
   useEffect(() => {
     dispatch(fetchOrderList());
@@ -50,6 +58,7 @@ const OrderList: FC = () => {
 
         <Outlet />
       </div>
+      <PopUp onClick={handleDeleteOrder} />
     </div>
   );
 };

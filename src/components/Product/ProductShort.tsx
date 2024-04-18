@@ -2,7 +2,7 @@ import { FC } from 'react';
 import imgMonitor from '../../assets/img/monitor.png';
 import { Image } from 'react-bootstrap';
 import { BtnTrush } from '../BtnTrush/BtnTrush';
-import { addDeleteProduct, handleDelete } from '../../store/slices';
+import { addItemToDelete, handlePopUpOpen } from '../../store/slices';
 import { IProduct } from '../../types/types';
 import { useAppDispatch } from '../../store/appDispatch';
 import './Product.scss';
@@ -15,8 +15,8 @@ export const ProductShort: FC<IProductProps> = ({ product }) => {
   const dispatch = useAppDispatch();
 
   const handleDeleteProduct = (): void => {
-    dispatch(addDeleteProduct(product));
-    dispatch(handleDelete());
+    dispatch(addItemToDelete(product));
+    dispatch(handlePopUpOpen());
   };
   return (
     <div key={product.id} className="product product_detail">

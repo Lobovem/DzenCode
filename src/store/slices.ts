@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { deleteOrder, deleteProduct, fetchDetailOrder, fetchOrderList, fetchproductListBySelect } from './api';
-import { IOrder, IProduct } from '../types/types';
-import { initOrder, initProduct } from './initObj';
+import { IItemToDelete, IOrder, IProduct } from '../types/types';
+import { initItem, initProduct } from './initObj';
 
 export interface IDzenCodeState {
   orderList: IOrder[];
@@ -11,19 +11,13 @@ export interface IDzenCodeState {
   statusDetailOrder: boolean
   dataSelect: { type?: string, specification?: string },
   isDelete: boolean,
-  deleteOrder: IOrder
-  deleteProduct: IProduct,
+  deleteItem: IItemToDelete
   isLoading: boolean,
   isLoadingDetail: boolean,
   isLoadingProduct: boolean,
   errorOrderDetail: string | null;
   errorProductList: string | null;
   errorOrderList: string | null;
-}
-
-interface IItemPopUp {
-  title: string,
-  isNew?: boolean,
 }
 
 const initialState: IDzenCodeState = {
@@ -33,8 +27,7 @@ const initialState: IDzenCodeState = {
   statusDetailOrder: false,
   dataSelect: {},
   isDelete: false,
-  deleteOrder: initOrder,
-  deleteProduct: initProduct,
+  deleteItem: initItem,
   isLoading: false,
   isLoadingDetail: false,
   isLoadingProduct: false,
@@ -59,16 +52,16 @@ export const dzenCodeSlice = createSlice({
       state.dataSelect = { ...state.dataSelect, ...action.payload }
     },
 
-    handleDelete: (state) => {
+    handlePopUpOpen: (state) => {
       state.isDelete = !state.isDelete
     },
 
     addDeleteOrder: (state, action) => {
-      state.deleteOrder = action.payload
+      state.deleteItem = action.payload
     },
 
-    addDeleteProduct: (state, action) => {
-      state.deleteProduct = action.payload
+    addItemToDelete: (state, action) => {
+      state.deleteItem = action.payload
     }
   },
 
@@ -141,15 +134,15 @@ export const dzenCodeSlice = createSlice({
       builder.addCase(deleteProduct.fulfilled, (state, action) => {
         state.productList = state.productList.filter(product => product.id !== action.payload.id)
         state.detailOrder = state.detailOrder.filter(product => product.id !== action.payload.id)
-        state.deleteProduct = initProduct
+        state.deleteItem = initProduct
       }),
 
       builder.addCase(deleteOrder.fulfilled, (state, action) => {
         state.orderList = state.orderList.filter(order => order.id !== action.payload.id)
-        state.deleteOrder = initOrder
+        state.deleteItem = initItem
       })
   },
 })
 
-export const { handleDetailOrder, dataSelectChange, handleDelete, addDeleteOrder, addDeleteProduct, disableDetailOrder } = dzenCodeSlice.actions
+export const { handleDetailOrder, dataSelectChange, handlePopUpOpen, addDeleteOrder, addItemToDelete, disableDetailOrder } = dzenCodeSlice.actions
 export default dzenCodeSlice.reducer

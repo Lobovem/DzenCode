@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, MouseEventHandler } from 'react';
 import imgMonitor from '../../assets/img/monitor.png';
 import { Button, Image, Modal } from 'react-bootstrap';
 import { BtnClose } from '../BtnClose/BtnClose';
@@ -7,47 +7,52 @@ import { deleteOrder, deleteProduct, fetchOrderList } from '../../store/api';
 import {
   addDeleteOrder,
   addDeleteProduct,
-  handleDelete,
+  handlePopUpOpen,
   handleDetailOrder,
 } from '../../store/slices';
 import { useAppDispatch } from '../../store/appDispatch';
 import './PopUp.scss';
 import { initOrder, initProduct } from '../../store/initObj';
 import { IOrder, IProduct, isIOrder, isIProduct } from '../../types/types';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 
-interface IItemProps {
-  deleteItem: IProduct | IOrder;
+interface IPopUpProps {
+  onClick: MouseEventHandler<HTMLButtonElement>;
 }
 
-export const PopUp: FC<IItemProps> = ({ deleteItem }) => {
+// export const PopUp: FC<IItemProps> = ({ deleteItem }) => {
+export const PopUp: FC<IPopUpProps> = ({ onClick }) => {
+  const isDelete = useSelector((state: RootState) => state.dzenCode.isDelete);
+  const deleteItem = useSelector((state: RootState) => state.dzenCode.deleteItem);
+
   const dispatch = useAppDispatch();
-  //TODO edit functions into popUp
-  const handleOpenPopUp = (): void => {
-    if (isIProduct(deleteItem)) {
-      dispatch(addDeleteProduct(initProduct));
-    } else if (isIOrder(deleteItem)) {
-      dispatch(addDeleteOrder(initOrder));
-    }
-    dispatch(handleDelete());
+  const handleOpen = (): void => {
+    // if (isIProduct(deleteItem)) {
+    //   dispatch(addDeleteProduct(initProduct));
+    // } else if (isIOrder(deleteItem)) {
+    //   dispatch(addDeleteOrder(initOrder));
+    // }
+    dispatch(handlePopUpOpen());
   };
 
   const handleDeleteItem = (): void => {
-    if (isIProduct(deleteItem)) {
-      dispatch(deleteProduct(deleteItem.id));
-      dispatch(fetchOrderList());
-      dispatch(handleDetailOrder());
-    }
-    if (isIOrder(deleteItem)) {
-      dispatch(deleteOrder(deleteItem.id));
-    }
+    // if (isIProduct(deleteItem)) {
+    //   dispatch(deleteProduct(deleteItem.id));
+    //   dispatch(fetchOrderList());
+    //   dispatch(handleDetailOrder());
+    // }
+    // if (isIOrder(deleteItem)) {
+    //   dispatch(deleteOrder(deleteItem.id));
+    // }
 
-    handleOpenPopUp();
+    handleOpen();
   };
 
   return (
-    <div className="modal show animation">
+    <div className={isDelete ? 'modal modal_active show' : 'modal show'}>
       <Modal.Dialog className="popUp">
-        <BtnClose onClick={handleOpenPopUp} />
+        <BtnClose onClick={handleOpen} />
 
         <Modal.Header className="popUp__header">
           <Modal.Title className="popUp__title">
@@ -56,7 +61,7 @@ export const PopUp: FC<IItemProps> = ({ deleteItem }) => {
         </Modal.Header>
 
         <Modal.Body className="popUp__body">
-          {isIProduct(deleteItem) && deleteItem?.order ? (
+          {deleteItem?.isNew ? (
             <div className="popUp__product product">
               <div
                 className={
@@ -78,19 +83,11 @@ export const PopUp: FC<IItemProps> = ({ deleteItem }) => {
         </Modal.Body>
 
         <Modal.Footer className="popUp__footer">
-          <Button
-            variant="secondary"
-            className="popUp__btnClose"
-            onClick={handleOpenPopUp}
-          >
+          <Button variant="secondary" className="popUp__btnClose" onClick={handleOpen}>
             Close
           </Button>
 
-          <Button
-            variant="primary"
-            className="popUp__btnDelete"
-            onClick={handleDeleteItem}
-          >
+          <Button variant="primary" className="popUp__btnDelete" onClick={onClick}>
             <Image src={iconTrush} className="popUp__btnDeleteIcon" /> Delete
           </Button>
         </Modal.Footer>

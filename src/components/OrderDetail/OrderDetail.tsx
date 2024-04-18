@@ -3,12 +3,12 @@ import { FC, memo, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
-import { fetchDetailOrder } from '../../store/api';
-import { handleDetailOrder } from '../../store/slices';
-import { PopUp } from '../PopUp/PopUp';
+import { deleteProduct, fetchDetailOrder, fetchOrderList } from '../../store/api';
+import { handleDetailOrder, handlePopUpOpen } from '../../store/slices';
 import { ProductShort } from '../Product/ProductShort';
 import { useAppDispatch } from '../../store/appDispatch';
 import './OrderDetail.scss';
+import { PopUp } from '../PopUp/PopUp';
 
 type ParamsType = {
   id: string;
@@ -17,19 +17,26 @@ type ParamsType = {
 
 const OrderDetail: FC = () => {
   const { id, title } = useParams<ParamsType>();
-  const dispatch = useAppDispatch();
+  console.log(id, title);
 
-  const isDelete = useSelector((state: RootState) => state.dzenCode.isDelete);
+  const dispatch = useAppDispatch();
   const orderDetail = useSelector((state: RootState) => state.dzenCode.detailOrder);
-  const deleteProduct = useSelector((state: RootState) => state.dzenCode.deleteProduct);
 
   const isLoading = useSelector((state: RootState) => state.dzenCode.isLoadingDetail);
+  const deleteItem = useSelector((state: RootState) => state.dzenCode.deleteItem);
   const errorOrderDetail = useSelector(
     (state: RootState) => state.dzenCode.errorOrderDetail
   );
 
   const handleCloseDetailOrder = (): void => {
     dispatch(handleDetailOrder());
+  };
+
+  const handleDeleteProduct = (): void => {
+    dispatch(deleteProduct(deleteItem.id));
+    dispatch(fetchOrderList());
+    dispatch(handleDetailOrder());
+    dispatch(handlePopUpOpen());
   };
 
   useEffect(() => {
@@ -68,7 +75,7 @@ const OrderDetail: FC = () => {
         </div>
       </div>
 
-      {isDelete && <PopUp deleteItem={deleteProduct} />}
+      <PopUp onClick={handleDeleteProduct}></PopUp>
     </>
   );
 };

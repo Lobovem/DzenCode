@@ -1,10 +1,16 @@
 .modal {
   position: fixed;
   display: block;
-  // background-color: lightgray;
-  top: 0;
+  // top: 0;
   background-color: rgba(183, 183, 183, 0.415);
-  /* Прозрачный черный цвет */
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: none;
+
+  &_active {
+    opacity: 1;
+    pointer-events: auto;
+  }
 }
 
 .modal-content {
