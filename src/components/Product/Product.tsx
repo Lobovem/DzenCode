@@ -36,7 +36,7 @@ export const Product: FC<IProductProps> = ({ product }) => {
   };
 
   return (
-    <div className="product">
+    <div className="product animation">
       <div
         className={
           product.isNew

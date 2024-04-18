@@ -40,7 +40,7 @@ export const ProductList: FC = () => {
           <p>loading</p>
         ) : (
           <div className="productList__listWrap">
-            <div className="productList__list">
+            <div className="productList__list animation">
               {productList?.map((product: IProduct) => (
                 <Product key={product.id} product={product} />
               ))}
